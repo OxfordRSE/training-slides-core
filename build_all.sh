@@ -6,8 +6,7 @@ repo_root="${1:-}"
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 if [ ! -d "${script_dir}/common" ]; then
   >&2 echo "Error: 'common' directory not found."
-  >&2 echo "Remember to checkout submodules:"
-  >&2 echo "  git submodule update --init --recursive"
+  >&2 echo "It should be present in a normal checkout of this repository."
   exit 1
 fi
 
