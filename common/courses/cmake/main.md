@@ -27,7 +27,7 @@ layout: two-cols-header
 You could compile by hand:
 
 ```bash
-g++ -std=c++17 main.cpp functionality.cpp \
+g++ -std=c++20 main.cpp functionality.cpp \
     -I/usr/local/include/eigen3 \
     -lboost_program_options \
     -o main_executable
