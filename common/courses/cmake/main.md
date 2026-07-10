@@ -92,10 +92,10 @@ layout: two-cols-header
 
 ```bash
 # configure
-cmake -S . -B build
+cmake -S . -B build_dir
 
 # build
-cmake --build build
+cmake --build build_dir
 
 # run
 ./build/main_executable
