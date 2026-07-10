@@ -1,6 +1,8 @@
 {
   "default": true,
 
+  "MD003": false,
+
   "MD012": {
     "maximum": 2
   },
@@ -13,9 +15,9 @@
     "siblings_only": true
   },
 
-  "MD033": {
-    "allowed_elements": ["br", "sub", "sup"]
-  },
+  "MD025": false,
+
+  "MD033": false,
 
   "MD041": false
 }
