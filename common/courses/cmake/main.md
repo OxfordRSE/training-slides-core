@@ -181,6 +181,7 @@ layout: two-cols-header
 - **Config mode**: the library ships a `…Config.cmake`, the modern norm (e.g. Eigen, Boost ≥ 1.70).
 - **Module mode**: CMake, or you, provide a `Find<package>.cmake`.
 - Then you link a **namespaced target**, with no manual `-I` / `-l`.
+- Not installed? `FetchContent` can download and build it as part of your project.
 
 </v-clicks>
 
@@ -228,6 +229,9 @@ A series of **checkpoints**, each building on the last:
 - **3**: add a dependency (Eigen)
 - **4**: add another (Boost)
 - **5**: turn on compiler warnings
+- **6**: fetch a dependency, and add tests with CTest
+- **7**: install and package the library
+- **8**: consume the installed library from a separate project
 
 </v-clicks>
 
@@ -238,7 +242,44 @@ A series of **checkpoints**, each building on the last:
 Work at your own pace. Each checkpoint is a small, self-contained project with a
 `CMakeLists.txt` to complete.
 
-The written material walks through every step.
+The written material walks through every step, and goes further into presets,
+fetching dependencies, testing, and packaging.
+
+</v-click>
+
+---
+layout: two-cols-header
+---
+
+# What you'll need
+
+::left::
+
+<v-clicks>
+
+- A **Linux-like environment**: a recent Ubuntu, or WSL2 on Windows.
+- **CMake 3.24 or newer**. Check with `cmake --version`.
+- A **C++20 compiler**, plus Ninja and Git.
+- **Eigen** and **Boost.Program_options**, the two libraries we ask CMake to find.
+- Later checkpoints fetch `fmt` and Catch2 for you, so you will want to be online.
+
+</v-clicks>
+
+::right::
+
+```bash
+sudo apt update
+
+sudo apt install \
+    build-essential cmake ninja-build git \
+    libeigen3-dev \
+    libboost-program-options-dev
+```
+
+<v-click>
+
+Ubuntu 22.04 ships CMake 3.22, which is a little too old for some of what we do.
+The material has a note on upgrading.
 
 </v-click>
 
