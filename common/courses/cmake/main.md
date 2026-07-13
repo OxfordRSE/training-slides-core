@@ -292,7 +292,7 @@ layout: default
 Clone the exercises and open the course material:
 
 ```bash
-git clone https://github.com/OxfordRSE/IntroCMakeCourse
+git clone https://github.com/OxfordRSE/ModernCMakeCourse
 ```
 
 <v-clicks>
