@@ -49,3 +49,9 @@ ai_for_coding:
   description: How to use modern AI tools effectively and responsibly in code development
   audience: Tooling
   coreOnly: true
+cmake:
+  number: 12
+  title: Modern CMake
+  description: Writing modern, portable CMake to configure, build, and manage dependencies for C++ projects.
+  audience: Tooling
+  coreOnly: true
