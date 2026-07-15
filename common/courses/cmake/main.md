@@ -10,7 +10,7 @@ layout: default
 - Now it needs to build somewhere else:
   - a collaborator's laptop
   - the group workstation
-  - an HPC login node
+  - an HPC system
 - Different compilers, different library locations, different operating systems.
 - Everyone should end up with **the same program**, built the same way, wherever they are.
 
@@ -54,7 +54,10 @@ layout: two-cols-header
 
 <v-clicks>
 
-- You **describe intent** in a `CMakeLists.txt`: targets, sources, dependencies.
+- You **describe intent** in a `CMakeLists.txt`:
+  - targets
+  - sources
+  - dependencies
 - CMake **generates** the actual build files:
   - Makefiles
   - Ninja build files
@@ -178,7 +181,7 @@ layout: two-cols-header
 <v-clicks>
 
 - `find_package` locates a library without you knowing where it lives.
-- **Config mode**: the library ships a `…Config.cmake`, the modern norm (e.g. Eigen, Boost ≥ 1.70).
+- **Config mode**: the library ships a `<Package>Config.cmake`, the modern norm e.g. `Eigen3Config.cmake`, `BoostConfig.cmake` (Boost ≥ 1.70).
 - **Module mode**: CMake, or you, provide a `Find<package>.cmake`.
 - Then you link a **namespaced target**, with no manual `-I` / `-l`.
 - Not installed? `FetchContent` can download and build it as part of your project.
