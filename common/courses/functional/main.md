@@ -65,7 +65,7 @@ class: text-xl
 
   They always give the same output for the same inputs. You could replace them by their output value in the code without affecting the result.
 
-  It doesn’t matter if you replace `sqrt(4)` with `2`, but it does if you replace `today()` with <code>{{ new Date().toISOString().slice(0, 10) }}</code>.
+  It doesn't matter if you replace `sqrt(4)` with `2`, but it does if you replace `today()` with <code>{{ new Date().toISOString().slice(0, 10) }}</code>.
 
 ::right::
 
@@ -111,7 +111,7 @@ layout: two-cols-header
 
 So why try to avoid them?
 
-Most useful programs are impure anyway…
+Most useful programs are impure anyway...
 
 </v-click>
 
@@ -135,7 +135,7 @@ class: text-2xl
 
 Something somewhere is not what it should be because it got changed by something else.{class="text-4xl"}
 
-(“Mutable” is just a fancy word for “can be changed”. “Immutable” means it cannot.){class="text-xl text-gray-500"}
+("Mutable" is just a fancy word for "can be changed". "Immutable" means it cannot.){class="text-xl text-gray-500"}
 
 By limiting the things in your program that can be changed and the parts of it that can change them, bugs become easier to track.
 
@@ -184,7 +184,7 @@ layout: two-cols-header
 
 <div class = "text-2xl">
 
-If you don’t mutate anything ever, you often have to copy lots of data, which can be costly.
+If you don't mutate anything ever, you often have to copy lots of data, which can be costly.
 
 Workarounds involve:
 
@@ -208,7 +208,7 @@ df2 = df1.rename(columns={'A': 'a'})
 print(df2)
 ```
 
-It offers a functional interface but uses non-functional features under the hood and won’t actually copy data unless it needs to.
+It offers a functional interface but uses non-functional features under the hood and won't actually copy data unless it needs to.
 
 <style>
     ul li::marker { color: var(--oxrse-bg-colour); }
@@ -225,7 +225,7 @@ class: text-xl
 
 <div class = "flex flex-col h-100 space-evenly">
 
-The **λ-calculus**, introduced by Alonzo Church in the 1930s, is the world’s smallest programming language.
+The **λ-calculus**, introduced by Alonzo Church in the 1930s, is the world's smallest programming language.
 
 It has:
 - Variables: $x$, $y$, etc.
@@ -259,11 +259,11 @@ https://en.wikipedia.org/wiki/File:Alonzo_Church.jpg
 
 - **Lisp** (1960) Heavily inspired by lambda calculus. Second-oldest high-level programming language still in common use. Scheme, Clojure and Logo are dialects. Scheme inspired S which led to R.
 
-- **Haskell** (1990) The quintessential FP language. Statically typed and “lazy”, with an emphasis on purity. _Learn You a Haskell for Great Good!_ (https://learnyouahaskell.com/) is a great intro to FP.
+- **Haskell** (1990) The quintessential FP language. Statically typed and "lazy", with an emphasis on purity. _Learn You a Haskell for Great Good!_ (https://learnyouahaskell.com/) is a great intro to FP.
 
 - **Scala** (2004) A pragmatic object/functional hybrid language that runs on the Java Virtual Machine.
 
-- **F#** (2005) Microsoft’s take on FP for the .NET platform. Descended from ML (1973) via Caml (1985) and OCaml (1996).
+- **F#** (2005) Microsoft's take on FP for the .NET platform. Descended from ML (1973) via Caml (1985) and OCaml (1996).
 
 - **Most** languages also support some measure of functional programming nowadays.
 
@@ -461,7 +461,7 @@ class: text-2xl
 
 **Comprehensions** are a more Pythonic way to structure map and filter operations.
 
-**Generators** are similar to list comprehensions but behave differently and aren’t evaluated until iterated over.
+**Generators** are similar to list comprehensions but behave differently and aren't evaluated until iterated over.
 
 </div>
 
@@ -598,7 +598,7 @@ class: text-xl
 Besides benefits like **testability**, **composability** and **parallelizability**, functional programming
 changes the way we think about programming.
 
-We shift from an **imperative** mind set (“do this”) to a **declarative** one (“here is what I need”) and
+We shift from an **imperative** mind set ("do this") to a **declarative** one ("here is what I need") and
 programming becomes about chaining transformations to our data.
 
 A fun little game that captures the experience well:

@@ -11,7 +11,7 @@ layout: two-cols
 
 # Software development is ongoing
 
-- Software is never “finished”
+- Software is never "finished"
 - Bugs are discovered over time
 - New requirements and improvements emerge
 
@@ -54,7 +54,7 @@ layout: default
 
 - Multiple contributors working on the same codebase
 - Working in parallel on separate changes
-- Reviewing each other’s work before integration
+- Reviewing each other's work before integration
 
 </div>
 
