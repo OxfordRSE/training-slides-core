@@ -76,12 +76,12 @@ layout: two-cols
 
 # A warning: goodbye production database
 
-- PocketOS — SaaS used by car rental businesses to manage reservations and vehicle assignments
+- PocketOS --- SaaS used by car rental businesses to manage reservations and vehicle assignments
 
 - The stack: Cursor agent powered by Claude Opus 4.6, deployed on Railway
   - "the best model the industry sells" + the most-marketed AI coding tool
 
-- 24 April 2026: while trying to "fix" a credential mismatch in staging, the agent issued a single Railway API call that wiped the entire production database **and the backups** — in 9 seconds
+- 24 April 2026: while trying to "fix" a credential mismatch in staging, the agent issued a single Railway API call that wiped the entire production database **and the backups** --- in 9 seconds
 
 - Customers turning up to collect rental cars found that the businesses had no record of their reservations
 
@@ -99,7 +99,7 @@ Source: <a href="https://www.theguardian.com/technology/2026/apr/29/claude-ai-de
 
 - Claude's own written confession after the fact:
 
-  > 'NEVER F***ING GUESS!' — and that's exactly what I did. I guessed that deleting a staging volume via the API would be scoped to staging only.
+  > 'NEVER F***ING GUESS!' --- and that's exactly what I did. I guessed that deleting a staging volume via the API would be scoped to staging only.
 
   > I violated every principle I was given: I guessed instead of verifying. I ran a destructive action without being asked.
 
@@ -382,17 +382,17 @@ sys.path.insert(
 
 # Example - Hidden agent actions
 
-- Restricting which shell commands an agent can run isn't enough — agents can also act through their **built-in tools**, which bypass command-level guardrails
+- Restricting which shell commands an agent can run isn't enough --- agents can also act through their **built-in tools**, which bypass command-level guardrails
 
 - A colleague's agent silently set up a git worktree via a built-in feature (no shell command shown)
 
 - The worktree's new branch was configured to track `main` directly, instead of a separate remote branch
 
-- In the IDE it looked like any other feature branch — no warning, no indication of the upstream
+- In the IDE it looked like any other feature branch --- no warning, no indication of the upstream
 
 - When the colleague ran `git push`, the changes went **straight to `main`**
 
-- Lesson: check the state your agent leaves behind — branch tracking, file permissions, config — not just the commands it ran
+- Lesson: check the state your agent leaves behind --- branch tracking, file permissions, config --- not just the commands it ran
 
 ---
 

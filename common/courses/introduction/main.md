@@ -21,7 +21,7 @@ layout: center
 From thrown-together scripts, through an abundance of complex spreadsheets, to the millions of lines of code behind large-scale infrastructure, there are few areas where software does not play a fundamental part in research
 
 <!--
-‘Not MY software’... ‘Doesnt affect my scripts on my desktop’ lets think about what the lifecycle of those scripts are…
+'Not MY software'... 'Doesnt affect my scripts on my desktop' lets think about what the lifecycle of those scripts are...
 
 Your software (experiments, analysis, meta analyses, visualisation) produces the results for articles from your lab
 
@@ -202,7 +202,7 @@ layout: center
 </div>
 
 <div v-click class="absolute top-30 left-130 text-left inline-block border border-gray-400 px-3 py-1 rounded shadow bg-white dark:bg-black">
-  What happens when…
+  What happens when...
   <ul>
   <li>You have a follow-on project?</li>
   <li>Someone else wants to use your code?</li>
@@ -251,7 +251,7 @@ layout: two-cols-header
   - By who?
   - Which parts?
   - Which projects?
-  - Reproducibility – from publications!
+  - Reproducibility -- from publications!
 
 Can it / should it be reusable by others... including yourself?
 
@@ -442,7 +442,7 @@ layout: two-cols-header
 
 <img src="./imgs/protein.png" alt="Protein structure" style="width: 100%;"/>
 
-*“I didn't question it then. Obviously now I check it all the time."* - Geoffrey Chang
+*"I didn't question it then. Obviously now I check it all the time."* - Geoffrey Chang
 
 <style>
 .two-cols-header {
@@ -459,7 +459,7 @@ layout: two-cols-header
 
 ::left::
 
-... Density functional theory nuclear magnetic resonance calculations established the relative configurations of compounds 1 and 2 and revealed that **the calculated shifts depended on the operating system when using the “Willoughby–Hoye” Python scripts to streamline the processing of the output files, a previously unrecognized flaw that could lead to incorrect conclusions.**
+... Density functional theory nuclear magnetic resonance calculations established the relative configurations of compounds 1 and 2 and revealed that **the calculated shifts depended on the operating system when using the "Willoughby--Hoye" Python scripts to streamline the processing of the output files, a previously unrecognized flaw that could lead to incorrect conclusions.**
 
 - Due to <span v-mark.underline.orange="1">*different sorting of file names*</span> on different operating systems
 
@@ -497,7 +497,7 @@ layout: two-cols-header
 
 <img src="./imgs/version-control.png" alt="Version control" style="width: 60%;"/>
 
-*“If you’re not using version control, whatever else you might be doing with a computer, it’s not science."* - Greg Wilson, SWC
+*"If you're not using version control, whatever else you might be doing with a computer, it's not science."* - Greg Wilson, SWC
 
 ::
 
