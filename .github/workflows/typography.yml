@@ -1,0 +1,34 @@
+name: typography
+
+on:
+  pull_request:
+    paths:
+      - '**/*.md'
+  workflow_dispatch:
+    inputs:
+      scan-all:
+        description: 'Scan every tracked file, not just the PR diff'
+        type: boolean
+        default: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          # Full history so we can diff against the PR base commit.
+          fetch-depth: 0
+
+      # On a PR, only lines *added* by the PR are checked, so pre-existing
+      # violations in untouched files never turn the build red.
+      - name: Check added lines
+        if: github.event_name == 'pull_request'
+        run: |
+          python3 scripts/check-typography.py \
+            --diff "${{ github.event.pull_request.base.sha }}"
+
+      - name: Check all tracked files
+        if: github.event_name == 'workflow_dispatch'
+        run: python3 scripts/check-typography.py --all

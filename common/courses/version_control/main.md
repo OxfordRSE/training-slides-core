@@ -73,7 +73,7 @@ layout: two-cols
 
 ---
 
-# "I can’t reproduce my results"
+# "I can't reproduce my results"
 
 ## Problem: lost historical context
 - Code evolves during analysis or development
@@ -108,7 +108,7 @@ layout: two-cols
 ## All of these problems stem from the same issue:
 - No structured history of changes
 - No safe way to explore, undo, or combine work
-- No shared understanding of the project’s evolution
+- No shared understanding of the project's evolution
 
 <br />
 <br />
@@ -171,7 +171,7 @@ layout: two-cols
 
 # Version control gives you: frictionless collaboration
 
-- Easy to build on others’ changes
+- Easy to build on others' changes
 - Share one version with collaborators whilst you work on another
 - Independent edits can be combined automatically
 - Conflicting changes can be handled safely rather than silently overwritten
@@ -204,7 +204,7 @@ layout: two-cols
 - **1986**: CVS --- concurrent edits over a central server, repository-level history
 - **2000**: Subversion (SVN) --- **centralised**, better atomic commit handling
 - **2005**: Git and Mercurial --- **distributed**, every clone is a full copy
-- **Today**: Git is overwhelmingly popular; Mercurial is becoming a legacy.
+- **Today**: Git is overwhelmingly popular; Mercurial is now largely legacy.
 - Emerging: Jujutsu --- Git-compatible, promises a cleaner workflow (2023).
 
 ::right::
@@ -235,7 +235,8 @@ layout: two-cols
 
 # Git stores snapshots, not deltas
 
-- Each commit is a **snapshot** of every file in your project at that moment.
+- Many older systems (RCS, SVN) store **deltas** --- just the changes between versions.
+- Git does not: each commit is a **snapshot** of every file in your project at that moment.
 - Identical files across commits are stored only once (content-addressed by hash).
 
 <br />
@@ -253,7 +254,7 @@ layout: two-cols
 - A Git **repository** is a project directory with a hidden `.git/` subdirectory.
 - Cloning a repository copies everything (files and full history) to your machine.
 - `.git/` contains the full snapshot history of every tracked file, plus configuration.
-  - You will most likely not need to worry about what are inside!
+  - You will most likely not need to worry about what's inside!
 
 ```console
 [user@workstation .git]$ ls -F1
@@ -322,7 +323,7 @@ layout: two-cols
 ::right::
 
 ```text
-commit 5dne831e867d5a4f1a83750ad82fd46041ac58e5
+commit 5d3e831e867d5a4f1a83750ad82fd46041ac58e5
 Author: Santa Claus <santa.claus@christmas.com>
 Date:   Fri Dec 25 12:34:56 2026 +0000
 
@@ -333,7 +334,7 @@ Date:   Fri Dec 25 12:34:56 2026 +0000
 
 ```diff
 diff --git a/analysis.py b/analysis.py
-index 9zkc721..5dne831 100829
+index 9a4c721..5d3e831 100644
 --- a/analysis.py
 +++ b/analysis.py
 @@ -1 +1 @@
@@ -451,11 +452,11 @@ layout: two-cols
 # Authenticating with a remote platform
 
 1. **SSH key pair**
-  - Generate: `ssh-keygen -t ed25519 -C "albus.dumbledore@hogwarts.com"`
-  - Upload the **public** key to GitHub/GitLab.
-  - Your machine proves identity with the **private** key using cryptography.
+   - Generate: `ssh-keygen -t ed25519 -C "albus.dumbledore@hogwarts.com"`
+   - Upload the **public** key to GitHub/GitLab.
+   - Your machine proves identity with the **private** key using cryptography.
 2. **GitHub CLI**
-  - `gh auth login` uses OAuth and stores credentials for you.
+   - `gh auth login` uses OAuth and stores credentials for you.
 
 <br />
 
@@ -518,6 +519,18 @@ gitGraph
 
 ---
 
+# Going further (optional)
+
+The practical ends with four **optional, advanced** modules. Skip them on a first
+pass and come back once the everyday workflow feels comfortable.
+
+- **Rebasing & squashing** --- tidy history into a clean, linear story
+- **Finding bugs with `git bisect`** --- binary-search your history for the commit that broke something
+- **A Git toolbox** --- `stash`, `tags`, interactive `add`, and `clean`
+- **Multiple remotes & self-hosting** --- work with more than one remote; host your own
+
+---
+
 # Learning objectives
 
 - Learn how version control systems work
@@ -527,3 +540,4 @@ gitGraph
 - Compare files with previous versions
 - Manage branches and resolve merge conflicts
 - Exclude certain files from version control
+- *(Optional)* Explore advanced Git tools: rebasing, bisecting, stashing, and multiple remotes

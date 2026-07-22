@@ -59,11 +59,11 @@ Moving from applications to pipelines
 ::centralise
 
 Popular workflow managers:
-- **Snakemake** – Make-style workflows tied to file inputs/outputs
-- **Nextflow** – Parallel scientific workflows with strong container and cluster support
-- **Apache Airflow** – Enterprise task orchestration for data engineering pipelines
-- **Prefect** – Modern dynamic workflows with an emphasis on monitoring and easy config
-- **Luigi** – Lightweight local pipelines built around explicit task dependencies
+- **Snakemake** -- Make-style workflows tied to file inputs/outputs
+- **Nextflow** -- Parallel scientific workflows with strong container and cluster support
+- **Apache Airflow** -- Enterprise task orchestration for data engineering pipelines
+- **Prefect** -- Modern dynamic workflows with an emphasis on monitoring and easy config
+- **Luigi** -- Lightweight local pipelines built around explicit task dependencies
 
 ---
 
@@ -406,12 +406,12 @@ Counties (48): Beds, Berks, Bucks, Cambs, Ches, Corn, Cumb, ...
 
 <pre class="slidev-code shiki"><code>rule visualise:
     input:
-        forecast = “model/forecast_model.dat”,
-        map = “maps/<span style="font-weight: bold; color: #d93f0b;">UK</span>.map”
+        forecast = "model/forecast_model.dat",
+        map = "maps/<span style="font-weight: bold; color: #d93f0b;">UK</span>.map"
     output:
-        “results/<span style="font-weight: bold; color: #d93f0b;">UK</span>.png”
+        "results/<span style="font-weight: bold; color: #d93f0b;">UK</span>.png"
     shell:
-        “overlay_on_map.sh {input.forecast} {input.map} -output {output}”
+        "overlay_on_map.sh {input.forecast} {input.map} -output {output}"
 </code></pre>
 
 ---
@@ -425,12 +425,12 @@ Counties (48): Beds, Berks, Bucks, Cambs, Ches, Corn, Cumb, ...
 
 <pre class="slidev-code shiki"><code>rule visualise:
     input:
-        forecast = “model/forecast_model.dat”,
-        map = “maps/<span style="font-weight: bold; color: #d93f0b;">{county}</span>.map”
+        forecast = "model/forecast_model.dat",
+        map = "maps/<span style="font-weight: bold; color: #d93f0b;">{county}</span>.map"
     output:
-        “results/<span style="font-weight: bold; color: #d93f0b;">{county}</span>.png”
+        "results/<span style="font-weight: bold; color: #d93f0b;">{county}</span>.png"
     shell:
-        “overlay_on_map.sh {input.forecast} {input.map} -output {output}”
+        "overlay_on_map.sh {input.forecast} {input.map} -output {output}"
 </code></pre>
 
 <div style="height: 20px;"></div>
@@ -453,20 +453,20 @@ Counties (48): Beds, Berks, Bucks, Cambs, Ches, Corn, Cumb, ...
 ```{1-7}
 rule all:
     input:
-        "results/Beds.png”,
-        "results/Berks.png”,
-        "results/Bucks.png”,
-        "results/Cambs.png”,
-        "results/Ches.png”,
+        "results/Beds.png",
+        "results/Berks.png",
+        "results/Bucks.png",
+        "results/Cambs.png",
+        "results/Ches.png",
 
 rule visualise:
     input:
-        forecast = “model/forecast_model.dat”,
-        map = “maps/{county}.map”
+        forecast = "model/forecast_model.dat",
+        map = "maps/{county}.map"
     output:
-        “results/{county}.png”
+        "results/{county}.png"
     shell:
-        “overlay_on_map.sh {input.forecast} {input.map} -output {output}”
+        "overlay_on_map.sh {input.forecast} {input.map} -output {output}"
 ```
 
 By default, Snakemake will attempt to satisfy the first rule in a Snakefile which, by convention, we name 'all' since it collects the build targets.
@@ -479,20 +479,20 @@ Counties (48): Beds, Berks, Bucks, Cambs, Ches, Corn, Cumb, ...
 <div style="height: 20px;"></div>
 
 ```{1-5}
-counties = [‘Beds’, ‘Berks’, ‘Bucks’, ‘Cambs’, ‘Ches’]
+counties = ['Beds', 'Berks', 'Bucks', 'Cambs', 'Ches']
 
 rule uk_map:
     input:
-        expand(“results/{county}.png”, county=counties)
+        expand("results/{county}.png", county=counties)
 
 rule visualise:
     input:
-        forecast = “model/forecast_model.dat”,
-        map = “maps/{county}.map”
+        forecast = "model/forecast_model.dat",
+        map = "maps/{county}.map"
     output:
-        “results/{county}.png”
+        "results/{county}.png"
     shell:
-        “overlay_on_map.sh {input.forecast} {input.map} -output {output}”
+        "overlay_on_map.sh {input.forecast} {input.map} -output {output}"
 ```
 
 We can simplify this slightly by making using of Python and helper functions, such as `expand()` (note that the curly braces in `expand()` are unrelated arguments to the function, not wildcards).
@@ -502,20 +502,20 @@ We can simplify this slightly by making using of Python and helper functions, su
 <img src="./img/dag-five-counties.png" alt="DAG example for five counties" width="800"/>
 
 ```
-counties = [‘Beds’, ‘Berks’, ‘Bucks’, ‘Cambs’, ‘Ches’]
+counties = ['Beds', 'Berks', 'Bucks', 'Cambs', 'Ches']
 
 rule uk_map:
     input:
-        expand(“results/{county}.png”, county=counties)
+        expand("results/{county}.png", county=counties)
 
 rule visualise:
     input:
-        forecast = “model/forecast_model.dat”,
-        map = “maps/{county}.map”
+        forecast = "model/forecast_model.dat",
+        map = "maps/{county}.map"
     output:
-        “results/{county}.png”
+        "results/{county}.png"
     shell:
-        “overlay_on_map.sh {input.forecast} {input.map} -output {output}”
+        "overlay_on_map.sh {input.forecast} {input.map} -output {output}"
 ```
 
 ---
@@ -533,7 +533,7 @@ Rules define how to obtain output files from input files
 Snakemake infers dependencies and execution order of rules
 
 Execution:
-- `shell` directive allow you to execute scripts from any language, e.g. python, R, julia, rust, …
+- `shell` directive allow you to execute scripts from any language, e.g. python, R, julia, rust, ...
 - `run` directive allows you to execute python code natively
 
 ---
@@ -560,7 +560,7 @@ Scheduling heuristic is applied to
 
 Disjoint paths in DAG can be executed in parallel
 
-`snakemake –-cores 8`
+`snakemake --cores 8`
 
 ---
 
@@ -572,7 +572,7 @@ Disjoint paths in DAG can be executed in parallel
 - Lint workflow (`snakemake --lint`)
 - Modularise workflow (and reuse) (`module` directive)
 - Build DAG tree (`snakemake --d3dag`)
-- Visualise DAG (Dot from graphviz: `snakemake –-dag targets | dot -Tpng > dag.png`)
+- Visualise DAG (Dot from graphviz: `snakemake --dag targets | dot -Tpng > dag.png`)
 - Support for temporary and protected files
 - Tracking of tool versions and code changes
 - A Python API for embedding Snakemake in other tools
