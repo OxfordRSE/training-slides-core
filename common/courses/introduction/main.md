@@ -38,18 +38,21 @@ Make life easy for yourself NOW and structure your code
 layout: two-cols-header
 ---
 
-# Why should we care about software?
-
+# Reproducibility in research
 
 ::left::
 
 <div class="h-10"></div>
 
-- "1,500 scientists lift the lid on reproducibility", Nature 2016
-  - 1,576 respondents
-- 52%: a significant crisis of reproducibility
-- 31%: think that failure to reproduce means wrong result
-- 73% said they think that at least half of the papers in their field can be trusted
+- **52%** of researchers agree there is a significant crisis of reproducibility
+- More than **70%** have tried and failed to reproduce another scientist's experiment
+  - And more than half have failed to even reproduce their own!
+
+<v-click>
+
+Modern research increasingly rely on software, so what about the code behind them?
+
+</v-click>
 
 ::right::
 
@@ -57,6 +60,45 @@ layout: two-cols-header
 <div class="h-15"></div>
 <img src="./imgs/reproducibility-crisis.png" alt="Reproducibility crisis" style="width: 60%;"/>
 ::
+
+::bottom::
+
+<div class="text-sm opacity-60">
+M. Baker, "1,500 scientists lift the lid on reproducibility", <i>Nature</i> <b>533</b>, 452-454 (2016). <a href="https://doi.org/10.1038/533452a">doi:10.1038/533452a</a>
+</div>
+
+---
+layout: two-cols-header
+---
+
+# Why should we care about software?
+
+::left::
+
+<div class="h-10"></div>
+
+- 27271 Jupyter notebooks from 3467 biomedical papers
+- 22578 were Python and only **1203** ran to completion
+- Only **879** reproduced the original results
+
+<v-click>
+
+Only **3.9%** of the Python notebooks could be rerun to reproduce the original results.
+
+</v-click>
+
+::right::
+
+::center
+<div class="h-10"></div>
+<img src="./imgs/jupyter-exceptions.jpg" alt="Exceptions in Jupyter Notebooks" style="width: 95%;"/>
+::
+
+::bottom::
+
+<div class="text-sm opacity-60">
+S. Samuel and D. Mietchen, "Computational reproducibility of Jupyter notebooks from biomedical publications", <i>GigaScience</i> <b>13</b>, giad113 (2024). <a href="https://doi.org/10.1093/gigascience/giad113">doi:10.1093/gigascience/giad113</a>.
+</div>
 
 ---
 layout: center
