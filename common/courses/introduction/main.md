@@ -462,29 +462,53 @@ But also...
 </div>
 
 ---
-layout: two-cols-header
----
 
 # Testing
-
-::left::
 
 - Humans are fallible! Our software *will* contain defects
   - In requirements, design, as well as code
   - 1-10-150 hours to fix in design/development/production
-- **Validation:** are we building the *right product*?
+
 - **Verification:** are we building the *product right*?
-  - Manual testing, unit testing, automated testing, code reviews
-- Highly-cited papers published on multidrug resistance transporters between 2001 - 2010
-- Results couldn't be reproduced - 5 retractions
-- Caused by error in an internal software utility
-  - Flipped two columns of data, inverting electron-density map used to derive protein structure
+  - Does the code do what the design says? Unit testing, automated testing,
+    code review
+- **Validation:** are we building the *right product*?
+  - Do the design and its results answer the research question?
+
+<v-click>
+
+Verified but not validated: a flawless software that doesn't solve the actual
+problem
+
+</v-click>
+
+---
+layout: two-cols-header
+---
+
+# When defects reach the literature
+
+::left::
+
+- **Protein structures, 2001--2005.** An internal software utility flipped two
+  columns of data, inverting the electron-density map used to derive the
+  structures. Five papers retracted.
+
+- **Gene names in Excel, 2016.** Default autocorrection and locale settings
+  turn genes such as 'MEI1' to 'May-01' (Dutch 'mei'). Errors found in the
+  supplementary files of **19.6%** of papers surveyed, and **30.9%** by 2021.
 
 ::right::
 
 <img src="./imgs/protein.png" alt="Protein structure" style="width: 100%;"/>
 
 *"I didn't question it then. Obviously now I check it all the time."* - Geoffrey Chang
+
+::bottom::
+
+<div class="text-sm opacity-60">
+G. Miller, <i>Science</i> <b>314</b>, 1856-1857 (2006). M. Ziemann et al., <i>Genome Biol.</i> <b>17</b>, 177 (2016). M. Abeysooriya et al., <i>PLOS Comput. Biol.</i> <b>17</b>, e1008984 (2021).
+</div>
 
 <style>
 .two-cols-header {
