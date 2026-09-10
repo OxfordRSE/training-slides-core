@@ -347,6 +347,63 @@ Loss of guidance & altitude info
 layout: two-cols-header
 ---
 
+# CrowdStrike Falcon
+
+::left::
+
+- 19 July 2024: routine data update to security software in Windows
+- 8.5 million machines crashed, some down for days
+- Estimated loss of $5.4 billion by the US Fortune 500
+
+<v-click>
+<div class="absolute top-56 left-10 inline-block border border-gray-400 px-3 py-1 rounded shadow">
+Spec said 21 values and it was given 20
+</div>
+</v-click>
+
+<v-click>
+<FancyArrow x1="50" y1="264" x2="60" y2="296" arc="-0.4" head-size="15" color="black"/>
+<div class="absolute top-74 left-15 inline-block border border-gray-400 px-3 py-1 rounded shadow">
+Update asked to match the 21st
+</div>
+</v-click>
+
+<v-click>
+<FancyArrow x1="70" y1="336" x2="80" y2="368" arc="-0.4" head-size="15" color="black"/>
+<div class="absolute top-92 left-20 inline-block text-red border border-red-400 px-3 py-1 rounded shadow">
+<b>No bound check and Windows crashed</b>
+</div>
+</v-click>
+
+::right::
+
+::center
+<img src="./imgs/crowdstrike-bsod-airport.jpg" alt="Blue screen of death in Dulles airport" style="width: 100%;"/>
+::
+
+::bottom::
+
+<v-click>
+
+**All these checks are standard in modern software engineering.**
+
+</v-click>
+
+<div class="text-sm opacity-60">
+CrowdStrike, "External Technical Root Cause Analysis: Channel File 291", 6
+August 2024; Microsoft, D. Weston, 20 July 2024. Parametrix, "CrowdStrike's
+Impact on the Fortune 500", 24 July 2024.  </div>
+
+<style>
+.two-cols-header {
+  grid-template-columns: 64% 36% !important;
+}
+</style>
+
+---
+layout: two-cols-header
+---
+
 # Programming vs Engineering
 
 ::left::
