@@ -190,7 +190,7 @@ layout: center
   <div class="absolute top-80 left-80 inline-block border border-gray-400 px-3 py-1 rounded shadow">
     Project Ends
   </div>
-  
+
   <div class="absolute top-77 left-130 inline-block border border-gray-400 px-3 py-1 rounded shadow">
     Graceful Decline
   </div>
@@ -312,9 +312,9 @@ layout: two-cols-header
 
 ::left::
 
-- Ariane 5
-- $7B development
-- $500 milion rocket
+- 4 June 1996: Ariane 5 flight 501
+- $7 billion development
+- At least $370 million lost
 - Used Ariane 4 code
 
 <v-click>
