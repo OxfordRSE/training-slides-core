@@ -647,96 +647,191 @@ Robert L Glass, Addison-Wesley Professional
 
 # A note on AI in Oxford
 
-- Where possible you should use an AI tool approved by the University (SSO-linked):
-  - https://www.ox.ac.uk/ai-oxford
+- [Policy for using generative AI in research](https://www.ox.ac.uk/research/support/governance-and-committees/research-policies/policy-for-using-generative-ai-in)
 
-<br />
+- [University-approved tools](https://oerc.ox.ac.uk/ai-centre/generative-ai-tools),
+  signed in with your SSO
+  - Come with enterprise data protection
+  - Note that Claude from Anthropic is NOT in the list
 
-- ChatGPT
-
-- Codex
-
-- Gemini
-
-- NotebookLM
-
-<div class="absolute top-52 left-80 w-20 inline-block">
-<img src="./imgs/chatgpt.png" alt="ChatGPT" style="width: 100%;"/>
-</div>
-
-<div class="absolute top-67 left-100 w-20 inline-block">
-<img src="./imgs/codex.png" alt="Codex" style="width: 100%;"/>
-</div>
-
-<div class="absolute top-86 left-120 w-20 inline-block">
-<img src="./imgs/gemini.png" alt="Gemini" style="width: 100%;"/>
-</div>
-
-<div class="absolute top-103 left-140 w-20 inline-block">
-<img src="./imgs/notebooklm.png" alt="NotebookLM" style="width: 100%;"/>
+<div class="grid grid-cols-5 gap-4 text-center text-sm pt-20">
+  <div>
+    <img src="./imgs/chatgpt.png" alt="ChatGPT" class="h-14 mx-auto object-contain" />
+    <div class="pt-2"><b>ChatGPT Edu</b></div>
+  </div>
+  <div>
+    <img src="./imgs/codex.png" alt="Codex" class="h-14 mx-auto object-contain" />
+    <div class="pt-2"><b>Codex</b></div>
+  </div>
+  <div>
+    <img src="./imgs/microsoft-copilot.png" alt="Microsoft Copilot" class="h-14 mx-auto object-contain" />
+    <div class="pt-2"><b>Microsoft Copilot</b></div>
+  </div>
+  <div>
+    <img src="./imgs/gemini.png" alt="Gemini" class="h-14 mx-auto object-contain" />
+    <div class="pt-2"><b>Gemini</b></div>
+  </div>
+  <div>
+    <img src="./imgs/gemini-notebook.svg" alt="Gemini Notebook" class="h-14 mx-auto object-contain" />
+    <div class="pt-2"><b>Gemini Notebook</b><br/>(formerly NotebookLM)</div>
+  </div>
 </div>
 
 ---
 layout: two-cols-header
 ---
 
-# AI in Learning: Opportunities
+# Writing software in the age of AI
 
 ::left::
 
-<div class="h-10"></div>
+> It is our job to create computing technology such that nobody has to program,
+> and that the programming language is human.
+>
+> **Everybody in the world is now a programmer.**
+>
+> This is the miracle ... this is the miracle of artificial intelligence.
+
+<div class="text-sm text-right pr-6 pt-2">Jensen Huang, CEO, NVIDIA</div>
+
+<div class="pt-4">
+
+> There's a new kind of coding I call "**vibe coding**", where you fully give
+> in to the vibes, embrace exponentials, and forget that the code even
+> exists... It's not too bad for throwaway weekend projects, but still quite
+> amusing.
+
+</div>
+
+<div class="text-sm text-right pr-6 pt-2">Andrej Karpathy, co-founder of OpenAI</div>
+
+::right::
+
+<v-clicks>
+
+- It becomes ever easier to create a working prototype once you have an idea.
+- Researchers can attempt things they would once have abandoned as too
+  time-consuming.
+- People who have never written a single line of code can build software that
+  has real impact.
+
+</v-clicks>
+
+::bottom::
+
+<div class="text-sm opacity-60">
+World Governments Summit 2024, Dubai, 12 February 2024: <a href="https://www.youtube.com/watch?v=8Pm2xEViNIo">A Conversation with the Founder of NVIDIA: Who Will Shape the Future of AI?</a>. A. Karpathy, <a href="https://x.com/karpathy/status/1886192184808149383">on X</a>, 2 February 2025.
+</div>
+
+---
+
+# Why software engineering is a fundamental skill
+
+As long as your research involves any form of software, software engineering is
+a fundamental skill and it becomes more valuable in the age of AI.
+
+When you write research software, you are doing two things:
+
+- providing an abstraction of your research problem in terms of software
+- transforming the requirements into verifiable output
+
+<v-click>
+
+<div class="border border-gray-400 px-4 py-2 rounded shadow bg-white dark:bg-black text-sm mt-10">
+<i>"The model is an integral part of the simulation program ... There is no
+clear separation between the tool and the model it operates on."</i>
+<br />
+<i>"No amount of testing and verifying on the software side can ensure that the
+computation actually does what it is expected to do."</i>
+<br />
+<i>"The core of a specification consists of the models and methods that are
+applied."</i>
+<div class="text-right pt-2">(Konrad Hinsen, computational scientist, CNRS)</div>
+</div>
+
+</v-click>
+
+<div class="absolute bottom-4 left-14 right-14 text-sm opacity-60">
+K. Hinsen, <i>F1000Research</i> <b>3</b>, 101 (2014), <a href="https://doi.org/10.12688/f1000research.3978.2">doi:10.12688/f1000research.3978.2</a>; <i>PeerJ Comput. Sci.</i> <b>4</b>, e158 (2018), <a href="https://doi.org/10.7717/peerj-cs.158">doi:10.7717/peerj-cs.158</a>
+</div>
+
+---
+
+# Why software engineering is a fundamental skill
+
+As a researcher writing software without proper software engineering skills:
+
+- **You will <span v-mark.underline.orange="1">scale</span> bad software at an
+  unprecedented speed because generating code is now cheap and fast**
+
+<v-clicks at="2">
+
+- 'Bad' could mean:
+  - Collaborators cannot reproduce your results
+  - You draw wrong conclusions from it and this hurts your credibility
+  - You apply a wrong abstraction to your research problem
+    (verification/validation)
+  - Software becomes bloated just because you can write it and there is a
+    higher chance it is buggy
+
+</v-clicks>
+
+<v-click at="4">
+
+<div class="text-sm pt-10">
+
+> I think we'll be there in three to six months, where AI is writing 90 percent
+> of the code.
+>
+> But the programmer still needs to specify ... what is the overall app you're
+> trying to make, what's the overall design decision.
+
+</div>
+
+<div class="text-sm text-right pr-6">Dario Amodei, CEO, Anthropic, Council on Foreign Relations, 10 March 2025</div>
+
+</v-click>
+
+---
+layout: two-cols-header
+---
+
+# AI in learning: opportunities and pitfalls
+
+::left::
+
+<div class="h-6"></div>
+
+## Opportunities
 
 - Instant feedback and debugging help
 - Faster experimentation and iteration
-- Exposure to clean, varied coding patterns
+- Exposure to unfamiliar concepts and libraries
 - Adaptive, self-paced learning support
 
 ::right::
 
-<div class="h-10"></div>
+<div class="h-6"></div>
 
-::center
-<img src="./imgs/ai-opportunities.png" alt="AI opportunities" style="width: 50%;"/>
-::
-
----
-layout: two-cols-header
----
-
-# AI in Learning: Pitfalls
-
-::left::
-
-<div class="h-10"></div>
+## Pitfalls
 
 - Shallow understanding from code copying
 - Weak problem-solving independence
 - Overreliance on AI suggestions
-- Poor grasp of design patterns
-
-::right::
-
-<div class="h-10"></div>
-
-::center
-<img src="./imgs/ai-pitfalls.png" alt="AI pitfalls" style="width: 50%;"/>
-::
-
-<div class="absolute top-110 left-60 w-130 inline-block">
-<b>Be mindful of how you use AI: make sure it is working for you!</b>
-</div>
+- Overconfidence
 
 ---
 layout: two-cols-header
+class: text-sm
 ---
 
-# The material
+# Enjoy the training!
 
 ::left::
 
 [https://train.rse.ox.ac.uk/](https://train.rse.ox.ac.uk/)
 
-- Prerequisites: Basic bash and Python proficiency
+- Prerequisites: Basic Bash and Python proficiency
 - Next is: Programming paradigms
 - Tick off exercises as you complete them (demo)
 
@@ -744,12 +839,14 @@ layout: two-cols-header
   - RSE on hand to help out
   - Add questions on the training website (demo)
 
-Enjoy yourselves!
+- We are not anti-AI, but we urge you not to use it in this training:
+  - Get your hands dirty and make mistakes: it's fun!
+  - That is how you can learn software engineering skills
 
 ::right::
 
-<div class="h-10"></div>
+<div class="h-4"></div>
 
 ::center
-<img src="./imgs/material-help.png" alt="Material" style="width: 80%;"/>
+<img src="./imgs/material-help.png" alt="Material" style="width: 62%;"/>
 ::
