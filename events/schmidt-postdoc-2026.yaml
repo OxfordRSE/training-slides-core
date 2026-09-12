@@ -1,0 +1,35 @@
+year: 2026
+sessions:
+  - date: "14 Sept"
+    slot: morning
+    topic: Object-Oriented Programming
+  - date: "14 Sept"
+    slot: afternoon
+    topic: Functional Programming
+  - date: "15 Sept"
+    slot: morning
+    topic: Version Control with Git
+  - date: "15 Sept"
+    slot: afternoon
+    topic: Collaborative Code Development
+  - date: "16 Sept"
+    slot: morning
+    topic: Software Testing
+  - date: "16 Sept"
+    slot: afternoon
+    topic: Continuous Integration
+  - date: "21 Sept"
+    slot: morning
+    topic: Packaging and Dependency Management
+  - date: "21 Sept"
+    slot: morning
+    topic: Containerisation with Docker
+  - date: "21 Sept"
+    slot: afternoon
+    topic: Introduction to HPC
+  - date: "22 Sept"
+    slot: morning
+    topic: Using AI for Coding
+  - date: "22 Sept"
+    slot: afternoon
+    topic: Directing Coding Agents

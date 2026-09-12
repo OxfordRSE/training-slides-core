@@ -1,0 +1,32 @@
+year: 2026
+sessions:
+  - date: "20 Oct"
+    slot: morning
+    topic: Object-Oriented Programming
+  - date: "20 Oct"
+    slot: afternoon
+    topic: Functional Programming
+  - date: "27 Oct"
+    slot: morning
+    topic: Version Control with Git
+  - date: "27 Oct"
+    slot: afternoon
+    topic: Collaborative Code Development
+  - date: "03 Nov"
+    slot: morning
+    topic: Software Testing
+  - date: "03 Nov"
+    slot: afternoon
+    topic: Continuous Integration
+  - date: "10 Nov"
+    slot: morning
+    topic: Packaging and Dependency Management
+  - date: "10 Nov"
+    slot: afternoon
+    topic: Containerisation with Docker
+  - date: "17 Nov"
+    slot: morning
+    topic: Introduction to HPC
+  - date: "17 Nov"
+    slot: afternoon
+    topic: Workflows with Snakemake
