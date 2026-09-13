@@ -233,7 +233,7 @@ layout: two-cols
 
 ---
 
-# Git stores snapshots, not deltas
+# Deltas and Snapshots
 
 - Many older systems (RCS, SVN) store **deltas** --- just the changes between versions.
 - Git does not: each commit is a **snapshot** of every file in your project at that moment.
@@ -243,8 +243,13 @@ layout: two-cols
 <br />
 <br />
 
-<div style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
-  <img src="./imgs/pro_git_figure15.png" alt="Git stores a snapshot of every file" style="width: 60%;" />
+<div style="display: flex; justify-content: center; align-items: flex-start; gap: 60px;">
+  <img src="./imgs/pro_git_deltas.svg" alt="Deltas stored against a base version of each file" style="width: 45%;" />
+  <img src="./imgs/pro_git_snapshots.svg" alt="Git stores a snapshot of every file" style="width: 45%;" />
+</div>
+
+<div class="text-sm opacity-60 text-center mt-3">
+From S. Chacon and B. Straub, <a href="https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F"><i>Pro Git</i></a>, 2nd ed. (Apress, 2014)
 </div>
 
 ---
