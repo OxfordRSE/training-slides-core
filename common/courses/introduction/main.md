@@ -50,7 +50,7 @@ layout: two-cols-header
 
 <v-click>
 
-Modern research increasingly rely on software, so what about the code behind them?
+Modern research increasingly relies on software, so what about the code behind it?
 
 </v-click>
 
@@ -371,7 +371,7 @@ Update asked to match the 21st
 <v-click>
 <FancyArrow x1="70" y1="336" x2="80" y2="368" arc="-0.4" head-size="15" color="black"/>
 <div class="absolute top-92 left-20 inline-block text-red border border-red-400 px-3 py-1 rounded shadow">
-<b>No bound check and Windows crashed</b>
+<b>No bounds check and Windows crashed</b>
 </div>
 </v-click>
 
