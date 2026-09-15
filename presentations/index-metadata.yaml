@@ -43,12 +43,12 @@ snakemake:
   number: 10
   description: Building reproducible computational workflows with rules, dependencies, and easy scalability.
   audience: Scalability
+  coreOnly: true
 ai_for_coding:
   number: 11
   title: Using AI for Coding
   description: How to use modern AI tools effectively and responsibly in code development
   audience: Tooling
-  coreOnly: true
 cmake:
   number: 12
   title: Modern CMake
