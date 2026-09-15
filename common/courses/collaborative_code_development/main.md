@@ -167,6 +167,7 @@ layout: two-cols
 <br />
 
 <div style="width: 70%;">
+
 ```mermaid
 gitGraph
   commit id: "A"
@@ -200,7 +201,8 @@ gitGraph
 <div class="flex flex-1 items-end justify-between h-64 w-100%">
 
 <div class="flex flex-col justify-between items-center w-45 h-100% text-sm">
-Commit to main branch
+<div>Commit to main branch</div>
+
 ```mermaid {scale: 0.8}
 gitGraph BT:
   commit id: "First"
@@ -209,7 +211,8 @@ gitGraph BT:
 </div>
 
 <div v-click class="flex flex-col justify-between items-center w-45 h-100% text-sm">
-Create a new branch, make commits to it
+<div>Create a new branch, make commits to it</div>
+
 ```mermaid {scale: 0.8}
 gitGraph BT:
   commit id: "First"
@@ -220,7 +223,8 @@ gitGraph BT:
 </div>
 
 <div v-click class="flex flex-col justify-between items-center w-45 h-100% text-sm">
-Changes independent of main branch
+<div>Changes independent of main branch</div>
+
 ```mermaid {scale: 0.8}
 gitGraph BT:
   commit id: "First"
@@ -233,7 +237,8 @@ gitGraph BT:
 </div>
 
 <div v-click class="flex flex-col justify-between items-center w-45 h-100% text-sm">
-Merge commit
+<div>Merge commit</div>
+
 ```mermaid {scale: 0.8}
 gitGraph BT:
   commit id: "First"
