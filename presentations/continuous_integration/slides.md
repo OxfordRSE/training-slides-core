@@ -1,6 +1,6 @@
 ---
 theme: oxrse
-title: Continuous Integration
+title: Continuous Integration (and Continuous Deployment)
 addons:
   - ../common/addon
 layout: cover
