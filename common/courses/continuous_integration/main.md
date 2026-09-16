@@ -149,7 +149,7 @@ layout: two-cols
 
 <v-clicks>
 
-- **Continuous Delivery**: every change that passes is *prepared* for release — a human still decides when
+- **Continuous Delivery**: every change that passes is *prepared* for release --- a human still decides when
 - **Continuous Deployment**: the approval step goes away, and passing changes go live automatically
 - Delivery and Deployment differ by one thing: **whether a human approves**
 
@@ -188,7 +188,7 @@ flowchart TD
 
 <div class="flex items-center gap-4 py-2">
   <img src="./img/github_logo.svg" alt="GitHub logo" class="h-8 w-8 object-contain" />
-  <p class="m-0"><strong>GitHub Actions</strong>: CI/CD built into GitHub — what we will use today</p>
+  <p class="m-0"><strong>GitHub Actions</strong>: CI/CD built into GitHub &mdash; what we will use today</p>
 </div>
 
 <div class="flex items-center gap-4 py-2">
@@ -203,7 +203,7 @@ flowchart TD
 
 <p class="pt-2 opacity-70">Historical tools: Travis CI and AppVeyor - have largely been displaced</p>
 
-<p class="pt-1">The YAML differs but the principles are the same — <strong>triggers</strong>, <strong>jobs</strong>, <strong>runners</strong> and <strong>steps</strong> exist in all of them</p>
+<p class="pt-1">The YAML differs but the principles are the same &mdash; <strong>triggers</strong>, <strong>jobs</strong>, <strong>runners</strong> and <strong>steps</strong> exist in all of them</p>
 
 </v-clicks>
 
@@ -273,13 +273,13 @@ layout: two-cols
 
 <ul class="space-y-3">
   <li v-click="1">Same skeleton: <code>on</code>, <code>jobs</code>, <code>steps</code></li>
-  <li v-click="2">Only merged code goes live — <code>branches: [main]</code></li>
+  <li v-click="2">Only merged code goes live &mdash; <code>branches: [main]</code></li>
   <li v-click="3">The job gets a <strong>scoped token</strong>, not blanket access</li>
   <li v-click="4"><code>run</code> is your own command; <code>uses</code> pulls in a prewritten action</li>
   <li v-click="5">No human gate here, so this is Continuous <strong>Deployment</strong></li>
 </ul>
 
-<p class="pt-3 text-sm opacity-70">In the course you will use Read the Docs, which watches the repository and rebuilds on push — same idea, different runner.</p>
+<p class="pt-3 text-sm opacity-70">In the course you will use Read the Docs, which watches the repository and rebuilds on push &mdash; same idea, different runner.</p>
 
 </div>
 
@@ -332,7 +332,7 @@ jobs:
 
 - Introduction to **GitHub Actions**
 - Generating **code coverage** information
-- Creating and deploying **documentation** — your first taste of **CD**
+- Creating and deploying **documentation** --- your first taste of **CD**
 
 </v-clicks>
 
