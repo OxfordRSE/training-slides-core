@@ -75,7 +75,7 @@ JetBrains, <a href="https://blog.jetbrains.com/research/2026/08/ai-coding-agent-
 
 - It does not do what you intended.
 - It goes further than you asked.
-- It claims everything is working but they aren't!
+- It claims everything works but it doesn't!
 - It produces more code than you can meaningfully read and review.
 - It deviates from its initial goal.
 
