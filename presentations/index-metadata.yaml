@@ -55,3 +55,8 @@ cmake:
   description: Writing modern, portable CMake to configure, build, and manage dependencies for C++ projects.
   audience: Tooling
   coreOnly: true
+directing_coding_agents:
+  number: 13
+  title: Directing Coding Agents
+  description: Working with modern coding agents effectively by providing the right context and clear specification.
+  audience: Tooling
