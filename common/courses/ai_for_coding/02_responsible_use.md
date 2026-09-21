@@ -396,27 +396,36 @@ sys.path.insert(
 
 ---
 
-# Example - Model differences
+# Example - Data analysis by LLM
 
-<img src="./img/chatgpt_thinking_54.png" style="max-width: 100%; max-height: 400px; display: block; margin: 0 auto;" alt="ChatGPT Thinking 5.4" />
+- Asked an agent to try a 2D CNN alongside an existing logistic regression baseline
 
-<div style="text-align: center; font-size: 0.75em; color: #6b7280; margin-top: 0.5em;">ChatGPT Thinking 5.4</div>
+- It ran the comparison **inline** --- a throwaway script, nothing kept
+  - 15 epochs, no augmentation, no validation split, no pretrained network
+  - **no training loss logged**
+
+- Verdict reported: "the CNN loses to the logistic"
+  - Indistinguishable from "the CNN never trained"
+
+- The comparison was also unfair --- the logistic had the projection **plus** six
+  scale columns, the CNN got the projection alone
 
 ---
 
-# Example - Model differences
+# Example - Data analysis by LLM
 
-<img src="./img/gemini_31_pro.png" style="max-width: 100%; max-height: 400px; display: block; margin: 0 auto;" alt="Gemini 3.1 Pro" />
+- Re-run as a saved script: 40 epochs, per-epoch train/held-out loss, the same
+  features as the baseline, augmentation, pretrained probe
 
-<div style="text-align: center; font-size: 0.75em; color: #6b7280; margin-top: 0.5em;">Gemini 3.1 Pro</div>
+- The verdict reversed --- sample AUC **0.795 -> 0.953**. It was undertrained.
 
----
+- What to ask for, every time:
+  - "Write this as a reusable script, not inline code"
+  - "Log the parameters, the training curve, the metrics"
+  - "Is this a fair comparison? Is this the right approach?"
 
-# Example - Model differences
-
-<img src="./img/claude_opus47.png" style="max-width: 100%; max-height: 400px; display: block; margin: 0 auto;" alt="Claude Opus 4.7" />
-
-<div style="text-align: center; font-size: 0.75em; color: #6b7280; margin-top: 0.5em;">Claude Opus 4.7</div>
+- The default is a throwaway answer --- **recording and provenance are yours to
+  set up**
 
 ---
 layout: center
