@@ -119,27 +119,41 @@ layout: two-cols
 <template #0>
 
 - Different models for different purposes
-  - **Standard**
-  - Thinking / reasoning
-  - Pro
+  - GPT-4o
+  - GPT-5
+  - OpenAI-o1
 
 </template>
-
 <template #1>
 
 - Different models for different purposes
-  - ~~Standard~~ **Instant**
-  - ~~Thinking / reasoning~~
-  - ~~Pro~~ **Flagship**
+  - ~~GPT-4o~~ **Standard**
+  - ~~GPT-5~~ **Thinking / reasoning**
+  - ~~OpenAI-o1~~ **Pro**
 
 </template>
-
 <template #2>
 
 - Different models for different purposes
-  - ~~Standard~~ ~~Instant~~ **Instant / Fast**
-  - ~~Thinking / reasoning~~ **Thinking**
-  - ~~Pro~~ ~~Flagship~~ **Pro**
+  - ~~GPT-4o~~ ~~Standard~~ **Instant**
+  - ~~GPT-5~~ ~~Thinking / reasoning~~ **Thinking**
+  - ~~OpenAI-o1~~ ~~Pro~~ **Flagship**
+
+</template>
+<template #3>
+
+- Different models for different purposes
+  - ~~GPT-4o~~ ~~Standard~~ ~~Instant~~ **Fast** 
+  - ~~GPT-5~~ ~~Thinking / reasoning~~ ~~Thinking~~
+  - ~~OpenAI-o1~~ ~~Pro~~ ~~Flagship~~ **Pro**
+
+</template>
+<template #4>
+
+- Different models for different purposes
+  - ~~GPT-4o~~ ~~Standard~~ ~~Instant~~ ~~Fast~~ **Luna / Sonnet / Flash Lite**
+  - ~~GPT-5~~ ~~Thinking / reasoning~~ ~~Thinking~~ **Sol / Opus / Flash**
+  - ~~OpenAI-o1~~ ~~Pro~~ ~~Flagship~~ ~~Pro~~ **Astra / Fable / Pro**
 
 </template>
 </v-switch>
@@ -235,120 +249,55 @@ layout: center
 
 - These make agent behaviour more repeatable than relying on a one-off prompt
 
-- WARNING: can open you to supply chain attacks
-
+- **WARNING: can open you to supply chain attacks**
 
 ---
-layout: two-cols
----
 
-# Context Engineering: Meaningful names provide context
+# Context Engineering: Tokens and Usage
 
-<div class="pr-3">
+- Context is limited, counted in tokens - i.e. chunks of text
+- Token limits vary by model, but crucially eat into your usage window
+- Run out of usage and you may have to wait for a reset or pay for more
 
-Providing the function signature:
+- Skills available to reduce token usage:
+  - **Caveman** - terse communication style
+  - **Ponytail** - minimalist coding style
+  - **RTK** - compresses tool outputs
 
-```python
-def convert(x):
-```
-
-Produces the output:
-
-```python
-def convert(x):
-  if isinstance(x, str):
-    return x.upper()
-  elif isinstance(x, int):
-    return x * 2
-  elif isinstance(x, list):
-    return [convert(i) for i in x]
-  else:
-    return None
-```
-
-</div>
-
-::right::
-
-<div class="pl-3">
-
-Whereas providing:
-
-```python
-def celsius_to_fahrenheit(celsius):
-```
-
-Produces:
-
-```python
-def celsius_to_fahrenheit(celsius):
-    """Convert Celsius to Fahrenheit."""
-    return (celsius * 9/5) + 32
-```
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 1em;">
+  <img src="./img/usage.png" alt="usage" />
 </div>
 
 ---
-layout: two-cols
----
 
-# Context can be a constraint
+# Explore → Plan → Code → Commit
 
-<div class="pr-3">
+<div style="display: flex; gap: 2em; align-items: flex-start;">
 
-Providing the function signature:
+<div style="flex: 1;">
 
-```python
-def levenshtein(a, b):
-```
+**Many modes available to agentic tools:**
+  1. Plan mode - generally asks you a few questions
+  2. Code mode:
+      - Manual
+      - Auto
+      - Accept edits
 
-Produces the output:
+`matt-pocock-skills` - widely used for _enhanced_ planning:
+  - Wayfinder - detailed questioning to figure out what you want
+  - Grill - slightly less detailed
+  - Token hungry...
 
-```python {*}{maxHeight:'260px'}
-def levenshtein(a, b):
-    """Compute the Levenshtein distance between two strings."""
-    if len(a) < len(b):
-        return levenshtein(b, a)
-
-    if len(b) == 0:
-        return len(a)
-
-    previous_row = range(len(b) + 1)
-    for i, c1 in enumerate(a):
-        current_row = [i + 1]
-        for j, c2 in enumerate(b):
-            insertions = previous_row[j + 1] + 1
-            deletions = current_row[j] + 1
-            substitutions = previous_row[j] + (c1 != c2)
-            current_row.append(min(insertions, deletions, substitutions))
-        previous_row = current_row
-
-    return previous_row[-1]
-```
 
 </div>
 
-::right::
-
-<div class="pl-3">
-
-Whereas providing:
-
-```python
-from Levenshtein import distance
-
-def levenshtein(a, b):
-```
-
-Produces:
-
-```python
-def levenshtein(a, b):
-    return distance(a, b)
-```
-
-<br />
-
-In the first case, AI reinvented the algorithm because it is constrained to the script context.
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 1em;">
+  <img src="./img/plan_mode.png" alt="plan_mode" />
+  <img src="./img/auto_mode.png" alt="auto_mode" />
+  <div style="font-size: 1.5em; line-height: 1.6; color: #2563eb;">
+  Plan with expensive models, code with cheaper ones
+  </div>
+</div>
 
 </div>
 
