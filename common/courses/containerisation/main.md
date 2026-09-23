@@ -151,10 +151,11 @@ CMD ["python", "hello_world.py"]
 <v-clicks>
 
 - **Order layers by changing frequency**: rarely changed deps first, source code last
-- Use `.dockerignore` to exclude unnecessary and **secret** files (`.git/`, `.env/`, API keys etc.)
+- Combine `RUN` commands to reduce layer count
 - Run as a **non-root user** for security
 - Prefer `COPY` over `ADD` unless you need to deal with remote files
-- Combine `RUN` commands to reduce layer count
+- Prefer `ADD` over `RUN wget ...`/`RUN curl ...` for better build cache
+- Use `.dockerignore` to exclude unnecessary and **secret** files (`.git/`, `.env/`, API keys etc.)
 - Use **multi-stage builds** to keep final images small
 
 </v-clicks>
@@ -168,7 +169,7 @@ COPY hello.c .
 RUN gcc -o hello -static hello.c
 
 # runtime stage (only binary)
-FROM alpine:3.23
+FROM alpine:3.24
 COPY --from=builder /hello /hello
 USER dumbledore
 CMD ["/hello"]
