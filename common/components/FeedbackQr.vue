@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useSlideContext } from '@slidev/client'
 import QRCode from 'qrcode'
 
 // Injected by slidev-theme-oxrse from events/$TRAINING_EVENT.yaml
@@ -15,6 +16,13 @@ const border = 4
 const { size, data } = QRCode.create(url, { errorCorrectionLevel: 'M' }).modules
 const viewBox = `0 0 ${size + 2 * border} ${size + 2 * border}`
 
+// QR code and link together take this fraction of the height below the header
+const HEIGHT_FRACTION = 0.7
+
+const { $slidev } = useSlideContext()
+const slideHeight = $slidev.configs.canvasWidth / $slidev.configs.aspectRatio
+const height = `calc(${HEIGHT_FRACTION} * (${slideHeight}px - var(--oxrse-header-height)))`
+
 let path = ''
 for (let r = 0; r < size; r++) {
   for (let c = 0; c < size; c++) {
@@ -25,12 +33,12 @@ for (let r = 0; r < size; r++) {
 </script>
 
 <template>
-  <div class="flex flex-col items-center gap-2">
+  <div class="flex flex-col items-center gap-2" :style="{ height }">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       :viewBox="viewBox"
       shape-rendering="crispEdges"
-      class="w-64 h-64"
+      class="flex-1 min-h-0 aspect-square"
       role="img"
       aria-label="Feedback form QR code"
     >

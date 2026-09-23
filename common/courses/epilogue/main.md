@@ -4,7 +4,7 @@ title: Feedback
 
 Your feedback is invaluable and will help us improve future sessions:
 
-<div class="h-full w-full flex flex-col items-center justify-center gap-8">
+<div class="flex justify-center mt-6">
   <FeedbackQr />
 </div>
 
