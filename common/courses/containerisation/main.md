@@ -32,26 +32,12 @@ External dependencies evolve and break compatibility.
 
 # Docker command-line interface
 
-<v-clicks>
-
 - Docker is primarily used via the **command line** (Docker Desktop also available)
 - `docker image` manage images (`ls`, `pull`, `build`, `rm`)
+  - `docker image ls` lists locally available images
 - `docker container` manage containers (`run`, `ls`, `stop`, `rm`)
+  - `docker container ls` show running containers
 - Images and containers consume disk space and can be cleaned up by `docker system prune`
-- `docker container ls` and `docker ps` show running containers
-
-</v-clicks>
-
-<div v-click class="mt-4">
-
-```console
-$ docker image ls
-$ docker image pull python:3.14-slim
-$ docker container run --rm -it python:3.14-slim bash
-$ docker system prune
-```
-
-</div>
 
 ---
 layout: two-cols
@@ -62,14 +48,13 @@ layout: two-cols
 <v-clicks>
 
 - `docker image pull` downloads images from a registry
-- `docker image ls` lists locally available images
 - `docker container run` creates and starts a container from an image
 - `-it` flags for **interactive terminal** sessions
 - `--rm` flag to **auto-remove** the container on exit
 
 </v-clicks>
 
-<div v-click class="mt-4">
+<div class="mt-4">
 
 ```console
 $ docker image pull python:3.14-slim
@@ -166,10 +151,11 @@ CMD ["python", "hello_world.py"]
 <v-clicks>
 
 - **Order layers by changing frequency**: rarely changed deps first, source code last
-- Use `.dockerignore` to exclude unnecessary and **secret** files (`.git/`, `.env/`, API keys etc.)
+- Combine `RUN` commands to reduce layer count
 - Run as a **non-root user** for security
 - Prefer `COPY` over `ADD` unless you need to deal with remote files
-- Combine `RUN` commands to reduce layer count
+- Prefer `ADD` over `RUN wget ...`/`RUN curl ...` for better build cache
+- Use `.dockerignore` to exclude unnecessary and **secret** files (`.git/`, `.env/`, API keys etc.)
 - Use **multi-stage builds** to keep final images small
 
 </v-clicks>
@@ -183,7 +169,7 @@ COPY hello.c .
 RUN gcc -o hello -static hello.c
 
 # runtime stage (only binary)
-FROM alpine:3.23
+FROM alpine:3.24
 COPY --from=builder /hello /hello
 USER dumbledore
 CMD ["/hello"]
@@ -267,11 +253,7 @@ layout: two-cols
 
 # Apptainer (formerly Singularity)
 
-<div class="flex justify-center mt-4">
-  <img src="./img/logo_apptainer.svg" class="h-16" alt="Apptainer logo" />
-</div>
-
-<v-clicks>
+<div class="pr-4">
 
 - Rebranded under the **Linux Foundation** in 2021
 - Designed for **HPC** and shared systems
@@ -280,8 +262,6 @@ layout: two-cols
   - Immutable, portable, cryptographic signing
 - Can pull and convert Docker/OCI images directly
 - Available on **Oxford ARC** and most HPC systems
-
-<div v-click>
 
 ```console
 $ apptainer pull docker://python:3.14-slim
@@ -292,37 +272,33 @@ $ apptainer run --nv gpu_app.sif
 
 </div>
 
-</v-clicks>
-
 ::right::
-<div class="pl-2 pt-4 scale-70">
 
-<div v-click class="-mt-16">
+<div class="pl-4">
 
-```mermaid
----
-config:
-  theme: default
-  themeVariables:
-    fontSize: 12px
----
-flowchart LR
-  subgraph Docker
-    D[Root Daemon] --> C1[Container]
-    D --> C2[Container]
-  end
-  subgraph Apptainer
-    U[User Process] --> S1[SIF Container]
-    U --> S2[SIF Container]
-  end
-
-  classDef docker fill:#4a90d9,stroke:#2a6ab9,color:#fff
-  classDef apptainer fill:#e8a838,stroke:#c88818,color:#000
-  class D,C1,C2 docker
-  class U,S1,S2 apptainer
-```
-
+<div class="flex justify-center mt-2 mb-2 mb-2 mb-2">
+  <img src="./img/logo_apptainer.svg" class="h-16" alt="Apptainer logo" />
 </div>
+
+```text
+Bootstrap: docker
+From: python:3.14-slim
+
+%files
+    hello_world.py /opt/hello_world.py
+
+%post
+    # install system dependencies
+    apt-get update
+    apt-get install -y --no-install-recommends figlet
+    rm -rf /var/lib/apt/lists/*
+
+    # install pyfiglet
+    pip install --no-cache-dir pyfiglet
+
+%runscript
+    exec python /opt/hello_world.py "$@"
+```
 
 </div>
 
