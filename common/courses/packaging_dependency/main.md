@@ -450,13 +450,13 @@ my-package/
 ├── .git_archival.txt
 ├── .gitattributes
 ├── .github
-│   ├── CONTRIBUTING.md
-│   ├── dependabot.yml
-│   ├── release.yml
-│   ├── workflows
-│   │   ├── cd.yml
-│   │   └── ci.yml
-│   └── zizmor.yml
+│   ├── CONTRIBUTING.md
+│   ├── dependabot.yml
+│   ├── release.yml
+│   ├── workflows
+│   │   ├── cd.yml
+│   │   └── ci.yml
+│   └── zizmor.yml
 ├── .gitignore
 ├── .pre-commit-config.yaml
 ├── .readthedocs.yaml
@@ -466,18 +466,18 @@ my-package/
 
 ```text
 ├── docs
-│   ├── conf.py
-│   └── index.md
+│   ├── conf.py
+│   └── index.md
 ├── LICENSE
 ├── noxfile.py
 ├── pyproject.toml
 ├── README.md
 ├── src
-│   └── my_package
-│       ├── __init__.py
-│       ├── _version.pyi
-│       ├── example.py
-│       └── py.typed
+│   └── my_package
+│       ├── __init__.py
+│       ├── _version.pyi
+│       ├── example.py
+│       └── py.typed
 └── tests
     └── test_package.py
 ```
