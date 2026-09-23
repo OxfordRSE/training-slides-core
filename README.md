@@ -72,6 +72,22 @@ TRAINING_EVENT='hilary-2026' npx slidev --open --entry presentations/functional/
 Note: this is an initial implementation and there is no rigorous error checking
 at the moment, e.g. you can put anything in the 'date' field.
 
+The event YAML file may also set `feedback_form` to use a different feedback
+form for that event:
+
+```yaml
+year: 2026
+feedback_form: jmJq6KWfMA
+sessions:
+  ...
+```
+
+This is either a Microsoft Forms ID, for a form at
+`https://forms.cloud.microsoft/e/<ID>`, or a full URL starting with `http://` or
+`https://` for a form hosted anywhere else. The feedback slide in the epilogue
+draws a QR code for it using the `FeedbackQr` component. Without
+`feedback_form`, it shows our normal feedback form.
+
 ### Build Error
 
 If you encounter an error similar to this:
