@@ -430,38 +430,57 @@ my-package/
 
 
 ---
+layout: two-cols-header
+---
 
 # Building a Python package: what templates provide
 
-<div v-click class="mt-4">
+- Explore different templates to find one that suits your needs
+- Can also use various template GitHub repositories
 
 ```console
 $ copier copy gh:scientific-python/cookie my-package
 ```
 
+::left::
+
 ```text
 my-package/
-├── pyproject.toml
-├── src/
-│   └── my_package/
-│       └── __init__.py
-├── tests/
-├── docs/
-├── .github/
-│   └── workflows/
+├── .copier-answers.yml
+├── .git_archival.txt
+├── .gitattributes
+├── .github
+│   ├── CONTRIBUTING.md
+│   ├── dependabot.yml
+│   ├── release.yml
+│   ├── workflows
+│   │   ├── cd.yml
+│   │   └── ci.yml
+│   └── zizmor.yml
+├── .gitignore
 ├── .pre-commit-config.yaml
-├── README.md
-└── LICENCE
+├── .readthedocs.yaml
 ```
 
-</div>
+::right::
 
-<v-clicks>
-
-- Explore different templates to find one that suits your needs
-- Can also use various template GitHub repositories
-
-</v-clicks>
+```text
+├── docs
+│   ├── conf.py
+│   └── index.md
+├── LICENSE
+├── noxfile.py
+├── pyproject.toml
+├── README.md
+├── src
+│   └── my_package
+│       ├── __init__.py
+│       ├── _version.pyi
+│       ├── example.py
+│       └── py.typed
+└── tests
+    └── test_package.py
+```
 
 ---
 
