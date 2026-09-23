@@ -18,7 +18,7 @@ Using many computers together to solve problems too large or slow for a single m
 
 ::right::
 <div class="h-full w-full flex items-center justify-center pl-4">
-  <img src="./img/hpc_system.jpg" class="object-cover h-full w-full" alt="HPC system" />
+  <img src="./img/hpc_system.png" class="object-cover h-9/10 w-9/10" alt="HPC system" />
 </div>
 
 ---
