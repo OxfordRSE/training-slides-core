@@ -32,26 +32,12 @@ External dependencies evolve and break compatibility.
 
 # Docker command-line interface
 
-<v-clicks>
-
 - Docker is primarily used via the **command line** (Docker Desktop also available)
 - `docker image` manage images (`ls`, `pull`, `build`, `rm`)
+  - `docker image ls` lists locally available images
 - `docker container` manage containers (`run`, `ls`, `stop`, `rm`)
+  - `docker container ls` show running containers
 - Images and containers consume disk space and can be cleaned up by `docker system prune`
-- `docker container ls` and `docker ps` show running containers
-
-</v-clicks>
-
-<div v-click class="mt-4">
-
-```console
-$ docker image ls
-$ docker image pull python:3.14-slim
-$ docker container run --rm -it python:3.14-slim bash
-$ docker system prune
-```
-
-</div>
 
 ---
 layout: two-cols
@@ -62,14 +48,13 @@ layout: two-cols
 <v-clicks>
 
 - `docker image pull` downloads images from a registry
-- `docker image ls` lists locally available images
 - `docker container run` creates and starts a container from an image
 - `-it` flags for **interactive terminal** sessions
 - `--rm` flag to **auto-remove** the container on exit
 
 </v-clicks>
 
-<div v-click class="mt-4">
+<div class="mt-4">
 
 ```console
 $ docker image pull python:3.14-slim
