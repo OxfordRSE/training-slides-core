@@ -253,11 +253,7 @@ layout: two-cols
 
 # Apptainer (formerly Singularity)
 
-<div class="flex justify-center mt-4">
-  <img src="./img/logo_apptainer.svg" class="h-16" alt="Apptainer logo" />
-</div>
-
-<v-clicks>
+<div class="pr-4">
 
 - Rebranded under the **Linux Foundation** in 2021
 - Designed for **HPC** and shared systems
@@ -266,8 +262,6 @@ layout: two-cols
   - Immutable, portable, cryptographic signing
 - Can pull and convert Docker/OCI images directly
 - Available on **Oxford ARC** and most HPC systems
-
-<div v-click>
 
 ```console
 $ apptainer pull docker://python:3.14-slim
@@ -278,37 +272,33 @@ $ apptainer run --nv gpu_app.sif
 
 </div>
 
-</v-clicks>
-
 ::right::
-<div class="pl-2 pt-4 scale-70">
 
-<div v-click class="-mt-16">
+<div class="pl-4">
 
-```mermaid
----
-config:
-  theme: default
-  themeVariables:
-    fontSize: 12px
----
-flowchart LR
-  subgraph Docker
-    D[Root Daemon] --> C1[Container]
-    D --> C2[Container]
-  end
-  subgraph Apptainer
-    U[User Process] --> S1[SIF Container]
-    U --> S2[SIF Container]
-  end
-
-  classDef docker fill:#4a90d9,stroke:#2a6ab9,color:#fff
-  classDef apptainer fill:#e8a838,stroke:#c88818,color:#000
-  class D,C1,C2 docker
-  class U,S1,S2 apptainer
-```
-
+<div class="flex justify-center mt-2 mb-2 mb-2 mb-2">
+  <img src="./img/logo_apptainer.svg" class="h-16" alt="Apptainer logo" />
 </div>
+
+```text
+Bootstrap: docker
+From: python:3.14-slim
+
+%files
+    hello_world.py /opt/hello_world.py
+
+%post
+    # install system dependencies
+    apt-get update
+    apt-get install -y --no-install-recommends figlet
+    rm -rf /var/lib/apt/lists/*
+
+    # install pyfiglet
+    pip install --no-cache-dir pyfiglet
+
+%runscript
+    exec python /opt/hello_world.py "$@"
+```
 
 </div>
 
