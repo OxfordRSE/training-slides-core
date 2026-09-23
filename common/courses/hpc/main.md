@@ -371,6 +371,15 @@ python --version
 srun python my_job.py
 ```
 
+<v-clicks>
+
+`srun` creates a **job step** and if the above job requests `--ntasks=4`:
+
+- `srun echo 'hello'` will print 'hello' 4 times
+- `srun -n 2 echo 'hello'` will print 'hello' 2 times
+
+</v-clicks>
+
 ---
 
 # How much resources should I request?
