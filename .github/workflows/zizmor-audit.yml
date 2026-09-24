@@ -1,6 +1,10 @@
 name: Audit workflows with zizmor
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/**'
   schedule:
     - cron: '15 3 * * 1'  # Every Monday at 03:15 AM UTC
   workflow_dispatch:
