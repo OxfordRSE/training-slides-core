@@ -10,6 +10,10 @@ drawings:
 transition: slide-left
 mdc: true
 plantUmlServer: https://www.plantuml.com/plantuml
+fonts:
+  sans: Noto Sans Variable
+  mono: JetBrains Mono Variable
+  provider: none
 ---
 
 ---
@@ -25,6 +29,13 @@ training-event-only: true
 
 ```yaml
 src: ../../common/courses/object_oriented/main.md
+```
+
+---
+
+```yaml
+layout: questions
+training-event-only: true
 ```
 
 ---

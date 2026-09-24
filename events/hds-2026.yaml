@@ -6,9 +6,11 @@ sessions:
   - date: "29 Sep"
     slot: "09:30"
     topic: Object-Oriented Programming
+    background: "#eef2f6"
   - date: "29 Sep"
     slot: "14:00"
     topic: Functional Programming
+    background: "#eef2f6"
   - date: "30 Sep"
     slot: "09:30"
     topic: Version Control with Git
@@ -18,9 +20,11 @@ sessions:
   - date: "01 Oct"
     slot: "09:30"
     topic: Software Testing
+    background: "#eef2f6"
   - date: "01 Oct"
     slot: "14:00"
     topic: Continuous Integration
+    background: "#eef2f6"
   - date: "02 Oct"
     slot: "09:30"
     topic: Packaging and Dependency Management

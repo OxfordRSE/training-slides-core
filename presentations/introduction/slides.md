@@ -5,11 +5,16 @@ addons:
   - ../common/addon
   - fancy-arrow
 layout: cover
+date: first-session
 highlighter: shiki
 drawings:
   persist: false
 transition: slide-left
 mdc: true
+fonts:
+  sans: Noto Sans Variable
+  mono: JetBrains Mono Variable
+  provider: none
 ---
 
 ---
@@ -25,4 +30,11 @@ training-event-only: true
 
 ```yaml
 src: ../../common/courses/introduction/main.md
+```
+
+---
+
+```yaml
+layout: questions
+training-event-only: true
 ```
