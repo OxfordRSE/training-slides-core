@@ -11,6 +11,7 @@
     "@slidev/cli": "^52.19.1",
     "@slidev/theme-default": "latest",
     "@slidev/theme-seriph": "latest",
+    "qrcode": "^1.5.4",
     "slidev-addon-fancy-arrow": "^0.20.1",
     "slidev-theme-oxrse": "github:OxfordRSE/oxrse-theme-slidev",
     "vue": "^3.5.22",

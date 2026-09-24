@@ -4,8 +4,8 @@ title: Feedback
 
 Your feedback is invaluable and will help us improve future sessions:
 
-<div class="h-full w-full flex flex-col items-center justify-center gap-8">
-  <img src="./img/feedback_qr.svg" alt="Feedback form QR code" class="w-64 h-64" />
+<div class="flex justify-center mt-6">
+  <FeedbackQr />
 </div>
 
 ---
