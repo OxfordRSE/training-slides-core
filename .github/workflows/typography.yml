@@ -1,6 +1,10 @@
 name: typography
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '**/*.md'
   pull_request:
     paths:
       - '**/*.md'
@@ -34,5 +38,5 @@ jobs:
             --diff "${{ github.event.pull_request.base.sha }}"
 
       - name: Check all tracked files
-        if: github.event_name == 'workflow_dispatch'
+        if: github.event_name != 'pull_request'
         run: python3 scripts/check-typography.py --all

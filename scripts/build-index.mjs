@@ -19,6 +19,9 @@ const logoSource = path.join(
 )
 const logoDir = path.join(distDir, 'assets')
 const logoDest = path.join(logoDir, 'oxrse-logo.svg')
+// Served at /favicon.svg, which is also where every deck's favicon points
+const faviconSource = path.join(repoRoot, 'public', 'favicon.svg')
+const faviconDest = path.join(distDir, 'favicon.svg')
 
 async function readCourseMetadata() {
   const contents = await fs.readFile(courseMetadataPath, 'utf8')
@@ -147,6 +150,7 @@ function renderHtml(presentations, eventSchedule) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Oxford RSE Software Engineering Course</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
   <meta name="description" content="Browse the Oxford Research Software Engineering course presentations." />
 ${plausibleSnippet}  <style>
     :root {
@@ -489,6 +493,7 @@ async function main() {
 
   await fs.mkdir(logoDir, { recursive: true })
   await fs.copyFile(logoSource, logoDest)
+  await fs.copyFile(faviconSource, faviconDest)
   await fs.writeFile(path.join(distDir, 'index.html'), renderHtml(presentations, eventSchedule))
 }
 

@@ -8,9 +8,8 @@
     "export": "slidev export"
   },
   "dependencies": {
-    "@slidev/cli": "^52.19.1",
-    "@slidev/theme-default": "latest",
-    "@slidev/theme-seriph": "latest",
+    "@slidev/cli": "^53.0.0",
+    "@slidev/types": "^53.0.0",
     "qrcode": "^1.5.4",
     "slidev-addon-fancy-arrow": "^0.20.1",
     "slidev-theme-oxrse": "github:OxfordRSE/oxrse-theme-slidev",
