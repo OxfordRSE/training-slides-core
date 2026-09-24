@@ -18,7 +18,7 @@ Using many computers together to solve problems too large or slow for a single m
 
 ::right::
 <div class="h-full w-full flex items-center justify-center pl-4">
-  <img src="./img/hpc_system.jpg" class="object-cover h-full w-full" alt="HPC system" />
+  <img src="./img/hpc_system.png" class="object-cover h-9/10 w-9/10" alt="HPC system" />
 </div>
 
 ---
@@ -84,7 +84,7 @@ layout: two-cols
 
 - **Login nodes**: access point, file management, job submission
 - **Compute nodes**: where jobs run (CPUs, GPUs, memory)
-- **Network**: high-speed interconnects between nodes
+- **Network**: high-speed interconnects between nodes file systems
 - **Storage**: shared file systems ($HOME, $DATA)
 - **Scheduler**: allocates resources and manages job queue
 
@@ -98,23 +98,27 @@ layout: two-cols
 config:
   flowchart:
     nodeSpacing: 10
+    rankSpacing: 10
+    padding: 8
   themeVariables:
     fontSize: 12px
 ---
 flowchart LR
-    You([You]):::local -- SSH --> Login[Login Node]:::base
+    You([You]):::local -- SSH ------> Login[Login Node]:::base
 
     subgraph Cluster[" "]
-        Login <--> Storage[(Shared  Storage)]:::base
+        Login <-----> Storage[(Shared  Storage)]:::base
         Login -->|submit jobs| Sched
 
         subgraph Sched[Scheduler]
+            direction TB
             C1[Compute Node 1]:::base
             C2[Compute Node 2]:::base
             C3[Compute Node 3]:::base
+            C1 <--> C2 <--> C3
         end
 
-        Storage <--> C1 & C2 & C3
+        Storage <-----> Sched
     end
 
     classDef local fill:#4a90d9,stroke:#2a6099,color:#fff
@@ -129,23 +133,27 @@ flowchart LR
 config:
   flowchart:
     nodeSpacing: 10
+    rankSpacing: 10
+    padding: 8
   themeVariables:
     fontSize: 12px
 ---
 flowchart LR
-    You([You]):::local -- SSH --> Login[Login Node]:::hl
+    You([You]):::local -- SSH ------> Login[Login Node]:::hl
 
     subgraph Cluster[" "]
-        Login <--> Storage[(Shared  Storage)]:::dim
+        Login <-----> Storage[(Shared  Storage)]:::dim
         Login -->|submit jobs| Sched
 
         subgraph Sched[Scheduler]
+            direction TB
             C1[Compute Node 1]:::dim
             C2[Compute Node 2]:::dim
             C3[Compute Node 3]:::dim
+            C1 <--> C2 <--> C3
         end
 
-        Storage <--> C1 & C2 & C3
+        Storage <-----> Sched
     end
 
     classDef local fill:#4a90d9,stroke:#2a6099,color:#fff
@@ -161,23 +169,27 @@ flowchart LR
 config:
   flowchart:
     nodeSpacing: 10
+    rankSpacing: 10
+    padding: 8
   themeVariables:
     fontSize: 12px
 ---
 flowchart LR
-    You([You]):::local -- SSH --> Login[Login Node]:::dim
+    You([You]):::local -- SSH ------> Login[Login Node]:::dim
 
     subgraph Cluster[" "]
-        Login <--> Storage[(Shared  Storage)]:::dim
+        Login <-----> Storage[(Shared  Storage)]:::dim
         Login -->|submit jobs| Sched
 
         subgraph Sched[Scheduler]
+            direction TB
             C1[Compute Node 1]:::hl
             C2[Compute Node 2]:::hl
             C3[Compute Node 3]:::hl
+            C1 <--> C2 <--> C3
         end
 
-        Storage <--> C1 & C2 & C3
+        Storage <-----> Sched
     end
 
     classDef local fill:#4a90d9,stroke:#2a6099,color:#fff
@@ -193,27 +205,32 @@ flowchart LR
 config:
   flowchart:
     nodeSpacing: 10
+    rankSpacing: 10
+    padding: 8
   themeVariables:
     fontSize: 12px
 ---
 flowchart LR
-    You([You]):::local -- SSH --> Login[Login Node]:::dim
+    You([You]):::local -- SSH ------> Login[Login Node]:::dim
 
     subgraph Cluster[" "]
-        Login <--> Storage[(Shared  Storage)]:::dim
+        Login <-----> Storage[(Shared  Storage)]:::dim
         Login -->|submit jobs| Sched
 
         subgraph Sched[Scheduler]
+            direction TB
             C1[Compute Node 1]:::dim
             C2[Compute Node 2]:::dim
             C3[Compute Node 3]:::dim
+            C1 <--> C2 <--> C3
         end
 
-        Storage <--> C1 & C2 & C3
+        Storage <-----> Sched
     end
 
     classDef local fill:#4a90d9,stroke:#2a6099,color:#fff
     classDef dim fill:#ddd,stroke:#aaa,color:#666
+    %% 1: login-storage, 3-4: interconnects, 5: storage-scheduler
     linkStyle 1,3,4,5 stroke:#d55e00,stroke-width:3px
 ```
 
@@ -225,23 +242,27 @@ flowchart LR
 config:
   flowchart:
     nodeSpacing: 10
+    rankSpacing: 10
+    padding: 8
   themeVariables:
     fontSize: 12px
 ---
 flowchart LR
-    You([You]):::local -- SSH --> Login[Login Node]:::dim
+    You([You]):::local -- SSH ------> Login[Login Node]:::dim
 
     subgraph Cluster[" "]
-        Login <--> Storage[(Shared  Storage)]:::hl
+        Login <-----> Storage[(Shared  Storage)]:::hl
         Login -->|submit jobs| Sched
 
         subgraph Sched[Scheduler]
+            direction TB
             C1[Compute Node 1]:::dim
             C2[Compute Node 2]:::dim
             C3[Compute Node 3]:::dim
+            C1 <--> C2 <--> C3
         end
 
-        Storage <--> C1 & C2 & C3
+        Storage <-----> Sched
     end
 
     classDef local fill:#4a90d9,stroke:#2a6099,color:#fff
@@ -257,23 +278,27 @@ flowchart LR
 config:
   flowchart:
     nodeSpacing: 10
+    rankSpacing: 10
+    padding: 8
   themeVariables:
     fontSize: 12px
 ---
 flowchart LR
-    You([You]):::local -- SSH --> Login[Login Node]:::dim
+    You([You]):::local -- SSH ------> Login[Login Node]:::dim
 
     subgraph Cluster[" "]
-        Login <--> Storage[(Shared  Storage)]:::dim
+        Login <-----> Storage[(Shared  Storage)]:::dim
         Login -->|submit jobs| Sched
 
         subgraph Sched[Scheduler]
+            direction TB
             C1[Compute Node 1]:::hl
             C2[Compute Node 2]:::hl
             C3[Compute Node 3]:::hl
+            C1 <--> C2 <--> C3
         end
 
-        Storage <--> C1 & C2 & C3
+        Storage <-----> Sched
     end
 
     classDef local fill:#4a90d9,stroke:#2a6099,color:#fff
@@ -370,6 +395,15 @@ python --version
 
 srun python my_job.py
 ```
+
+<v-clicks>
+
+`srun` creates a **job step** and if the above job requests `--ntasks=4`:
+
+- `srun echo 'hello'` will print 'hello' 4 times
+- `srun -n 2 echo 'hello'` will print 'hello' 2 times
+
+</v-clicks>
 
 ---
 
