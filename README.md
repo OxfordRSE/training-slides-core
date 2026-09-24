@@ -1,7 +1,7 @@
 # OxRSE core training slides
 
 This repo conains [sli.dev](https://sli.dev/) slideshows for our training material.
-The meat of each slideshow is in `common`, and thin wrappers defining the presentation structure are in `presentations`.
+Each course is a single slideshow, `presentations/<name>/slides.md`, with its images alongside it. Shared pieces live at the top level: `addon/` (a local Slidev addon that every slideshow loads, with shared components, layouts and styles), `epilogue/` (slides appended to every slideshow in an event build) and `events/` (one YAML file per training event).
 
 ## Slidev build
 
@@ -118,7 +118,7 @@ sessions:
 
 These appear in the epilogue's animated walkthroughs of train.rse.ox.ac.uk
 (`LoginDemo`, `EnrolDemo`, `MaterialDemo`, `ExerciseDemo` and `CommentDemo`,
-played by `SiteDemo` in `common/addon/components/`), which show students how to
+played by `SiteDemo` in `addon/components/`), which show students how to
 sign in, enrol on the event and use the course material. Without them, the
 walkthroughs show "Your event" and `enrolment-key`. The enrolment key is shown
 on the published slides of an event build.
@@ -134,7 +134,7 @@ slide, for example to shade alternate days:
 ```
 
 Quote the colour, since `#` starts a YAML comment. The orientation slide uses
-the `orientation` layout from `common/addon/layouts/`, which replaces the
+the `orientation` layout from `addon/layouts/`, which replaces the
 theme's layout of the same name and also shows each session's weekday and start
 time.
 
@@ -143,7 +143,7 @@ set `date: first-session` in its headmatter, so that its cover shows the event's
 first date in an event build rather than the date it was built.
 
 Decks in an event end with an event-only questions slide, using the `questions`
-layout from `common/addon/layouts/`.
+layout from `addon/layouts/`.
 
 The landing page, built by `scripts/build-index.mjs`, lists every course with a
 deck in `presentations/`. In an event build it lists only the courses in that
@@ -158,7 +158,7 @@ view. To preview another moment, append `?now=` to the address, e.g.
 ### Fonts
 
 The decks use Noto Sans and JetBrains Mono, bundled from the
-`@fontsource-variable` packages and imported in `common/addon/styles/index.css`.
+`@fontsource-variable` packages and imported in `addon/styles/index.css`.
 Each deck's headmatter selects them and sets `provider: none`, so no fonts are
 loaded from Google Fonts:
 
