@@ -23,7 +23,7 @@ else
 fi
 
 # Build straight from presentations/: shared components, layouts and styles
-# come from the addon in common/addon, which every deck loads
+# come from the addon in addon/, which every deck loads
 npx slidev build --out "${PWD}/dist/${presentation_name}" --base "${base}" "presentations/${presentation_name}/slides.md"
 
 # Slidev leaves a cache in node_modules/.slidev next to the entry file

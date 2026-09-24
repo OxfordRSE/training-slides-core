@@ -4,7 +4,7 @@ title: Modern CMake
 authors:
   - Fergus Cooper
 addons:
-  - ../common/addon
+  - ../addon
 layout: cover
 highlighter: shiki
 drawings:

@@ -2,7 +2,7 @@
 theme: oxrse
 title: Containerisation with Docker
 addons:
-  - ../common/addon
+  - ../addon
 layout: cover
 highlighter: shiki
 drawings:
@@ -40,6 +40,6 @@ training-event-only: true
 ---
 
 ```yaml
-src: ../../common/courses/epilogue/main.md
+src: ../../epilogue/main.md
 training-event-only: true
 ```

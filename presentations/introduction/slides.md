@@ -2,7 +2,7 @@
 theme: oxrse
 title: Course Introduction
 addons:
-  - ../common/addon
+  - ../addon
   - fancy-arrow
 layout: cover
 date: first-session

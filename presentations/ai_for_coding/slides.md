@@ -5,7 +5,7 @@ authors:
   - Oliver King
   - Jack Leland
 addons:
-  - ../common/addon
+  - ../addon
   - fancy-arrow
 layout: cover
 highlighter: shiki
