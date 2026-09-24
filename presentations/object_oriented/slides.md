@@ -30,6 +30,13 @@ src: ../../common/courses/object_oriented/main.md
 ---
 
 ```yaml
+layout: questions
+training-event-only: true
+```
+
+---
+
+```yaml
 src: ../../common/courses/epilogue/main.md
 training-event-only: true
 ```
