@@ -32,34 +32,34 @@ following content:
 year: 2026
 sessions:
   - date: "22 Jan"
-    slot: morning
+    slot: "09:30"
     topic: Object-Oriented Programming
   - date: "22 Jan"
-    slot: afternoon
+    slot: "14:00"
     topic: Functional Programming
   - date: "29 Jan"
-    slot: morning
+    slot: "09:30"
     topic: Version control with Git
   - date: "29 Jan"
-    slot: afternoon
+    slot: "14:00"
     topic: Collaborative Code Development
   - date: "05 Feb"
-    slot: morning
+    slot: "09:30"
     topic: Software Testing
   - date: "05 Feb"
-    slot: afternoon
+    slot: "14:00"
     topic: Continuous Integration
   - date: "12 Feb"
-    slot: morning
+    slot: "09:30"
     topic: Packaging and Dependency Management
   - date: "12 Feb"
-    slot: afternoon
+    slot: "14:00"
     topic: Containerisation with Docker
   - date: "19 Feb"
-    slot: morning
+    slot: "09:30"
     topic: Introduction to HPC
   - date: "19 Feb"
-    slot: afternoon
+    slot: "14:00"
     topic: Workflows with Snakemake
 ```
 
@@ -69,8 +69,10 @@ You can build with:
 TRAINING_EVENT='hilary-2026' npx slidev --open --entry presentations/functional/slides.md
 ```
 
-Note: this is an initial implementation and there is no rigorous error checking
-at the moment, e.g. you can put anything in the 'date' field.
+Write each `date` as a day and a three-letter month (`"29 Sep"`), and each
+`slot` as the session's start time (`"09:30"`). Quote both, so YAML reads them
+as text. There is no rigorous error checking, but the epilogue walkthroughs fall
+back to showing the date as written if either is in another format.
 
 The event YAML file may also set `feedback_form` to use a different feedback
 form for that event:
@@ -87,6 +89,24 @@ This is either a Microsoft Forms ID, for a form at
 `https://` for a form hosted anywhere else. The feedback slide in the epilogue
 draws a QR code for it using the `FeedbackQr` component. Without
 `feedback_form`, it shows our normal feedback form.
+
+The event YAML file may also set the event's `name` and `enrolment_key` on
+train.rse.ox.ac.uk:
+
+```yaml
+year: 2026
+name: "[TT26] Fundamentals of Software Engineering for Research"
+enrolment_key: example-key
+sessions:
+  ...
+```
+
+These appear in the epilogue's animated walkthroughs of train.rse.ox.ac.uk
+(`LoginDemo`, `EnrolDemo`, `MaterialDemo`, `ExerciseDemo` and `CommentDemo`,
+played by `SiteDemo` in `common/addon/components/`), which show students how to
+sign in, enrol on the event and use the course material. Without them, the
+walkthroughs show "Your event" and `enrolment-key`. The enrolment key is shown
+on the published slides of an event build.
 
 ### Build Error
 
