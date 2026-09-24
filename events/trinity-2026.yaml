@@ -3,9 +3,11 @@ sessions:
   - date: "30 Apr"
     slot: "09:30"
     topic: Object-Oriented Programming
+    background: "#eef2f6"
   - date: "30 Apr"
     slot: "14:00"
     topic: Functional Programming
+    background: "#eef2f6"
   - date: "07 May"
     slot: "09:30"
     topic: Version Control with Git
@@ -15,9 +17,11 @@ sessions:
   - date: "14 May"
     slot: "09:30"
     topic: Software Testing
+    background: "#eef2f6"
   - date: "14 May"
     slot: "14:00"
     topic: Continuous Integration
+    background: "#eef2f6"
   - date: "21 May"
     slot: "09:30"
     topic: Packaging and Dependency Management
@@ -27,6 +31,8 @@ sessions:
   - date: "28 May"
     slot: "09:30"
     topic: Introduction to HPC
+    background: "#eef2f6"
   - date: "28 May"
     slot: "14:00"
     topic: Workflows with Snakemake
+    background: "#eef2f6"

@@ -3,9 +3,11 @@ sessions:
   - date: "20 Oct"
     slot: "09:30"
     topic: Object-Oriented Programming
+    background: "#eef2f6"
   - date: "20 Oct"
     slot: "14:00"
     topic: Functional Programming
+    background: "#eef2f6"
   - date: "27 Oct"
     slot: "09:30"
     topic: Version Control with Git
@@ -15,9 +17,11 @@ sessions:
   - date: "03 Nov"
     slot: "09:30"
     topic: Software Testing
+    background: "#eef2f6"
   - date: "03 Nov"
     slot: "14:00"
     topic: Continuous Integration
+    background: "#eef2f6"
   - date: "10 Nov"
     slot: "09:30"
     topic: Packaging and Dependency Management
@@ -27,6 +31,8 @@ sessions:
   - date: "17 Nov"
     slot: "09:30"
     topic: Introduction to HPC
+    background: "#eef2f6"
   - date: "17 Nov"
     slot: "14:00"
     topic: Workflows with Snakemake
+    background: "#eef2f6"
