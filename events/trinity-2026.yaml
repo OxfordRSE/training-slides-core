@@ -1,32 +1,32 @@
 year: 2026
 sessions:
   - date: "30 Apr"
-    slot: morning
+    slot: "09:30"
     topic: Object-Oriented Programming
   - date: "30 Apr"
-    slot: afternoon
+    slot: "14:00"
     topic: Functional Programming
   - date: "07 May"
-    slot: morning
+    slot: "09:30"
     topic: Version Control with Git
   - date: "07 May"
-    slot: afternoon
+    slot: "14:00"
     topic: Collaborative Code Development
   - date: "14 May"
-    slot: morning
+    slot: "09:30"
     topic: Software Testing
   - date: "14 May"
-    slot: afternoon
+    slot: "14:00"
     topic: Continuous Integration
   - date: "21 May"
-    slot: morning
+    slot: "09:30"
     topic: Packaging and Dependency Management
   - date: "21 May"
-    slot: afternoon
+    slot: "14:00"
     topic: Containerisation with Docker
   - date: "28 May"
-    slot: morning
+    slot: "09:30"
     topic: Introduction to HPC
   - date: "28 May"
-    slot: afternoon
+    slot: "14:00"
     topic: Workflows with Snakemake

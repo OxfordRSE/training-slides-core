@@ -1,27 +1,29 @@
 year: 2026
 feedback_form: jmJq6KWfMA
+name: "2026 Healthcare Data Science CDT: Software Engineering"
+enrolment_key: hds-cdt
 sessions:
-  - date: "29 Sept"
-    slot: morning
+  - date: "29 Sep"
+    slot: "09:30"
     topic: Object-Oriented Programming
-  - date: "29 Sept"
-    slot: afternoon
+  - date: "29 Sep"
+    slot: "14:00"
     topic: Functional Programming
-  - date: "30 Sept"
-    slot: morning
+  - date: "30 Sep"
+    slot: "09:30"
     topic: Version Control with Git
-  - date: "30 Sept"
-    slot: afternoon
+  - date: "30 Sep"
+    slot: "14:00"
     topic: Collaborative Code Development
   - date: "01 Oct"
-    slot: morning
+    slot: "09:30"
     topic: Software Testing
   - date: "01 Oct"
-    slot: afternoon
+    slot: "14:00"
     topic: Continuous Integration
   - date: "02 Oct"
-    slot: morning
+    slot: "09:30"
     topic: Packaging and Dependency Management
   - date: "02 Oct"
-    slot: afternoon
+    slot: "14:00"
     topic: Containerisation with Docker
