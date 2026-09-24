@@ -43,7 +43,6 @@ snakemake:
   number: 10
   description: Building reproducible computational workflows with rules, dependencies, and easy scalability.
   audience: Scalability
-  coreOnly: true
 ai_for_coding:
   number: 11
   title: Using AI for Coding
@@ -54,7 +53,6 @@ cmake:
   title: Modern CMake
   description: Writing modern, portable CMake to configure, build, and manage dependencies for C++ projects.
   audience: Tooling
-  coreOnly: true
 directing_coding_agents:
   number: 13
   title: Directing Coding Agents

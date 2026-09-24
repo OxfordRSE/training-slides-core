@@ -145,6 +145,16 @@ first date in an event build rather than the date it was built.
 Decks in an event end with an event-only questions slide, using the `questions`
 layout from `common/addon/layouts/`.
 
+The landing page, built by `scripts/build-index.mjs`, lists every course with a
+deck in `presentations/`. In an event build it lists only the courses in that
+event, in timetable order: a deck belongs to the event when the `highlight:` of
+its orientation slide matches a session `topic`. A deck with `date:
+first-session` (the course introduction) is listed first. Each card then shows its
+session's date and start time, and a short script highlights the session in
+progress (in Oxford time, from an hour before it starts) and scrolls it into
+view. To preview another moment, append `?now=` to the address, e.g.
+`?now=2026-09-29T13:30`.
+
 ### Fonts
 
 The decks use Noto Sans and JetBrains Mono, bundled from the
