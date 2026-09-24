@@ -69,6 +69,21 @@ You can build with:
 TRAINING_EVENT='hilary-2026' npx slidev --open --entry presentations/functional/slides.md
 ```
 
+The deploy workflow reads `TRAINING_EVENT` from the repository variable of the
+same name (Settings > Secrets and variables > Actions > Variables). The two
+repositories that deploy these slides differ only in that variable:
+
+- [OxfordRSE/training-slides-core](https://github.com/OxfordRSE/training-slides-core)
+  does not set it, so it deploys the generic build.
+- [OxfordRSE/training-slides-event](https://github.com/OxfordRSE/training-slides-event)
+  is a fork of training-slides-core, with the same files, including this README
+  and the workflow. It sets the variable to the current event, e.g. `hds-2026`,
+  so it deploys the event build.
+
+Forks do not inherit repository variables, so each repository keeps its own
+setting when the fork is synced. Moving to a new event is a change to the fork's
+variable, not a commit.
+
 Write each `date` as a day and a three-letter month (`"29 Sep"`), and each
 `slot` as the session's start time (`"09:30"`). Quote both, so YAML reads them
 as text. There is no rigorous error checking, but the epilogue walkthroughs fall
@@ -131,6 +146,9 @@ TypeError: localStorage.getItem is not a function
 
 You may need to set `NODE_OPTIONS='--no-webstorage'` during the build. This is
 because of an incompatability with Node >=25. See this [Vue Devtools issue comment](https://github.com/vuejs/devtools/issues/977#issuecomment-3411051527) and the [TypeScript Website pull request](https://github.com/microsoft/TypeScript-Website/pull/3450).
+
+The deploy workflow uses the Node version in `.nvmrc` (currently 24), which
+avoids this. Use the same version locally, e.g. with `nvm use`.
 
 ## Typography
 
