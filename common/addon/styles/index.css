@@ -1,0 +1,4 @@
+/* Bundled fonts; each deck's headmatter selects them with `fonts: provider: none` */
+@import '@fontsource-variable/noto-sans/wght.css';
+@import '@fontsource-variable/noto-sans/wght-italic.css';
+@import '@fontsource-variable/jetbrains-mono/wght.css';

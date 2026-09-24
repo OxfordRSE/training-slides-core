@@ -10,6 +10,10 @@ drawings:
 transition: slide-left
 mdc: true
 plantUmlServer: https://www.plantuml.com/plantuml
+fonts:
+  sans: Noto Sans Variable
+  mono: JetBrains Mono Variable
+  provider: none
 ---
 
 ---

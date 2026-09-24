@@ -9,6 +9,10 @@ drawings:
   persist: false
 transition: slide-left
 mdc: true
+fonts:
+  sans: Noto Sans Variable
+  mono: JetBrains Mono Variable
+  provider: none
 ---
 
 ---
