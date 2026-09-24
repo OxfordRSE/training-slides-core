@@ -123,6 +123,42 @@ sign in, enrol on the event and use the course material. Without them, the
 walkthroughs show "Your event" and `enrolment-key`. The enrolment key is shown
 on the published slides of an event build.
 
+Each session may also set a `background` colour for its row on the orientation
+slide, for example to shade alternate days:
+
+```yaml
+  - date: "29 Sep"
+    slot: "09:30"
+    topic: Object-Oriented Programming
+    background: "#eef2f6"
+```
+
+Quote the colour, since `#` starts a YAML comment. The orientation slide uses
+the `orientation` layout from `common/addon/layouts/`, which replaces the
+theme's layout of the same name and also shows each session's weekday and start
+time.
+
+A deck that is not a timetabled session, such as the course introduction, can
+set `date: first-session` in its headmatter, so that its cover shows the event's
+first date in an event build rather than the date it was built.
+
+Decks in an event end with an event-only questions slide, using the `questions`
+layout from `common/addon/layouts/`.
+
+### Fonts
+
+The decks use Noto Sans and JetBrains Mono, bundled from the
+`@fontsource-variable` packages and imported in `common/addon/styles/index.css`.
+Each deck's headmatter selects them and sets `provider: none`, so no fonts are
+loaded from Google Fonts:
+
+```yaml
+fonts:
+  sans: Noto Sans Variable
+  mono: JetBrains Mono Variable
+  provider: none
+```
+
 ### Build Error
 
 If you encounter an error similar to this:
