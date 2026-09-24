@@ -2,16 +2,20 @@
 layout: two-cols
 ---
 
-# Introduction to Docker and virtualisation
-
-External dependencies evolve and break compatibility.
+# What is a container
 
 <v-clicks>
 
-- **Virtualisation** allows multiple environments on one machine
-- **Containers** are lightweight: they share the host kernel, not a full OS
-- A container **image** is the template; a **container** is a running instance
-- Industry standard: **Open Container Initiative** (OCI)
+- A container provides a lightweight abstraction for running application in an
+  isolated environment
+  - they share the host kernel instead of having a full copy of an OS
+- It is useful for
+  - handling dependencies
+  - mitigating the risk of supply chain attack
+  - working securely with AI coding agents
+- **Docker** is the industry standard of container technology
+  - Open Container Initiative (OCI) standardises containers across different
+    implementation
 
 </v-clicks>
 
@@ -24,8 +28,13 @@ External dependencies evolve and break compatibility.
 
 # Docker glossary
 
+<div class="pb-1">
+A container <b>image</b> is the template and a <b>container</b> is a running
+instance.
+</div>
+
 <div class="flex items-center justify-center mt-4">
-  <img src="./img/docker_relationship.png" class="max-h-96" alt="Docker glossary" />
+  <img src="./img/docker_relationship.png" class="max-h-86" alt="Docker glossary" />
 </div>
 
 ---
