@@ -15,11 +15,6 @@ repo_root="${2:-}"
 presentation_name=$(basename "$dir")
 echo "Presentation name: $presentation_name"
 
-mkdir -p build/${presentation_name}
-
-cp -r common/* build/${presentation_name}/
-cp -r presentations/${presentation_name}/* build/${presentation_name}/
-
 # compute base path correctly whether repo_root is empty or not
 if [ -n "$repo_root" ]; then
   base="/${repo_root}/${presentation_name}/"
@@ -27,10 +22,11 @@ else
   base="/${presentation_name}/"
 fi
 
-npx slidev build --out dist --base "${base}" build/${presentation_name}/slides.md
+# Build straight from presentations/: shared components, layouts and styles
+# come from the addon in common/addon, which every deck loads
+npx slidev build --out "${PWD}/dist/${presentation_name}" --base "${base}" "presentations/${presentation_name}/slides.md"
 
-# Remove all except 'dist' folder
-mv build/${presentation_name}/dist dist/${presentation_name}
-rm -rf build/${presentation_name}
+# Slidev leaves a cache in node_modules/.slidev next to the entry file
+rm -rf "presentations/${presentation_name}/node_modules"
 
 popd > /dev/null

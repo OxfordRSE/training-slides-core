@@ -12,8 +12,8 @@ fi
 
 pushd "$(dirname "$0")" > /dev/null
 
-rm -rf build dist
-mkdir -p build dist
+rm -rf dist
+mkdir -p dist
 
 for dir in presentations/*/; do
     ./build.sh "$dir" "$repo_root"
