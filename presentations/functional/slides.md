@@ -145,7 +145,6 @@ Most useful programs are impure anyway...
     strong { color: var(--oxrse-bg-colour); }
     ul li::marker { color: var(--oxrse-bg-colour); }
     ul { @apply flex flex-col h-100 justify-evenly text-xl }
-    .two-cols-header { column-gap: 10px; }
 </style>
 
 ---
@@ -196,7 +195,6 @@ layout: two-cols-header
     strong { color: var(--oxrse-bg-colour); }
     ul li::marker { color: var(--oxrse-bg-colour); }
     ul { @apply flex flex-col h-100 justify-evenly text-2xl }
-    .two-cols-header { column-gap: 30px; }
     p { @apply leading-tight }
 </style>
 
@@ -238,7 +236,6 @@ It offers a functional interface but uses non-functional features under the hood
 
 <style>
     ul li::marker { color: var(--oxrse-bg-colour); }
-    .two-cols-header { column-gap: 50px; }
     p { @apply leading-normal }
 </style>
 
@@ -343,7 +340,6 @@ print(add(2, 3))  # Output: 5
 <style>
     .jdiv { @apply flex flex-col h-100 justify-evenly }
     strong { color: var(--oxrse-bg-colour); }
-    .two-cols-header { column-gap: 50px; }
     p { @apply leading-normal }
 </style>
 
@@ -399,7 +395,6 @@ print(product)
 <style>
     .jdiv { @apply flex flex-col h-100 justify-evenly }
     strong { color: var(--oxrse-bg-colour); }
-    .two-cols-header { column-gap: 50px; }
     p { @apply leading-normal }
 </style>
 
@@ -471,7 +466,6 @@ You already use reduction functions all the time, e.g.: `sum`, `max`, `min`, `le
 
 <style>
     p { @apply leading-normal }
-    .two-cols-header { column-gap: 50px; }
 </style>
 
 ---
@@ -521,7 +515,6 @@ for num in squared_gen:
 
 <style>
     p { @apply leading-normal }
-    .two-cols-header { column-gap: 50px; }
     strong { color: var(--oxrse-bg-colour); }
 </style>
 
@@ -558,7 +551,6 @@ def say_hello():
 
 <style>
     p { @apply leading-normal }
-    .two-cols-header { column-gap: 50px; }
     strong { color: var(--oxrse-bg-colour); }
 </style>
 
@@ -643,7 +635,6 @@ There is a lot more to it than what we have seen today (e.g. monads, currying, p
 
 <style>
     p { @apply leading-normal }
-    .two-cols-header { column-gap: 50px; }
     strong { color: var(--oxrse-bg-colour); }
 </style>
 

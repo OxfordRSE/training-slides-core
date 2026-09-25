@@ -2,3 +2,10 @@
 @import '@fontsource-variable/noto-sans/wght.css';
 @import '@fontsource-variable/noto-sans/wght-italic.css';
 @import '@fontsource-variable/jetbrains-mono/wght.css';
+
+/* One standard gap between the columns of the two- and three-column layouts */
+.slidev-layout.two-columns,
+.slidev-layout.two-cols-header,
+.slidev-layout.three-cols-header {
+  column-gap: 2rem;
+}
