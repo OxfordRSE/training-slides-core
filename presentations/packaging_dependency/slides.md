@@ -307,7 +307,7 @@ layout: two-cols
 
 # A minimal pyproject.toml
 
-<div class="pr-3">
+<div class="pr-3 code-sm">
 
 ```toml
 [build-system]
@@ -337,16 +337,16 @@ classifiers = [
 
 ::right::
 
-<div class="pl-3 pt-12">
+<div class="pl-3 pt-12 code-sm">
 
 ```toml
 authors = [
-    { name = "Albus Dumbledore", email = "dumbledore@hogwarts.ac.uk" },
+  { name = "Albus Dumbledore", email = "albus@hogwarts.ac.uk" },
 ]
 dependencies = [
-    "numpy>=2.0",
-    "matplotlib",
-    "scipy",
+  "numpy>=2.0",
+  "matplotlib",
+  "scipy",
 ]
 
 [project.optional-dependencies]
