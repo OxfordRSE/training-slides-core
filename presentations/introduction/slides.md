@@ -195,31 +195,31 @@ layout: center
 <div class="relative h-90 w-140">
 
   <!-- Cascading boxes -->
-  <div class="absolute top-0 left-0 inline-block border border-gray-400 px-3 py-1 rounded shadow">
+  <div class="absolute top-0 left-0 inline-block border border-gray-400 px-3 py-1 rounded shadow bg-white z-10">
     Research Questions
   </div>
 
-  <div class="absolute top-16 left-16 inline-block border border-gray-400 px-3 py-1 rounded shadow">
+  <div class="absolute top-16 left-16 inline-block border border-gray-400 px-3 py-1 rounded shadow bg-white z-10">
     Develop Software
   </div>
 
-  <div class="absolute top-32 left-32 inline-block border border-gray-400 px-3 py-1 rounded shadow">
+  <div class="absolute top-32 left-32 inline-block border border-gray-400 px-3 py-1 rounded shadow bg-white z-10">
     Run Software
   </div>
 
-  <div class="absolute top-48 left-48 inline-block border border-gray-400 px-3 py-1 rounded shadow">
+  <div class="absolute top-48 left-48 inline-block border border-gray-400 px-3 py-1 rounded shadow bg-white z-10">
     Analyse Data
   </div>
 
-  <div class="absolute top-64 left-64 inline-block border border-gray-400 px-3 py-1 rounded shadow">
+  <div class="absolute top-64 left-64 inline-block border border-gray-400 px-3 py-1 rounded shadow bg-white z-10">
     Publish Paper
   </div>
 
-  <div class="absolute top-80 left-80 inline-block border border-gray-400 px-3 py-1 rounded shadow">
+  <div class="absolute top-80 left-80 inline-block border border-gray-400 px-3 py-1 rounded shadow bg-white z-10">
     Project Ends
   </div>
 
-  <div class="absolute top-77 left-130 inline-block border border-gray-400 px-3 py-1 rounded shadow">
+  <div class="absolute top-80 left-130 inline-block whitespace-nowrap border border-gray-400 px-3 py-1 rounded shadow bg-white z-10">
     Graceful Decline
   </div>
 
@@ -231,13 +231,13 @@ layout: center
   <FancyArrow x1="480" y1="428" x2="530" y2="473" arc="-0.4" head-size="15" />
   <FancyArrow x1="672" y1="473" x2="727" y2="473" head-size="15" />
 
-  <div class="absolute top-40 left--40 inline-block border border-gray-400 px-3 py-1 rounded shadow">
+  <div class="absolute top-40 left--40 inline-block border border-gray-400 px-3 py-1 rounded shadow bg-white z-10">
     Project Partners
   </div>
-  <div class="absolute top-60 left--10 inline-block border border-gray-400 px-3 py-1 rounded shadow">
+  <div class="absolute top-60 left--10 inline-block border border-gray-400 px-3 py-1 rounded shadow bg-white z-10">
     Industry
   </div>
-  <div class="absolute top-80 left-10 inline-block border border-gray-400 px-3 py-1 rounded shadow">
+  <div class="absolute top-80 left-10 inline-block border border-gray-400 px-3 py-1 rounded shadow bg-white z-10">
     Other People
   </div>
 
