@@ -26,4 +26,3 @@ jobs:
           globs: |
             **/*.md
             !node_modules
-            !presentations
