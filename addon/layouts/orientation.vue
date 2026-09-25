@@ -1,8 +1,8 @@
 <script setup>
 // Replaces the theme's `orientation` layout: the event timetable, one session
 // per row, with the current session (`highlight`) outlined. Each row shows the
-// weekday, date and start time; a session can set an optional `background`
-// colour in the event YAML, e.g. to shade alternate days.
+// weekday, date and start time together in one label; a session can set an
+// optional `background` colour in the event YAML, e.g. to shade alternate days.
 //
 // @unocss-ignore: this file uses its own class names, not UnoCSS utilities
 const props = defineProps({
@@ -38,7 +38,7 @@ function day(s) {
           :class="{ highlighted: s.topic === props.highlight, shaded: s.background }"
           :style="{ background: s.background }"
         >
-          <td class="session-when"><span class="day">{{ day(s) }}</span><span class="time">{{ s.slot }}</span></td>
+          <td class="session-when"><span class="when"><span class="day">{{ day(s) }}</span><span class="time">{{ s.slot }}</span></span></td>
           <td class="session-topic">{{ s.topic }}</td>
         </tr>
       </tbody>
@@ -80,31 +80,31 @@ function day(s) {
   font-family: var(--slidev-code-font-family, monospace);
 }
 
-.day {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #536277;
-}
-
-.time {
-  margin-left: 0.6rem;
-  padding: 0.1rem 0.4rem;
+/* The weekday, date and time share one label, split by a thin rule */
+.when {
+  display: inline-flex;
+  align-items: baseline;
+  padding: 0.1rem 0.5rem;
   border-radius: 0.25rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #002147;
   background: #edf4f8;
 }
 
-/* Keep the time chip visible against a shaded row */
-.shaded .time {
+/* Keep the label visible against a shaded row */
+.shaded .when {
   background: #fff;
 }
 
-.highlighted .time {
-  color: #fff;
-  background: #e8a735;
+.day,
+.time {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #002147;
+}
+
+.time {
+  margin-left: 0.5rem;
+  padding-left: 0.5rem;
+  border-left: 1px solid #c5d3df;
 }
 
 .session-topic {
