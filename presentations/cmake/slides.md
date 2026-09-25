@@ -106,7 +106,7 @@ layout: two-cols-header
 
 - **Configure**: read `CMakeLists.txt`, inspect the system, generate build files.
 - **Build**: run the generated build tool to compile and link.
-- Build *out of tree*, keeping generated files in a separate `build/` directory.
+- Build _out of tree_, keeping generated files in a separate `build/` directory.
 
 </v-clicks>
 
@@ -138,7 +138,7 @@ add_executable(app main.cpp)
 add_library(mylib STATIC functionality.cpp)
 ```
 
-You attach everything a target needs *to the target* (sources, include
+You attach everything a target needs _to the target_ (sources, include
 directories, compile features, and dependencies):
 
 ```cmake
@@ -167,8 +167,8 @@ When `app` links `mylib`, some of `mylib`'s requirements should pass on to `app`
 
 <v-clicks>
 
-- **PRIVATE**: needed to *build* the target, but not by its users.
-- **PUBLIC**: needed by the target *and* by anything that links it.
+- **PRIVATE**: needed to _build_ the target, but not by its users.
+- **PUBLIC**: needed by the target _and_ by anything that links it.
 - **INTERFACE**: not needed to build the target itself, only by its users (e.g. a header-only library).
 
 </v-clicks>

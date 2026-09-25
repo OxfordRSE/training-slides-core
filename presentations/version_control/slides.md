@@ -81,6 +81,7 @@ layout: two-cols
 # "Final_v7_REAL_FINAL.py"
 
 ## Problem: uncontrolled versions
+
 - Files duplicated and renamed to track changes
 - No clear record of why a change was made
 - Hard to tell which version produced which result
@@ -88,6 +89,7 @@ layout: two-cols
 <br />
 
 ## Underlying issue?
+
 - Versions are tracked by filenames instead of history
 - Changes lack structure and explanation
 
@@ -102,6 +104,7 @@ layout: two-cols
 # "I can't reproduce my results"
 
 ## Problem: lost historical context
+
 - Code evolves during analysis or development
 - Results depend on specific versions of scripts
 - Older versions are overwritten or missing
@@ -109,6 +112,7 @@ layout: two-cols
 <br />
 
 ## Underlying issue?
+
 - No way to recover or inspect earlier states of the project
 - No link between results and the code that produced them
 
@@ -117,6 +121,7 @@ layout: two-cols
 # "Can you email me your code?"
 
 ## Problem: ad-hoc collaboration
+
 - Files sent as email attachments or chat uploads
 - Multiple people editing in parallel
 - Changes overwrite each other or conflict silently
@@ -124,6 +129,7 @@ layout: two-cols
 <br />
 
 ## Underlying issue?
+
 - No shared, coordinated way to combine independent work
 - No visibility into who changed what, and when
 
@@ -132,6 +138,7 @@ layout: two-cols
 # A shared root cause
 
 ## All of these problems stem from the same issue:
+
 - No structured history of changes
 - No safe way to explore, undo, or combine work
 - No shared understanding of the project's evolution
@@ -159,7 +166,7 @@ layout: two-cols
 
 <br />
 
-> These solve the *"I lost my code"* problem.
+> These solve the _"I lost my code"_ problem.
 
 ---
 
@@ -172,7 +179,7 @@ layout: two-cols
 
 <br />
 
-> These solve the *"I can't reproduce my results"* and *"Final_v7_REAL_FINAL.py"* problems.
+> These solve the _"I can't reproduce my results"_ and _"Final_v7_REAL_FINAL.py"_ problems.
 
 <br />
 
@@ -204,7 +211,7 @@ layout: two-cols
 
 <br />
 
-> These solve the *"Can you email me your code?"* problem.
+> These solve the _"Can you email me your code?"_ problem.
 
 ::right::
 
@@ -312,6 +319,7 @@ layout: two-cols-header
 ::left::
 
 **Yes:**
+
 - The full project structure (directories and subdirectories)
 - Source materials: code, configuration, documentation, and small test data
 - Plain-text files, where line-by-line changes can be tracked clearly
@@ -319,6 +327,7 @@ layout: two-cols-header
 ::right::
 
 **No:**
+
 - Generated output files or large data files produced by running the code
 - Compiled binaries
 - Packages/environments (`node_modules/`, `.venv/`, `__pycache__/`)
@@ -338,7 +347,7 @@ layout: two-cols
   - what was changed
   - who changed it
   - the time of the change
-  - a short message saying *why*
+  - a short message saying _why_
 - `git log` contains all the history.
   - every commit, in order, with its message
 - `git diff` shows the line-by-line difference between two states.
@@ -347,7 +356,7 @@ layout: two-cols
 
 <br />
 
-> *"I can't reproduce my results"*: any previous state can be recovered.
+> _"I can't reproduce my results"_: any previous state can be recovered.
 
 ::right::
 
@@ -569,7 +578,7 @@ pass and come back once the everyday workflow feels comfortable.
 - Compare files with previous versions
 - Manage branches and resolve merge conflicts
 - Exclude certain files from version control
-- *(Optional)* Explore advanced Git tools: rebasing, bisecting, stashing, and multiple remotes
+- _(Optional)_ Explore advanced Git tools: rebasing, bisecting, stashing, and multiple remotes
 
 
 ---

@@ -374,7 +374,7 @@ You request resources -> scheduler queues your job -> runs it when resources are
 Slurm: one of the most popular scheduler for HPC system
 
 | Command | Purpose |
-|---|---|
+| --- | --- |
 | `sbatch` | Submit a job script |
 | `squeue` | Check job status |
 | `scancel` | Cancel a job |
@@ -444,6 +444,7 @@ Three key resources: **CPUs**, **memory**, **walltime**
 - Start with a small test run and **make sure it runs without error first**
 - Observe the scaling of resource usage with your dataset size/number of iterations etc.
 - Use `seff` to refine
+
   ```shell
   $ seff 11018740
   Job ID: 11018740
@@ -467,15 +468,18 @@ Three key resources: **CPUs**, **memory**, **walltime**
 
 - University of Oxford central HPC facility
 - Clusters: **arc** and **htc**
-  - CPU and GPU nodes (on *htc*)
+  - CPU and GPU nodes (on _htc_)
 - Scheduler: Slurm
 - Login:
+
   ```shell
   ssh -Y username@arc-login.arc.ox.ac.uk # for arc cluster
   ssh -Y username@htc-login.arc.ox.ac.uk # for htc cluster
   ```
+
   - Graphical SSH clients: PuTTY, MobaXterm
   - Use SSH keys for security (private/public key pair)
+
 ---
 
 # Storage Options in ARC
@@ -518,7 +522,7 @@ layout: two-cols
 
 # Fun Fact
 The MareNostrum supercomputer in Barcelona is housed in a neo-Gothic chapel.
-It was featured in Dan Brown's *Origin* (2017).
+It was featured in Dan Brown's _Origin_ (2017).
 
 ::right::
 <div class="h-full w-full flex items-center justify-center">

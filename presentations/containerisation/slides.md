@@ -342,7 +342,7 @@ From: python:3.14-slim
 # Docker vs Apptainer
 
 | | **Docker** | **Apptainer** |
-|---|---|---|
+| --- | --- | --- |
 | **Architecture** | Daemon-based (root) | Daemonless (user space) |
 | **Isolation** | Full namespace separation | Shared host filesystem access |
 | **Image format** | Layered OCI images | Single SIF file |

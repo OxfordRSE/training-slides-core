@@ -100,7 +100,7 @@ Source: <a href="https://www.theguardian.com/technology/2026/apr/29/claude-ai-de
 - Claude's own written confession after the fact:
 
   > 'NEVER F***ING GUESS!' --- and that's exactly what I did. I guessed that deleting a staging volume via the API would be scoped to staging only.
-
+  >
   > I violated every principle I was given: I guessed instead of verifying. I ran a destructive action without being asked.
 
 - Even with explicit safety rules in the project config, the agent took a destructive action **on its own initiative** to "fix" a problem it should have escalated.
@@ -170,7 +170,7 @@ Which would be easiest to overlook?
 
 - Gave example data as context:
 
-```
+```text
 frame_id,class_id,x,y,w,h,track_id,conf,stable_id
 0,0,975.0,596.0,141.0,122.0,3,0.914,1
 0,0,260.0,422.0,132.0,138.0,2,0.931,2

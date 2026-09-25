@@ -524,14 +524,16 @@ layout: two-cols-header
 ::left::
 
 Software is far more than that...
+
 - **Outcome of a development process**
 
 But also...
+
 - Architecture
 - Implementation of algorithms
 - Data model
 - Documentation
-- *Best practices and conventions...*
+- _Best practices and conventions..._
 
 ::right::
 
@@ -550,14 +552,14 @@ But also...
 
 # Testing
 
-- Humans are fallible! Our software *will* contain defects
+- Humans are fallible! Our software _will_ contain defects
   - In requirements, design, as well as code
   - 1-10-150 hours to fix in design/development/production
 
-- **Verification:** are we building the *product right*?
+- **Verification:** are we building the _product right_?
   - Does the code do what the design says? Unit testing, automated testing,
     code review
-- **Validation:** are we building the *right product*?
+- **Validation:** are we building the _right product_?
   - Do the design and its results answer the research question?
 
 <v-click>
@@ -587,7 +589,7 @@ layout: two-cols-header
 
 <img src="./imgs/protein.png" alt="Protein structure" style="width: 100%;"/>
 
-*"I didn't question it then. Obviously now I check it all the time."* - Geoffrey Chang
+_"I didn't question it then. Obviously now I check it all the time."_ - Geoffrey Chang
 
 ::bottom::
 
@@ -612,7 +614,7 @@ layout: two-cols-header
 
 ... Density functional theory nuclear magnetic resonance calculations established the relative configurations of compounds 1 and 2 and revealed that **the calculated shifts depended on the operating system when using the "Willoughby--Hoye" Python scripts to streamline the processing of the output files, a previously unrecognized flaw that could lead to incorrect conclusions.**
 
-- Due to <span v-mark.underline.orange="1">*different sorting of file names*</span> on different operating systems
+- Due to <span v-mark.underline.orange="1">_different sorting of file names_</span> on different operating systems
 
 ::right::
 
@@ -620,7 +622,7 @@ layout: two-cols-header
 
 <img src="./imgs/organic-letters.png" alt="Organic letters" style="width: 70%;"/>
 
-Organic Letters, October 8 2019. https://doi.org/10.1021/acs.orglett.9b03216
+Organic Letters, October 8 2019. <https://doi.org/10.1021/acs.orglett.9b03216>
 
 ::
 
@@ -632,7 +634,7 @@ layout: two-cols-header
 
 ::left::
 
-- *Version control* provides a full history of your project's software and other assets
+- _Version control_ provides a full history of your project's software and other assets
 - Makes for easy:
   - Backups
   - Collaboration
@@ -648,7 +650,7 @@ layout: two-cols-header
 
 <img src="./imgs/version-control.png" alt="Version control" style="width: 60%;"/>
 
-*"If you're not using version control, whatever else you might be doing with a computer, it's not science."* - Greg Wilson, SWC
+_"If you're not using version control, whatever else you might be doing with a computer, it's not science."_ - Greg Wilson, SWC
 
 ::
 

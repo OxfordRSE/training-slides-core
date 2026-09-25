@@ -218,6 +218,7 @@ gitGraph
   checkout big_feature
   commit id: "H"
 ```
+
 </div>
 
 ---
@@ -234,6 +235,7 @@ gitGraph BT:
   commit id: "First"
   commit id: "Second"
 ```
+
 </div>
 
 <div v-click class="flex flex-col justify-between items-center w-45 h-100% text-sm">
@@ -246,6 +248,7 @@ gitGraph BT:
   branch feature
   commit id: "New thing"
 ```
+
 </div>
 
 <div v-click class="flex flex-col justify-between items-center w-45 h-100% text-sm">
@@ -260,6 +263,7 @@ gitGraph BT:
   checkout main
   commit id: "Other work"
 ```
+
 </div>
 
 <div v-click class="flex flex-col justify-between items-center w-45 h-100% text-sm">
@@ -275,6 +279,7 @@ gitGraph BT:
   commit id: "Other work"
   merge feature
 ```
+
 </div>
 
 </div>

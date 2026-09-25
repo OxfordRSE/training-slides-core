@@ -34,9 +34,9 @@ layout: two-cols
 <v-clicks>
 
 - The orbiter was lost due to an error in its navigation software
-- Communication was lost as the spacecraft as it entered orbit 
+- Communication was lost as the spacecraft as it entered orbit
 - Came in at the wrong altitude
-- The root cause was a software error: a simple unit conversion error between metric and imperial 
+- The root cause was a software error: a simple unit conversion error between metric and imperial
 - No proper "checks and tests" were carried out on the responsible code
 - This cost NASA roughly <span class="font-semibold text-red-700">$125 million</span>
 
@@ -217,6 +217,7 @@ def test_sum_param(input, expected):
     assert sum(input) == expected
 
 ```
+
 </div>
 ---
 layout: two-cols
@@ -273,7 +274,7 @@ layout: two-cols
 <v-clicks class="space-y-1 pb-8">
 
 - Unit tests can detect problems and narrow down where to look...
-- ...but *usually* do not explain the exact internal cause
+- ...but _usually_ do not explain the exact internal cause
 
 </v-clicks>
 

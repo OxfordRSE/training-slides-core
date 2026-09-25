@@ -143,7 +143,7 @@ layout: two-cols
 <template #3>
 
 - Different models for different purposes
-  - ~~GPT-4o~~ ~~Standard~~ ~~Instant~~ **Fast** 
+  - ~~GPT-4o~~ ~~Standard~~ ~~Instant~~ **Fast**
   - ~~GPT-5~~ ~~Thinking / reasoning~~ ~~Thinking~~
   - ~~OpenAI-o1~~ ~~Pro~~ ~~Flagship~~ **Pro**
 
@@ -170,7 +170,7 @@ layout: two-cols
 - The PARTS framework from Google
 
 | Element | What it means | Why it matters |
-|---------|---------------|----------------|
+| --- | --- | --- |
 | **P: Persona** | Set Gemini's role | Helps Gemini respond with the right tone, expertise, and behaviour (for example, "Act like a coach", "Act like an educator", or "Act like an instructional designer") |
 | **A: Act** | Ask clearly for the task | Uses action words like create, rewrite, explain, or align to get specific results |
 | **R: Recipient** | Say who it's for | Helps tailor output to the student group, staff, or community members |
@@ -277,13 +277,15 @@ layout: center
 <div style="flex: 1;">
 
 **Many modes available to agentic tools:**
+
   1. Plan mode - generally asks you a few questions
   2. Code mode: manual, auto or accept edits
 
 `matt-pocock-skills` - widely used for _enhanced_ planning:
-  - Wayfinder - detailed questioning to figure out what you want
-  - Grill - slightly less detailed
-  - Token hungry...
+
+- Wayfinder - detailed questioning to figure out what you want
+- Grill - slightly less detailed
+- Token hungry...
 
 
 </div>
@@ -311,7 +313,7 @@ layout: two-cols
 - Gemini accounts for all staff and students
   - Gemini web chat, Gemini CLI, Antigravity?
 - GitHub Copilot Edu for all staff and students
-  - On GitHub, in VS Code 
+  - On GitHub, in VS Code
   - Currently allows you to use other models (Gemini, Codex, Claude) but this will change
 - Access to other harnesses i.e. OpenCode
   - Can connect Copilot + Codex but not Gemini (needs API key)
