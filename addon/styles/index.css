@@ -9,3 +9,9 @@
 .slidev-layout.three-cols-header {
   column-gap: 2rem;
 }
+
+/* Smaller code for blocks too wide for their column: wrap the block in <div class="code-sm"> */
+.code-sm {
+  --slidev-code-font-size: 10px;
+  --slidev-code-line-height: 15px;
+}
