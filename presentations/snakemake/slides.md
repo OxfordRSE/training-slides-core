@@ -185,7 +185,7 @@ transition: none
       alt="UK precipitation forecast map"
       class="border col-12"
       src="./img/forecast-map.png"
-      width="180"
+      width="150"
     />
   </div>
 
@@ -242,7 +242,7 @@ transition: none
       alt="UK precipitation forecast map"
       class="border col-12"
       src="./img/forecast-map.png"
-      width="180"
+      width="150"
     />
   </div>
 
@@ -351,7 +351,7 @@ transition: none
       alt="UK precipitation forecast map"
       class="border col-12"
       src="./img/forecast-map.png"
-      width="180"
+      width="150"
     />
   </div>
 
@@ -408,7 +408,7 @@ transition: none
       alt="UK precipitation forecast map"
       class="border col-12"
       src="./img/forecast-map.png"
-      width="180"
+      width="150"
     />
   </div>
 
@@ -525,7 +525,7 @@ We can simplify this slightly by making using of Python and helper functions, su
 
 ---
 
-<img src="./img/dag-five-counties.png" alt="DAG example for five counties" width="800"/>
+<img src="./img/dag-five-counties.png" alt="DAG example for five counties" width="640"/>
 
 ```
 counties = ['Beds', 'Berks', 'Bucks', 'Cambs', 'Ches']
@@ -605,7 +605,7 @@ Disjoint paths in DAG can be executed in parallel
 
 ---
 
-<img src="./img/workflow-catalog.png" alt="workflow catalog" width="800"/>
+<img src="./img/workflow-catalog.png" alt="workflow catalog" width="660"/>
 
 
 ---
