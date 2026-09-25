@@ -278,10 +278,7 @@ layout: center
 
 **Many modes available to agentic tools:**
   1. Plan mode - generally asks you a few questions
-  2. Code mode:
-      - Manual
-      - Auto
-      - Accept edits
+  2. Code mode: manual, auto or accept edits
 
 `matt-pocock-skills` - widely used for _enhanced_ planning:
   - Wayfinder - detailed questioning to figure out what you want

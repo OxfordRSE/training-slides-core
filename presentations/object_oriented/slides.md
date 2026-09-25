@@ -76,7 +76,7 @@ print(f"Temperature is: {temperature}")
 
 <div class="pl-32">
 
-```mermaid {scale: 0.7}
+```mermaid {scale: 0.65}
 flowchart TD
     A["initialise gas"] --> B["generate photons"]
     B --> C["calculate temperature"]
@@ -119,7 +119,7 @@ print(f"Temperature is: {temperature}")
 
 <div class="pl-16">
 
-```mermaid {scale: 0.5}
+```mermaid {scale: 0.45}
 flowchart TD
     A["initialise gas"] --> B{"photon source?"}
     B -- black hole --> C1["generate black hole photons"]
@@ -138,6 +138,8 @@ layout: two-cols
 ---
 
 # Example: Astrophysics
+
+<div class="code-sm">
 
 ```python {*}{maxHeight:'320px'}
 temperature = 0
@@ -160,6 +162,8 @@ for _ in range(steps):
 print(f"Temperature is: {temperature}")
 ```
 
+</div>
+
 <v-clicks>
 
 - Modify existing behaviour for another model
@@ -171,7 +175,7 @@ print(f"Temperature is: {temperature}")
 
 <div class="pl-32">
 
-```mermaid {scale: 0.43}
+```mermaid {scale: 0.33}
 ---
 config:
   flowchart:
@@ -212,6 +216,8 @@ layout: two-cols
 
 ::right::
 
+<div class="code-sm">
+
 ```python
 academics = []
 papers = []
@@ -223,6 +229,8 @@ def write_paper(academics, papers, academic, paper):
 write_paper(academics, papers, "Sam Mangham", "Mangham2018")
 write_paper(academics, papers, "Steve Crouch", "Crouch2016")
 ```
+
+</div>
 
 ---
 layout: two-cols
@@ -261,6 +269,8 @@ flowchart TB
 
 ::right::
 
+<div class="code-sm">
+
 ```python
 academics = []
 papers = []
@@ -273,6 +283,8 @@ write_paper(academics, papers, "Sam Mangham", "Mangham2018")
 write_paper(academics, papers, "Steve Crouch", "Crouch2016")
 ```
 
+</div>
+
 ---
 layout: two-cols
 ---
@@ -283,7 +295,7 @@ layout: two-cols
 
 <div class="mt-8">
 
-```mermaid {theme: 'neutral', scale: 0.9}
+```mermaid {theme: 'neutral', scale: 0.8}
 ---
 config:
   themeCSS: |
@@ -310,6 +322,8 @@ flowchart TB
 
 ::right::
 
+<div class="code-sm">
+
 ```python
 academics = []
 papers = []
@@ -322,6 +336,8 @@ write_paper(academics, papers, "Sam Mangham", "Mangham2018")
 write_paper(academics, papers, "Steve Crouch", "Crouch2016")
 write_paper(academics, papers, "Steve Crouch", "Crouch2023")
 ```
+
+</div>
 
 ---
 layout: two-cols
@@ -400,7 +416,7 @@ layout: two-cols
 
 <div class="w-[88%] flex justify-center">
 
-```mermaid {scale: 0.62}
+```mermaid {scale: 0.57}
 ---
 config:
   themeVariables:
@@ -434,7 +450,7 @@ flowchart TB
 
 <div class="w-[88%] flex justify-center">
 
-```mermaid {scale: 0.62}
+```mermaid {scale: 0.57}
 ---
 config:
   themeVariables:
@@ -467,7 +483,7 @@ flowchart TB
 <div class="mt-3 w-full flex flex-col gap-2 items-center">
 <div class="w-[88%] flex justify-center">
 
-```mermaid {scale: 0.54}
+```mermaid {scale: 0.5}
 ---
 config:
   themeVariables:
@@ -500,7 +516,7 @@ flowchart TB
 </div>
 <div class="w-[88%] flex justify-center">
 
-```mermaid {scale: 0.54}
+```mermaid {scale: 0.5}
 ---
 config:
   themeVariables:
@@ -606,6 +622,8 @@ layout: two-cols
 
 ::right::
 
+<div class="code-sm">
+
 ```cpp
 #include <string>
 #include <utility>
@@ -629,6 +647,8 @@ class Academic {
 Academic sam("Sam Mangham");
 sam.write_paper("Mangham2018");
 ```
+
+</div>
 
 ---
 layout: two-cols

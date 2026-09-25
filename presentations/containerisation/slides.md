@@ -292,10 +292,10 @@ layout: two-cols
 
 - Rebranded under the **Linux Foundation** in 2021
 - Designed for **HPC** and shared systems
-- **Daemonless**: runs in user space, no root required
+- **Daemonless**: runs in user space, no root
 - Builds to a single **SIF** file
   - Immutable, portable, cryptographic signing
-- Can pull and convert Docker/OCI images directly
+- Can pull and convert Docker/OCI images
 - Available on **Oxford ARC** and most HPC systems
 
 ```console

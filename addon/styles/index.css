@@ -2,3 +2,16 @@
 @import '@fontsource-variable/noto-sans/wght.css';
 @import '@fontsource-variable/noto-sans/wght-italic.css';
 @import '@fontsource-variable/jetbrains-mono/wght.css';
+
+/* One standard gap between the columns of the two- and three-column layouts */
+.slidev-layout.two-columns,
+.slidev-layout.two-cols-header,
+.slidev-layout.three-cols-header {
+  column-gap: 2rem;
+}
+
+/* Smaller code for blocks too wide for their column: wrap the block in <div class="code-sm"> */
+.code-sm {
+  --slidev-code-font-size: 10px;
+  --slidev-code-line-height: 15px;
+}
