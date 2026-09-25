@@ -175,7 +175,7 @@ layout: two-cols
 
 <v-clicks>
 
-- **Continuous Delivery**: every change that passes is *prepared* for release --- a human still decides when
+- **Continuous Delivery**: every change that passes is _prepared_ for release --- a human still decides when
 - **Continuous Deployment**: the approval step goes away, and passing changes go live automatically
 - Delivery and Deployment differ by one thing: **whether a human approves**
 

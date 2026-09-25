@@ -33,8 +33,8 @@ layout: default
 <v-clicks>
 
 - **Naively:** programming with functions.
-- **More precisely:** programming with *pure* functions.
-- **Furthermore:** programming with *higher-order* functions.
+- **More precisely:** programming with _pure_ functions.
+- **Furthermore:** programming with _higher-order_ functions.
 
 </v-clicks>
 
@@ -286,7 +286,7 @@ Anything that can be computed at all can be computed with this.
 
 - **Lisp** (1960) Heavily inspired by lambda calculus. Second-oldest high-level programming language still in common use. Scheme, Clojure and Logo are dialects. Scheme inspired S which led to R.
 
-- **Haskell** (1990) The quintessential FP language. Statically typed and "lazy", with an emphasis on purity. *Learn You a Haskell for Great Good!* (<https://learnyouahaskell.com/>) is a great intro to FP.
+- **Haskell** (1990) The quintessential FP language. Statically typed and "lazy", with an emphasis on purity. _Learn You a Haskell for Great Good!_ (<https://learnyouahaskell.com/>) is a great intro to FP.
 
 - **Scala** (2004) A pragmatic object/functional hybrid language that runs on the Java Virtual Machine.
 

@@ -468,7 +468,7 @@ Three key resources: **CPUs**, **memory**, **walltime**
 
 - University of Oxford central HPC facility
 - Clusters: **arc** and **htc**
-  - CPU and GPU nodes (on *htc*)
+  - CPU and GPU nodes (on _htc_)
 - Scheduler: Slurm
 - Login:
 
@@ -522,7 +522,7 @@ layout: two-cols
 
 # Fun Fact
 The MareNostrum supercomputer in Barcelona is housed in a neo-Gothic chapel.
-It was featured in Dan Brown's *Origin* (2017).
+It was featured in Dan Brown's _Origin_ (2017).
 
 ::right::
 <div class="h-full w-full flex items-center justify-center">

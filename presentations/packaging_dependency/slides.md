@@ -37,10 +37,10 @@ layout: two-cols
   - Reusable across different projects
   - Easily shareable
 - Packages can be found in any software ecosystem
-  - **Python**: *numpy*, *pandas*, *matplotlib*
-  - **R**: *ggplot2*, *rlang*
-  - **JavaScript**: *React*, *lodash*
-  - **Linux**: *git*, *bash*, *gcc*, *docker*
+  - **Python**: _numpy_, _pandas_, _matplotlib_
+  - **R**: _ggplot2_, _rlang_
+  - **JavaScript**: _React_, _lodash_
+  - **Linux**: _git_, _bash_, _gcc_, _docker_
 
 </v-clicks>
 

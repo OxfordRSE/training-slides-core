@@ -281,7 +281,7 @@ layout: center
   1. Plan mode - generally asks you a few questions
   2. Code mode: manual, auto or accept edits
 
-`matt-pocock-skills` - widely used for *enhanced* planning:
+`matt-pocock-skills` - widely used for _enhanced_ planning:
 
 - Wayfinder - detailed questioning to figure out what you want
 - Grill - slightly less detailed

@@ -78,7 +78,7 @@ Moving from applications to pipelines
 - Reproducible data analyses
 - Complex workflows (manage hundreds of steps, dependencies)
 - Cheap parallelisation (on local machine, that can be easily extended to clusters/cloud)
-- Selective rebuilds (only re-run what is necessary, can be sensitive to *data* changes and *code* changes)
+- Selective rebuilds (only re-run what is necessary, can be sensitive to _data_ changes and _code_ changes)
 
 ---
 
@@ -289,7 +289,7 @@ transition: none
 
 ---
 
-Updates to data (*or scripts*) trigger **selective** rebuilds
+Updates to data (_or scripts_) trigger **selective** rebuilds
 
 ---
 transition: none

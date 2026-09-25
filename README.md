@@ -211,7 +211,7 @@ real character:
 | `(c)`, `(tm)`, `(r)` | copyright, trademark, registered |
 
 Slidev also overrides markdown-it's `quotes` so that quotes stay straight. A
-pasted curly apostrophe therefore renders *differently* from every ASCII
+pasted curly apostrophe therefore renders _differently_ from every ASCII
 apostrophe around it.
 
 These characters almost always arrive by copy-paste from a PDF, Word or a

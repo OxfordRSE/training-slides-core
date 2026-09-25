@@ -274,7 +274,7 @@ layout: two-cols
 <v-clicks class="space-y-1 pb-8">
 
 - Unit tests can detect problems and narrow down where to look...
-- ...but *usually* do not explain the exact internal cause
+- ...but _usually_ do not explain the exact internal cause
 
 </v-clicks>
 

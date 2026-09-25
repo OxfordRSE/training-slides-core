@@ -166,7 +166,7 @@ layout: two-cols
 
 <br />
 
-> These solve the *"I lost my code"* problem.
+> These solve the _"I lost my code"_ problem.
 
 ---
 
@@ -179,7 +179,7 @@ layout: two-cols
 
 <br />
 
-> These solve the *"I can't reproduce my results"* and *"Final_v7_REAL_FINAL.py"* problems.
+> These solve the _"I can't reproduce my results"_ and _"Final_v7_REAL_FINAL.py"_ problems.
 
 <br />
 
@@ -211,7 +211,7 @@ layout: two-cols
 
 <br />
 
-> These solve the *"Can you email me your code?"* problem.
+> These solve the _"Can you email me your code?"_ problem.
 
 ::right::
 
@@ -347,7 +347,7 @@ layout: two-cols
   - what was changed
   - who changed it
   - the time of the change
-  - a short message saying *why*
+  - a short message saying _why_
 - `git log` contains all the history.
   - every commit, in order, with its message
 - `git diff` shows the line-by-line difference between two states.
@@ -356,7 +356,7 @@ layout: two-cols
 
 <br />
 
-> *"I can't reproduce my results"*: any previous state can be recovered.
+> _"I can't reproduce my results"_: any previous state can be recovered.
 
 ::right::
 
@@ -578,7 +578,7 @@ pass and come back once the everyday workflow feels comfortable.
 - Compare files with previous versions
 - Manage branches and resolve merge conflicts
 - Exclude certain files from version control
-- *(Optional)* Explore advanced Git tools: rebasing, bisecting, stashing, and multiple remotes
+- _(Optional)_ Explore advanced Git tools: rebasing, bisecting, stashing, and multiple remotes
 
 
 ---
