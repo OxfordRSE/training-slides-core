@@ -326,8 +326,6 @@ layout: two-cols-header
 - Build artefacts (`dist/`, `build/`)
 - **Sensitive or confidential information (e.g. passwords, keys, personal data)**
 
-<br />
-
 A `.gitignore` file lists patterns to be excluded.
 
 ---
