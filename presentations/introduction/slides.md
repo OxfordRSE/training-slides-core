@@ -164,11 +164,11 @@ transition: "none"
     Project Ends
   </div>
 
-  <FancyArrow x1="20" y1="40" x2="60" y2="84" arc="-0.4" head-size="15" />
-  <FancyArrow x1="85" y1="105" x2="125" y2="150" arc="-0.4" head-size="15" />
-  <FancyArrow x1="150" y1="170" x2="190" y2="212" arc="-0.4" head-size="15" />
-  <FancyArrow x1="210" y1="230" x2="255" y2="275" arc="-0.4" head-size="15" />
-  <FancyArrow x1="270" y1="295" x2="320" y2="340" arc="-0.4" head-size="15" />
+  <FancyArrow x1="230" y1="173" x2="270" y2="217" arc="-0.4" head-size="15" />
+  <FancyArrow x1="295" y1="238" x2="335" y2="283" arc="-0.4" head-size="15" />
+  <FancyArrow x1="360" y1="303" x2="400" y2="345" arc="-0.4" head-size="15" />
+  <FancyArrow x1="420" y1="363" x2="465" y2="408" arc="-0.4" head-size="15" />
+  <FancyArrow x1="480" y1="428" x2="530" y2="473" arc="-0.4" head-size="15" />
 
 </div>
 
@@ -224,12 +224,12 @@ layout: center
   </div>
 
   <!-- Forward paths -->
-  <FancyArrow x1="20" y1="40" x2="60" y2="84" arc="-0.4" head-size="15" />
-  <FancyArrow x1="85" y1="105" x2="125" y2="150" arc="-0.4" head-size="15" />
-  <FancyArrow x1="150" y1="170" x2="190" y2="212" arc="-0.4" head-size="15" />
-  <FancyArrow x1="210" y1="230" x2="255" y2="275" arc="-0.4" head-size="15" />
-  <FancyArrow x1="270" y1="295" x2="320" y2="340" arc="-0.4" head-size="15" />
-  <FancyArrow x1="462" y1="340" x2="517" y2="340" head-size="15" />
+  <FancyArrow x1="230" y1="173" x2="270" y2="217" arc="-0.4" head-size="15" />
+  <FancyArrow x1="295" y1="238" x2="335" y2="283" arc="-0.4" head-size="15" />
+  <FancyArrow x1="360" y1="303" x2="400" y2="345" arc="-0.4" head-size="15" />
+  <FancyArrow x1="420" y1="363" x2="465" y2="408" arc="-0.4" head-size="15" />
+  <FancyArrow x1="480" y1="428" x2="530" y2="473" arc="-0.4" head-size="15" />
+  <FancyArrow x1="672" y1="473" x2="727" y2="473" head-size="15" />
 
   <div class="absolute top-40 left--40 inline-block border border-gray-400 px-3 py-1 rounded shadow">
     Project Partners
@@ -243,31 +243,31 @@ layout: center
 
 
   <!-- Project partners -->
-  <FancyArrow x1="-70" y1="155" x2="-5" y2="15" arc="0.4" head-size="15" color="gray" />
-  <FancyArrow x1="-40" y1="200" x2="125" y2="150" arc="-0.3" head-size="15" color="gray"/>
-  <FancyArrow x1="-70" y1="155" x2="60" y2="84" arc="0.4" head-size="15" color="gray"/>
-  <FancyArrow x1="-40" y1="200" x2="190" y2="212" arc="-0.2" head-size="15" color="gray"/>
+  <FancyArrow x1="140" y1="288" x2="205" y2="148" arc="0.4" head-size="15" color="gray" />
+  <FancyArrow x1="170" y1="333" x2="335" y2="283" arc="-0.3" head-size="15" color="gray"/>
+  <FancyArrow x1="140" y1="288" x2="270" y2="217" arc="0.4" head-size="15" color="gray"/>
+  <FancyArrow x1="170" y1="333" x2="400" y2="345" arc="-0.2" head-size="15" color="gray"/>
 
   <!-- Industry -->
-  <FancyArrow x1="0" y1="235" x2="-5" y2="15" arc="0.4" head-size="15" color="gray"/>
-  <FancyArrow x1="0" y1="235" x2="125" y2="150" arc="-0.3" head-size="15" color="gray"/>
-  <FancyArrow x1="0" y1="235" x2="60" y2="84" arc="0.4" head-size="15" color="gray"/>
-  <FancyArrow x1="60" y1="260" x2="190" y2="212" arc="-0.2" head-size="15" color="gray"/>
+  <FancyArrow x1="210" y1="368" x2="205" y2="148" arc="0.4" head-size="15" color="gray"/>
+  <FancyArrow x1="210" y1="368" x2="335" y2="283" arc="-0.3" head-size="15" color="gray"/>
+  <FancyArrow x1="210" y1="368" x2="270" y2="217" arc="0.4" head-size="15" color="gray"/>
+  <FancyArrow x1="270" y1="393" x2="400" y2="345" arc="-0.2" head-size="15" color="gray"/>
 
   <!-- Other people -->
-  <FancyArrow x1="120" y1="320" x2="-5" y2="15" arc="0.4" head-size="15" color="gray"/>
-  <FancyArrow x1="120" y1="320" x2="125" y2="150" arc="-0.3" head-size="15" color="gray"/>
-  <FancyArrow x1="120" y1="320" x2="60" y2="84" arc="0.4" head-size="15" color="gray"/>
-  <FancyArrow x1="120" y1="320" x2="190" y2="212" arc="-0.2" head-size="15" color="gray"/>
+  <FancyArrow x1="330" y1="453" x2="205" y2="148" arc="0.4" head-size="15" color="gray"/>
+  <FancyArrow x1="330" y1="453" x2="335" y2="283" arc="-0.3" head-size="15" color="gray"/>
+  <FancyArrow x1="330" y1="453" x2="270" y2="217" arc="0.4" head-size="15" color="gray"/>
+  <FancyArrow x1="330" y1="453" x2="400" y2="345" arc="-0.2" head-size="15" color="gray"/>
 
   <!-- Backpaths -->
-  <FancyArrow x1="430" y1="315" x2="205" y2="15" arc="-0.4" head-size="15" color="gray"/>
-  <FancyArrow x1="370" y1="250" x2="205" y2="15" arc="-0.4" head-size="15" color="gray"/>
-  <FancyArrow x1="370" y1="250" x2="250" y2="80" arc="-0.4" head-size="15" color="gray"/>
-  <FancyArrow x1="300" y1="190" x2="250" y2="80" arc="-0.4" head-size="15" color="gray"/>
-  <FancyArrow x1="300" y1="190" x2="205" y2="15" arc="-0.4" head-size="15" color="gray"/>
-  <FancyArrow x1="250" y1="125" x2="250" y2="80" arc="-0.4" head-size="15" color="gray"/>
-  <FancyArrow x1="85" y1="105" x2="255" y2="275" arc="-0.4" head-size="15" color="gray"/>
+  <FancyArrow x1="640" y1="448" x2="415" y2="148" arc="-0.4" head-size="15" color="gray"/>
+  <FancyArrow x1="580" y1="383" x2="415" y2="148" arc="-0.4" head-size="15" color="gray"/>
+  <FancyArrow x1="580" y1="383" x2="460" y2="213" arc="-0.4" head-size="15" color="gray"/>
+  <FancyArrow x1="510" y1="323" x2="460" y2="213" arc="-0.4" head-size="15" color="gray"/>
+  <FancyArrow x1="510" y1="323" x2="415" y2="148" arc="-0.4" head-size="15" color="gray"/>
+  <FancyArrow x1="460" y1="258" x2="460" y2="213" arc="-0.4" head-size="15" color="gray"/>
+  <FancyArrow x1="295" y1="238" x2="465" y2="408" arc="-0.4" head-size="15" color="gray"/>
 
 </div>
 
