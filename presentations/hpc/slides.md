@@ -374,7 +374,7 @@ You request resources -> scheduler queues your job -> runs it when resources are
 Slurm: one of the most popular scheduler for HPC system
 
 | Command | Purpose |
-|---|---|
+| --- | --- |
 | `sbatch` | Submit a job script |
 | `squeue` | Check job status |
 | `scancel` | Cancel a job |
@@ -444,6 +444,7 @@ Three key resources: **CPUs**, **memory**, **walltime**
 - Start with a small test run and **make sure it runs without error first**
 - Observe the scaling of resource usage with your dataset size/number of iterations etc.
 - Use `seff` to refine
+
   ```shell
   $ seff 11018740
   Job ID: 11018740
@@ -470,12 +471,15 @@ Three key resources: **CPUs**, **memory**, **walltime**
   - CPU and GPU nodes (on *htc*)
 - Scheduler: Slurm
 - Login:
+
   ```shell
   ssh -Y username@arc-login.arc.ox.ac.uk # for arc cluster
   ssh -Y username@htc-login.arc.ox.ac.uk # for htc cluster
   ```
+
   - Graphical SSH clients: PuTTY, MobaXterm
   - Use SSH keys for security (private/public key pair)
+
 ---
 
 # Storage Options in ARC

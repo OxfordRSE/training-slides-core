@@ -35,6 +35,7 @@ Moving from applications to pipelines
 <div style="height: 1px;"></div>
 
 **Pipelines:**
+
 - A series of data processing steps
 - Each step may require different tools
 - How do we manage these steps and their dependencies in a reproducible, scalable  and efficient way?
@@ -46,6 +47,7 @@ Moving from applications to pipelines
 <v-click>
 
 **Pipeline development:**
+
 - Prototype: By hand
 - Automate: Scripts (rigid)
 - Scale-up: Workflow managers
@@ -57,6 +59,7 @@ Moving from applications to pipelines
 <v-click>
 
 **Scaling:**
+
 - Horizontal: Increased data volume
 - Vertical: More complex analyses with different pathways
 
@@ -71,10 +74,11 @@ Moving from applications to pipelines
 ::centralise
 
 **Fundamentals:**
+
 - Reproducible data analyses
 - Complex workflows (manage hundreds of steps, dependencies)
 - Cheap parallelisation (on local machine, that can be easily extended to clusters/cloud)
-- Selective rebuilds (only re-run what is necessary, can be sensitive to _data_ changes and _code_ changes)
+- Selective rebuilds (only re-run what is necessary, can be sensitive to *data* changes and *code* changes)
 
 ---
 
@@ -85,6 +89,7 @@ Moving from applications to pipelines
 ::centralise
 
 Popular workflow managers:
+
 - **Snakemake** -- Make-style workflows tied to file inputs/outputs
 - **Nextflow** -- Parallel scientific workflows with strong container and cluster support
 - **Apache Airflow** -- Enterprise task orchestration for data engineering pipelines
@@ -252,7 +257,7 @@ transition: none
 transition: none
 ---
 
-```
+```bash
 overlay_on_map.sh \
     model/forecast_model.dat maps/uk.map \
     --output results/UK.png
@@ -476,7 +481,7 @@ Counties (48): Beds, Berks, Bucks, Cambs, Ches, Corn, Cumb, ...
 
 <div style="height: 20px;"></div>
 
-```{1-7}
+```python {1-7}
 rule all:
     input:
         "results/Beds.png",
@@ -504,7 +509,7 @@ Counties (48): Beds, Berks, Bucks, Cambs, Ches, Corn, Cumb, ...
 
 <div style="height: 20px;"></div>
 
-```{1-5}
+```python {1-5}
 counties = ['Beds', 'Berks', 'Bucks', 'Cambs', 'Ches']
 
 rule uk_map:
@@ -527,7 +532,7 @@ We can simplify this slightly by making using of Python and helper functions, su
 
 <img src="./img/dag-five-counties.png" alt="DAG example for five counties" width="640"/>
 
-```
+```python
 counties = ['Beds', 'Berks', 'Bucks', 'Cambs', 'Ches']
 
 rule uk_map:
@@ -559,6 +564,7 @@ Rules define how to obtain output files from input files
 Snakemake infers dependencies and execution order of rules
 
 Execution:
+
 - `shell` directive allow you to execute scripts from any language, e.g. python, R, julia, rust, ...
 - `run` directive allows you to execute python code natively
 
@@ -580,6 +586,7 @@ layout: two-cols-header
 <div style="height: 40px;"></div>
 
 Scheduling heuristic is applied to
+
 - Maximise parallelization
 - Prefer high priority jobs
 - Subject to resource constraints

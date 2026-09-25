@@ -524,9 +524,11 @@ layout: two-cols-header
 ::left::
 
 Software is far more than that...
+
 - **Outcome of a development process**
 
 But also...
+
 - Architecture
 - Implementation of algorithms
 - Data model
@@ -620,7 +622,7 @@ layout: two-cols-header
 
 <img src="./imgs/organic-letters.png" alt="Organic letters" style="width: 70%;"/>
 
-Organic Letters, October 8 2019. https://doi.org/10.1021/acs.orglett.9b03216
+Organic Letters, October 8 2019. <https://doi.org/10.1021/acs.orglett.9b03216>
 
 ::
 

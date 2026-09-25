@@ -57,12 +57,14 @@ layout: two-cols-header
 ::right::
 
 Python
+
 ```python
 def distance(x1, y1, x2, y2):
     return ((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5
 ```
 
 R
+
 ```r
 distance <- function(x1, y1, x2, y2) {
   return (sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2))
@@ -70,6 +72,7 @@ distance <- function(x1, y1, x2, y2) {
 ```
 
 C++
+
 ```cpp
 double distance(double x1, double y1, double x2, double y2) {
     return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
@@ -251,6 +254,7 @@ class: text-xl
 The **λ-calculus**, introduced by Alonzo Church in the 1930s, is the world's smallest programming language.
 
 It has:
+
 - Variables: $x$, $y$, etc.
 - Function definitions: $(λx.M)$, where $M$ is an expression.
 - Function applications: $(MN)$, where $M$ and $N$ are expressions.
@@ -265,7 +269,7 @@ Anything that can be computed at all can be computed with this.
 
 ![Alonzo Church](./imgs/Alonzo_Church.jpg){class="h-4/5"}
 
-https://en.wikipedia.org/wiki/File:Alonzo_Church.jpg
+<https://en.wikipedia.org/wiki/File:Alonzo_Church.jpg>
 
 ::
 
@@ -282,7 +286,7 @@ https://en.wikipedia.org/wiki/File:Alonzo_Church.jpg
 
 - **Lisp** (1960) Heavily inspired by lambda calculus. Second-oldest high-level programming language still in common use. Scheme, Clojure and Logo are dialects. Scheme inspired S which led to R.
 
-- **Haskell** (1990) The quintessential FP language. Statically typed and "lazy", with an emphasis on purity. _Learn You a Haskell for Great Good!_ (https://learnyouahaskell.com/) is a great intro to FP.
+- **Haskell** (1990) The quintessential FP language. Statically typed and "lazy", with an emphasis on purity. *Learn You a Haskell for Great Good!* (<https://learnyouahaskell.com/>) is a great intro to FP.
 
 - **Scala** (2004) A pragmatic object/functional hybrid language that runs on the Java Virtual Machine.
 
@@ -593,6 +597,7 @@ def factorial(n):
         return 1
     return n * factorial(n - 1)
 ```
+
 </div>
 </div>
 
@@ -621,7 +626,7 @@ programming becomes about chaining transformations to our data.
 
 A fun little game that captures the experience well:
 
-https://david-peter.de/cube-composer/
+<https://david-peter.de/cube-composer/>
 
 ::right::
 
