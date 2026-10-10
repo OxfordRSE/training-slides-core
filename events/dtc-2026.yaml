@@ -1,0 +1,37 @@
+year: 2026
+name: "[MT26] DTC Software Engineering"
+enrolment_key: dtc-soft-eng
+sessions:
+  - date: "12 Oct"
+    slot: "09:30"
+    topic: Object-Oriented Programming
+  - date: "12 Oct"
+    slot: "14:00"
+    topic: Functional Programming
+  - date: "13 Oct"
+    slot: "09:30"
+    topic: Version Control with Git
+  - date: "13 Oct"
+    slot: "14:00"
+    topic: Collaborative Code Development
+  - date: "15 Oct"
+    slot: "09:30"
+    topic: Software Testing
+  - date: "16 Oct"
+    slot: "09:30"
+    topic: Continuous Integration
+  - date: "19 Oct"
+    slot: "09:30"
+    topic: Packaging and Dependency Management
+  - date: "19 Oct"
+    slot: "14:00"
+    topic: Containerisation with Docker
+  - date: "20 Oct"
+    slot: "09:30"
+    topic: Directing Coding Agents
+  - date: "22 Oct"
+    slot: "09:30"
+    topic: Introduction to HPC
+  - date: "23 Oct"
+    slot: "09:30"
+    topic: Workflows with Snakemake
