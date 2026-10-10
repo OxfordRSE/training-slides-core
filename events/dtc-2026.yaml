@@ -28,6 +28,9 @@ sessions:
     topic: Containerisation with Docker
   - date: "20 Oct"
     slot: "09:30"
+    topic: Using AI for Coding
+  - date: "20 Oct"
+    slot: "14:00"
     topic: Directing Coding Agents
   - date: "22 Oct"
     slot: "09:30"
