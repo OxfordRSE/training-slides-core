@@ -49,7 +49,7 @@ layout: two-cols-header
 <div class="pl-4 pt-4">
 
 - **Model**: the underlying LLM
-- **Harness**: everything around the model:
+- **Harness**: everything around the model,
   - **loop**: run a tool, feed the result back, and repeat
   - **tools**: read and edit files, inspect commit history, run your tests
     etc.
@@ -77,7 +77,7 @@ layout: two-cols-header
 - **Copilot** (2021): inline suggestions
 - **Aider** (2023), **Cursor** (2024): instruction files, slash commands
 - **Claude Code** (2025): subagents, hooks, skills
-- Later coding agents such as **Codex CLI**, **OpenCode**, **Copilot CLI**,
+- Later coding agents such as **Codex**, **OpenCode**, **Copilot**,
   **Antigravity** etc. are heavily influenced by Claude Code.
 
 <div class="text-sm opacity-60">
@@ -94,6 +94,23 @@ JetBrains, <a href="https://blog.jetbrains.com/research/2026/08/ai-coding-agent-
 <img src="./imgs/cc_research_preview.png" alt="Claude Code research preview" class="w-full rounded" />
 </div>
 </div>
+
+---
+
+# Interfaces for coding agents
+
+- Web
+  - can be connected to your GitHub account
+
+Able to access files and tools locally:
+
+- Extension/plugins in editors
+  - VS Code plugins
+  - Co-pilot
+- Desktop apps
+  - ChatGPT Desktop, Claude Desktop
+- Terminal
+  - Claude Code, Codex CLI, OpenCode
 
 ---
 
@@ -134,6 +151,237 @@ N. Tang et al., "How coding agents fail their users", <a href="https://arxiv.org
 </div>
 
 ---
+layout: two-cols-header
+---
+
+# Explore-Plan-Code-Commit quick demo 1
+
+::left::
+
+**Explore**
+
+- Is this actually a bug?
+- Is this the expected behaviour?
+- What does `ord=1` mean?
+  - Why did some `ord` work?
+- Why did it get cast to `float` in the stated change?
+
+The purpose is to gather enough information to guide what should be done.
+
+::right::
+<div class="h-full flex flex-col justify-center">
+<img src="./imgs/scipy_26281.png" alt="SciPy issue 26281" class="w-full" />
+</div>
+
+---
+layout: two-cols-header
+---
+
+# Explore-Plan-Code-Commit quick demo 1
+
+::left::
+
+**Plan**
+
+- How should I fix it?
+  - Should I remove the cast?
+  - Handle it as a special case?
+- How do I know it is fixed?
+  - What tests should I have?
+- How would the fix impact:
+  - users currently depend on the function
+  - internal functions that use this function
+
+The purpose is to decide what should be done and revise the details.
+
+::right::
+<div class="h-full flex flex-col justify-center">
+<img src="./imgs/scipy_26281.png" alt="SciPy issue 26281" class="w-full" />
+</div>
+
+---
+layout: two-cols-header
+---
+
+# Explore-Plan-Code-Commit quick demo 2
+
+::left::
+
+**Explore**
+
+- What is the motivation for this feature?
+  - Are the claimed benefits real?
+  - How big difference is it for 'scientific visualisation'?
+  - Is this a common format?
+  - If we implement this, why not the others?
+- Are the proposed backends:
+  - really an existing dependencies?
+  - able to support JPEG XL? which one is better?
+
+The purpose is to collect enough evidence that this is worth implement.
+
+::right::
+<div class="h-full flex flex-col justify-center">
+<img src="./imgs/mpl_32467.png" alt="Matplotlib issue 32467" class="w-full" />
+</div>
+
+---
+layout: two-cols-header
+---
+
+# Explore-Plan-Code-Commit quick demo 2
+
+::left::
+
+**Plan**
+
+- How should the feature be implemented?
+  - 'Lossless by default', is this a good choice? Trade-off?
+  - Is `savefig` the only API affected?
+  - How should we deal with errors during conversion?
+- How should we verify the feature is successfully implemented?
+
+The purpose is to decide what should be done and revise the details.
+
+::right::
+<div class="h-full flex flex-col justify-center">
+<img src="./imgs/mpl_32467.png" alt="Matplotlib issue 32467" class="w-full" />
+</div>
+
+---
+layout: two-cols-header
+---
+
+::left::
+
+# Characteristics of generated code
+
+- The difficulty is in its throughput
+- Often quite verbose
+  - Full of emoji/em-dashes (encoding issues)
+- Common anti-patterns to watch out for:
+  - ignore what is available and implement its own solution
+  - employ shortcuts (reward hacking)
+    - amend tests
+    - adjust tolerance
+  - not aware of latest features/deprecations
+
+<div class="text-sm opacity-60">
+GitClear, <a href="https://www.gitclear.com/the_ai_code_quality_maintainability_gap">The Maintainability Gap: AI Code Quality in 2026</a>, July 2026.
+</div>
+
+::right::
+
+<div class="pl-4 h-full flex flex-col justify-center gap-3">
+<img src="./imgs/gitclear_code_quality_2026_reuse.png" alt="AI tool use at work" class="w-3/5" />
+<div class="w-3/5 self-center">
+<img src="./imgs/gitclear_code_quality_2026_risk.png" alt="AI tool use at work" class="w-full" />
+</div>
+</div>
+
+---
+
+# Using coding agents to review generated code
+
+So perhaps, we can use a coding agent to review coding agent's generated code!
+(`/code-review`)
+
+Remember code review is never just about catching bugs:
+
+- knowledge sharing/teaching
+- community/culture building
+
+With the volume of generated code, no one can keeps up with what is happening
+by reading code line-by-line, but doesn't mean you
+
+Know what deserves your valuable human attention!
+
+- architecture design
+- core logics
+- implementation choice
+- human-readable documentation
+
+Coding agents are good at:
+
+- explore edge cases
+- detect
+
+- Happy to take in whatever push-back you may have
+  - 'You are absolutely right to challenge this!'
+  - It simply doesn't care
+
+---
+
+# Some suggestion to deal with generated code
+
+- Human retains the ownership and every decision
+- Can we solve a problem without any code?
+- Distinguish a plausible solution with ones that really address the issues
+- Know when is 'good enough'
+- 'Third-party' independent verification:
+  - comapre with a reference implementation
+  - specification
+  - formal verification
+
+A simple question to ask yourself: 'can I explain what have changed and why?'
+
+---
+
+# About usage limit
+
+This is all about how you manage the context window in a session, some tips:
+
+- Decompose a task into smaller pieces
+- Aggressively `/clear` to reset the context window
+- Consider `/compact` for long conversation
+  - More efficient when the cached prompt still hot
+- Keep a 'journal' as a persistent artefact that can be passed to another fresh session
+  - Modern coding agents implement this as 'memory'
+- Employ subagents for isolated tasks, e.g.:
+  - Explore a particular topic
+  - Make sense of an error message
+  - Looking for typos
+
+---
+
+# About usage limit (con't)
+
+- Use `/side`/`/btw` for query unrelated to the main task
+- Use a hierarchial `AGENTS.md`/`CLAUDE.md`
+- Use more LLM-friendly format whenever possible:
+  - Plain text/HTML instead of PDF
+  - Extract data points yourself for a plot instead of PNG/JPEG
+- Use appropriate model for your task
+  - Adjust the thinking level by `/effort`
+- Plan your day
+  - Start a session, e.g. 5 am (automate it!)
+  - If you start working at 9 am, your usage limit will be reset at 10 am
+    (assume a 5-hour reset)
+
+---
+layout: two-cols-header
+---
+
+# Cautions
+
+::left::
+
+- Permission
+  - Set up a container instance/run in a sandbox environment
+  - Think twice before using `--dangerously-skip-permissions` etc. flags
+- Implement whatever possible without careful consideration
+- Burn out
+  - Babysit coding agents 24/7
+  - You could still be 'coding' in a mobile phone during your holiday!
+    (`/remote-control`)
+
+::right::
+
+<div class="h-full flex flex-col justify-center">
+<img src="./imgs/rea.png" alt="Reverse Engineering Anything repository" class="w-full" />
+</div>
+
+---
 
 # Learning objectives
 
@@ -145,9 +393,11 @@ The practical session has four modules:
    all.
 3. Decide whether a feature should exist at all, then say what must exist, what
    must not change, and what counts as done.
-4. Familiarise yourself with code you did not write (or written by yourself
-   5 years ago).
+4. Familiarise yourself with code you did not write.
 
+You will look at some issues from real-world codebases, but the purpose of the
+practical session is not to teach you how to contribute to those codebases by
+using coding agents (read their AI policy).
 
 ---
 
