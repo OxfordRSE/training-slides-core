@@ -293,6 +293,49 @@ jobs:
 layout: two-cols
 ---
 
+# Running on more than one thing
+
+<div class="pr-4">
+
+<ul class="space-y-3">
+  <li v-click="1">One job, run many times over</li>
+  <li v-click="2">Vary the <strong>Python version</strong>, the <strong>operating system</strong>, or both</li>
+  <li v-click="3"><code>fail-fast: false</code> lets the rest finish</li>
+  <li v-click="4">This is how you find out what only breaks <em>somewhere else</em></li>
+</ul>
+
+</div>
+
+::right::
+<div class="pl-4 pt-6">
+
+```yaml
+python-tests:
+  strategy:
+    fail-fast: false
+    matrix:
+      python-version: ["3.12", "3.13", "3.14"]
+  runs-on: ubuntu-latest
+  steps:
+    - uses: actions/setup-python@v7
+      with:
+        python-version: ${{ matrix.python-version }}
+```
+
+</div>
+
+<style>
+    .slidev-layout pre.slidev-code,
+    .slidev-layout pre.slidev-code code {
+      font-size: 0.62rem !important;
+      line-height: 1.45 !important;
+    }
+</style>
+
+---
+layout: two-cols
+---
+
 # A deployment workflow
 
 <div class="pr-4">
@@ -304,8 +347,6 @@ layout: two-cols
   <li v-click="4"><code>run</code> is your own command; <code>uses</code> pulls in a prewritten action</li>
   <li v-click="5">No human gate here, so this is Continuous <strong>Deployment</strong></li>
 </ul>
-
-<p class="pt-3 text-sm opacity-70">In the course you will use Read the Docs, which watches the repository and rebuilds on push &mdash; same idea, different runner.</p>
 
 </div>
 
@@ -349,6 +390,167 @@ jobs:
 </style>
 
 ---
+layout: two-cols
+---
+
+# Keeping the loop short
+
+<div class="pr-4">
+
+<ul class="space-y-3">
+  <li v-click="1">A slow pipeline changes what people do</li>
+  <li v-click="2">They batch up changes, so changes get bigger</li>
+  <li v-click="3"><strong>Cache</strong> what you download every time</li>
+  <li v-click="4"><strong>Cancel</strong> runs nobody is waiting for</li>
+</ul>
+
+</div>
+
+::right::
+<div class="pl-4 pt-6">
+
+<div v-click="3">
+
+```yaml
+- uses: actions/setup-python@v7
+  with:
+    cache: pip
+    cache-dependency-path: pyproject.toml
+```
+
+</div>
+
+<div v-click="4" class="pt-2">
+
+```yaml
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+```
+
+</div>
+
+</div>
+
+---
+layout: two-cols
+---
+
+# Making the checks count
+
+<div class="pr-4">
+
+<ul class="space-y-3">
+  <li v-click="1">A red cross changes nothing on its own</li>
+  <li v-click="2"><strong>Before the commit</strong>: pre-commit hooks, fast but optional</li>
+  <li v-click="3"><strong>Before the merge</strong>: required status checks, slow but binding</li>
+  <li v-click="4">Writing the check is the easy part</li>
+</ul>
+
+</div>
+
+::right::
+<div class="pl-4 flex items-center justify-center h-full">
+  <img
+    src="./img/ci_visibility.png"
+    alt="GitHub pull request showing status checks"
+    class="w-4/5"
+  />
+</div>
+
+---
+layout: two-cols
+---
+
+# Who decides it goes live?
+
+<div class="pr-4">
+
+<ul class="space-y-3">
+  <li v-click="1"><code>needs:</code> makes one job wait for another</li>
+  <li v-click="2">Build <strong>once</strong>, publish that same artifact</li>
+  <li v-click="3">An <code>environment</code> can require a person to approve</li>
+  <li v-click="4">That approval is the whole difference between <strong>Delivery</strong> and <strong>Deployment</strong></li>
+</ul>
+
+<div v-click="3" class="pt-4">
+
+```yaml
+deploy:
+  needs: build-docs
+  environment: github-pages
+```
+
+</div>
+
+</div>
+
+::right::
+<div class="pl-4 flex items-center justify-center h-full">
+  <img
+    src="./img/pages_awaiting_approval.png"
+    alt="A workflow run paused, waiting for a reviewer to approve the deployment"
+    class="w-full rounded shadow-lg"
+  />
+</div>
+
+<style>
+    .slidev-layout pre.slidev-code,
+    .slidev-layout pre.slidev-code code {
+      font-size: 0.66rem !important;
+      line-height: 1.45 !important;
+    }
+</style>
+
+---
+layout: two-cols
+---
+
+# Whose code are you running?
+
+<div class="pr-4">
+
+<ul class="space-y-3">
+  <li v-click="1">Every <code>uses:</code> runs somebody else's code</li>
+  <li v-click="2">A tag is a label, and labels can be moved</li>
+  <li v-click="3">A commit hash cannot</li>
+  <li v-click="4">Give each job only the permissions it needs</li>
+</ul>
+
+</div>
+
+::right::
+<div class="pl-4 pt-6">
+
+<div v-click="2">
+
+```yaml
+- uses: actions/checkout@v7
+- uses: codecov/codecov-action@v7
+```
+
+</div>
+
+<div v-click="3" class="pt-2">
+
+```yaml
+- uses: codecov/codecov-action@303a32d # v7.1.1
+```
+
+</div>
+
+<div v-click="4" class="pt-2">
+
+```yaml
+permissions:
+  contents: read
+```
+
+</div>
+
+</div>
+
+---
 
 # This course
 
@@ -356,9 +558,10 @@ jobs:
 
 <v-clicks>
 
-- Introduction to **GitHub Actions**
-- Generating **code coverage** information
-- Creating and deploying **documentation** --- your first taste of **CD**
+- **GitHub Actions**, matrices, **coverage** and **docstrings**
+- Building and deploying **documentation** --- your first taste of **CD**
+- Running checks **before you commit** and **before you merge**
+- **Debugging**, **artifacts**, **approvals** and **supply chain**
 
 </v-clicks>
 
@@ -376,7 +579,7 @@ layout: two-cols
 
 - Visit the [**GitHub Template Repository**](https://github.com/OxfordRSE/ci_course_start)
 - Click **Use this template** and create a new repository
-- Name the repository
+- Name it anything you like, but make it **public**
 - Clone it to your local machine
 - Continue to follow the course online for further instructions
 
