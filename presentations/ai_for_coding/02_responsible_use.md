@@ -521,31 +521,58 @@ Have you got any examples?
 
 ---
 
-# Responsible Use Workflow
+# Responsible Use Workflow: Before
 
 - Think about the data the model was trained on
-  - Uncommon (or poorly documented) libraries -> uncertain results
-
-- Probabilistic nature
-  - Asking the same thing twice may lead to different answers
-
-- **REVIEW**
-  - Read the code and understand what it is doing BEFORE running it
-
-- <u>Version control</u>
-  - Iterative revisions will often break your code; ensure you can go back if needed
+  - Uncommon, niche or fast-moving libraries -> uncertain results
+- Plan first - agree the approach before any code is written
+  - Invalid assumptions surface early, and the plan persists across sessions
+- Least privilege for agents
+  - No production credentials; sandbox or container where possible
+  - Keep destructive commands behind a confirmation
+- Set up provenance from the start - the agent won't by default
+  - Ask for a log, saved scripts and version control up front
 
 ---
 
-# Responsible Use Workflow
+# Responsible Use Workflow: During
 
-- Check against docs for a second opinion
-  - There may already be a recommended way to solve a problem
+- Probabilistic - the same question can give different answers
+- Ask for reusable scripts, not inline one-offs
+  - Log parameters, metrics and training curves
+- Challenge the output
+  - "Are you sure?" "Is this a fair comparison?" "Did you follow the plan?"
+- Beware of sycophancy - agreement is not verification
+- Watch for early give-ups and silent shortcuts (skipped files, hard-coded values)
 
-- Always use tests, linters, CI pipelines to check correctness
-  - Check against your requirements, an LLM doesn't understand the environment outside its own context
+---
+layout: two-cols
+---
 
-- Record provenance
-  - Prompts, outputs and decisions should be recorded
+# Responsible Use Workflow: After
 
-- **RESPONSIBILITY REMAINS WITH YOU**
+### Check
+
+- **REVIEW** - read and understand the code BEFORE running it
+- Tests, linters and CI against _your_ requirements
+  - An LLM doesn't understand the environment outside its context
+- Check the docs - there may be a recommended way already
+- Check the state the agent leaves behind (branches, config, files)
+
+::right::
+<v-click>
+
+### Record
+
+- <u>Version control</u> with small commits, so you can go back
+- Provenance - prompts, model and version, outputs and decisions
+- Disclose AI use where journals, funders or your institution require it
+- Check the licence of generated or suggested code
+
+</v-click>
+
+<v-click>
+<div style="text-align: center; font-size: 1.25em; font-weight: 700; margin-top: 1.5em;">
+RESPONSIBILITY REMAINS WITH YOU
+</div>
+</v-click>
