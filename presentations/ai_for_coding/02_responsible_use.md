@@ -332,27 +332,10 @@ except ImportError:
 cfg = Config()
 ```
 
-<hr style="border: none; border-top: 1px solid #6b7280; margin: 0.75em 0;" />
-
-```python {lines:true}
-import sys
-import os
-
-# Add the analysis directory to the path
-sys.path.insert(
-    0,
-    os.path.join(os.path.dirname(__file__), '..', 'analysis')
-)
-```
-
 <style>
 .slidev-code,
 .slidev-code code,
 .slidev-code .line,
-.slidev-code span {
-  font-size: 0.85em !important;
-  line-height: 1.4 !important;
-}
 .slidev-code,
 .slidev-code code,
 .slidev-code .line {
