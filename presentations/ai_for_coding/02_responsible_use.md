@@ -15,7 +15,7 @@ title: " "
   - Documentation
   - Tests
   - Debugging suggestions
-  - Ideation!
+  - Ideation
 
 ---
 layout: two-cols
@@ -23,7 +23,7 @@ layout: two-cols
 
 # Risks
 
-- Great capacity to harm!
+- Great capacity to harm
   - e.g. Inappropriate permissions given to Agents
 
 - Hallucination
@@ -78,7 +78,7 @@ layout: two-cols
 
 - PocketOS --- SaaS used by car rental businesses to manage reservations and vehicle assignments
 
-- The stack: Cursor agent powered by Claude Opus 4.6, deployed on Railway
+- Software stack: Cursor agent powered by Claude Opus 4.6, deployed on Railway (cloud service)
   - "the best model the industry sells" + the most-marketed AI coding tool
 
 - 24 April 2026: while trying to "fix" a credential mismatch in staging, the agent issued a single Railway API call that wiped the entire production database **and the backups** --- in 9 seconds
@@ -111,14 +111,14 @@ layout: center
 
 # Key responsibility takeaway
 
-<div style="text-align: center; font-size: 1.5em; line-height: 1.6; color: #9ca3af;">
+<div style="text-align: center; font-size: 1.5em; line-height: 1.6; color: #5c626b;">
 AI is a bright, enthusiastic,<br />
-BUT inexperienced intern
+BUT inexperienced <s>intern</s> <s>PhD student</s> postdoc
 </div>
 
 <br />
 
-<div style="text-align: center; font-size: 1.5em; color: #9ca3af;">
+<div style="text-align: center; font-size: 1.5em; color: #5c626b;">
 <span v-mark.underline.orange="1">You</span> are responsible for its output/actions
 </div>
 
@@ -164,9 +164,11 @@ Which would be easiest to overlook?
 
 # Example - Using Polars
 
-- Background: Tracking bees in video frames using an object detection network.
+- Task: Tracking bees in video frames using an object detection network.
 
-- Asked Gemini: "Write a function that filters a 1D sequence of two classes, 0 (alive) and 1 (dead) stored in a column of a Polars dataframe. Remove noise where the class switches from alive to dead for less than or equal to a specified number of frames"
+- Asked Gemini: 
+>Write a function that filters a 1D sequence of two classes, 0 (alive) and 1 (dead) stored in a column of a Polars dataframe.
+ Remove noise where the class switches from alive to dead for less than or equal to a specified number of frames
 
 - Gave example data as context:
 
@@ -178,7 +180,8 @@ frame_id,class_id,x,y,w,h,track_id,conf,stable_id
 ...
 ```
 
-- Reply: "Of course. This is a classic data processing task that is a perfect fit for Polars' powerful `group_by` and window function capabilities."
+- Reply: 
+>Of course. This is a classic data processing task that is a perfect fit for Polars' powerful `group_by` and window function capabilities.
 
 ---
 layout: two-cols
@@ -190,11 +193,11 @@ layout: two-cols
 
 - Code looks sensible with explanatory comments
 
-- However, got an AttributeError()
+- However, an AttributeError() was raised
 
   `module 'polars' has no attribute 'Window'`
 
-- Fed the error back to the LLM
+- The error was fed back to the LLM
 
   > You're using an older version of the Polars library that doesn't have pl.Window. Upgrade your Polars installation ... The pl.Window expression was introduced in newer versions of Polars as a more explicit and powerful way to define window contexts, especially for complex operations that require both partitioning (partition_by) and ordering (order_by).
 
@@ -271,42 +274,42 @@ More info on Polars window functions can be found here<br />
 
 ---
 
-# Example - JavaScript
+# Example - Accessible Web Development
 
-- Background: tabbed UI for a web app.
-- Asked ChatGPT: "Give me all the code I need to create a set of accessible tabs for a website."
-- "Creating accessible tabs for a website involves HTML, CSS, and JavaScript code. Here's a simple example of how you can create accessible tabs:
+- Task: Creating a tabbed UI for a web app.
+- Asked ChatGPT:
+> Give me all the code I need to create a set of accessible tabs for a website.
+- Response:
+>Creating accessible tabs for a website involves HTML, CSS, and JavaScript code. Here's a simple example of how you can create accessible tabs:
   ...
   This code sets up three tabs and their corresponding content. When you click on a tab button, it will display the associated content and hide the others. It also manages keyboard focus for accessibility. You can customize the styles in the CSS and add more tabs as needed."
 
 ---
 
-# Example - JavaScript
+# Example - Accessible Web Development
 
-- Generated JS code only included mouse/pointer event handlers.
-  - Accessible UI needs keyboard event handlers for the cursor keys, to switch between tabs.
+- The generated JS code only included mouse/pointer event handlers.
+  - But an accessible UI needs **keyboard** event handlers for the cursor keys, to switch between tabs.
 
-- Generated HTML DOM didn't include ARIA tab pattern roles & labels for screen readers.
-  - A screen reader won't know that the UI elements are tabs, or which tab is selected.
-  - Ironically, missing roles make the UI harder to use by AI agents too.
+- Generated HTML DOM did not include ARIA (Accessible Rich Internet Applications) tab pattern roles & labels for screen readers.
+  - A screen reader would not know that the UI elements are tabs, or which tab is selected.
+  - Ironically, missing ARIA roles make the UI harder to use by AI agents too.
 
-- The prompt asked for code in an area where the model isn't well-trained (accessibility). The response is confidently wrong.
+- **The prompt asked for code in an area where the model is not well-trained (accessibility).** The response is confidently wrong.
 
 ---
 layout: two-cols
 ---
 
-# Example - Imports
+# Example - Copilot Errors
 
-- GitHub Copilot suggests replacing a problematic import with a hardcoded alternative in case of failure
-
-- Another hack - appending to system PATH variable to overcome import issues
+- GitHub Copilot attempts to resolve an `ImportError`
 
 - Better to install files as a package to resolve these problems!
 
 ::right::
 
-```python {3}{lines:true, maxHeight:'200px'}
+```python {3}{lines:true, maxHeight:'410px'}
 import numpy as np
 from ..object_detection import config as cfg
 from object_detection import config as cfg
