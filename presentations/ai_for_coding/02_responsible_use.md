@@ -366,27 +366,27 @@ cfg = Config()
 
 ---
 
-# Example - Hidden agent actions
+# Example - Exploratory Data Analysis using LLMs
 
-- Restricting which shell commands an agent can run isn't enough --- agents can also act through their **built-in tools**, which bypass command-level guardrails
+**Background**
 
-- A colleague's agent silently set up a git worktree via a built-in feature (no shell command shown)
+- Analysis of data from an imaging system (3D images from back-scattered light)
+- Existing analysis technique:
+  - a high-pass filter on the images
+  - counting the remaining spots/blobs
+  - deriving numerical features from the spots to describe the data
+  
+<v-click>
 
-- The worktree's new branch was configured to track `main` directly, instead of a separate remote branch
+**Aim**
 
-- In the IDE it looked like any other feature branch --- no warning, no indication of the upstream
+- to use LLM agents to speed up the process of investigating a range of other techniques such as machine/deep learning
+- to use best practice
+  - Asked the agent to **record a log of the conversation, create separate output documents describing the methods, as well as the results**. Also to **use version control** 
 
-- When the colleague ran `git push`, the changes went **straight to `main`**
+</v-click>
 
-- Lesson: check the state your agent leaves behind --- branch tracking, file permissions, config --- not just the commands it ran
-
----
-
-# Example - Data analysis by LLM
-
-- Asked an agent to try a 2D CNN alongside an existing logistic regression baseline
-
-- It ran the comparison **inline** --- a throwaway script, nothing kept
+<!-- - It ran the comparison **inline** --- a throwaway script, nothing kept
   - 15 epochs, no augmentation, no validation split, no pretrained network
   - **no training loss logged**
 
@@ -394,13 +394,64 @@ cfg = Config()
   - Indistinguishable from "the CNN never trained"
 
 - The comparison was also unfair --- the logistic had the projection **plus** six
-  scale columns, the CNN got the projection alone
+  scale columns, the CNN got the projection alone -->
 
 ---
 
-# Example - Data analysis by LLM
+# Example - Exploratory Data Analysis using LLMs
 
-- Re-run as a saved script: 40 epochs, per-epoch train/held-out loss, the same
+**Initial conversations with the LLM - creating the plan**
+
+- Outlined the technique
+- Outlined what the analysis was needed for
+- Critiqued previous work done on this task
+- Discussed some initial ideas about an approach
+
+<v-click>
+
+**Then gave the agents access to the data (raw and processed)**
+
+- From this point it became less clear what was being done
+  - e.g. "I'm just looking through the data" - what does it actually mean?
+- **The default is to run inline (throwaway) Bash or Python scripts so these steps are not reproducible**
+- Became apparent after the model was asked "Is this analysis recorded anywhere?" - Answer: "No"
+
+</v-click>
+
+
+<v-click>
+<div style="text-align: center; font-size: 1.25em; color: blue; margin-top:30px;">
+For reproducible research, every step needs to be recorded
+</div>
+</v-click>
+
+---
+
+# Example - Exploratory Data Analysis using LLMs
+
+**The models tried to give up early on**
+
+- The agents ran the existing analysis code on various subsets of the data
+  - then declared:
+  > the analysis-side levers for low signal samples are exhausted
+  - the agents also suggested that the hardware needs a redesign to record better data
+
+<v-click>
+
+- In order to carry on for this (and other) occasions the model was asked:
+> Are you giving up? What about the other stages in the plan?
+- Asking this simple question uncovered other errors:
+  - it had ignored many of the data files output by the analysis program (.npz files of the blobs and argmax projection images)
+</v-click>
+
+<v-click>
+<div style="text-align: center; font-size: 1.25em; color: blue; margin-top:30px;">
+Even if there is a plan, <b>you</b> need to ensure the agent carries it out in full
+</div>
+</v-click>
+
+
+<!-- - Re-run as a saved script: 40 epochs, per-epoch train/held-out loss, the same
   features as the baseline, augmentation, pretrained probe
 
 - The verdict reversed --- sample AUC **0.795 -> 0.953**. It was undertrained.
@@ -411,7 +462,78 @@ cfg = Config()
   - "Is this a fair comparison? Is this the right approach?"
 
 - The default is a throwaway answer --- **recording and provenance are yours to
-  set up**
+  set up** -->
+
+---
+
+# Example - Exploratory Data Analysis using LLMs
+
+**How about testing out some computer vision techniques?**
+
+- The agent had tested 10 types of machine learning classifier on features derived from the data
+  - A logistic classifier was found to be best
+- When asked how a deep learning model would compare to this result, the agent decided to train a 3D CNN for comparison
+- Conclusion :
+> The voxels carry no more class information than the summary statistics.
+
+<v-click>
+
+Asked the model: "What labels did the 3D CNN use, what was the train/validation split, the loss function and the final loss scores?"
+
+> **no loss score has been recorded at all**. I cannot distinguish "there is no signal" from "the model never trained".
+
+</v-click>
+
+<v-click>
+<div style="text-align: center; font-size: 1.25em; color: blue; margin-top:30px;">
+Query every detail. Use your domain knowledge to challenge findings.
+</div>
+</v-click>
+
+---
+layout: two-cols-header
+---
+
+# Example - Exploratory Data Analysis - Learnings
+
+**LLMs can give huge productivity gains but you still need to keep on top of the mass of information**
+
+::left::
+
+<div class="pl-6;">
+
+
+- **Seven weeks** of back and forth with the agent
+- Of 108 commits, **37 are corrections or retractions**
+- Of 12 types of error, **10 were found because of a question asked**, not by a check.
+- The best method was already found by day four
+
+<v-clicks depth="2">
+
+- During the making of these five slides:
+  - Seven further errors corrected in the docs
+  - 6 out of 7 were found because the agent was challenged with a question
+
+</v-clicks>
+</div>
+
+
+::right::
+
+<v-click>
+<div class="pl-6">
+
+### Ask where the result came from
+
+- Which file did this read?
+- Did it train?
+- Which methods ran, of those planned?
+- Could this measurement have changed at all?
+- Is this a fair comparison?
+- Is this the right approach?
+
+</div>
+</v-click>
 
 ---
 layout: center
@@ -422,47 +544,6 @@ layout: center
 <div style="text-align: center; font-size: 1.25em; margin-bottom: 1.5em;">
 Have you got any examples?
 </div>
-
-<div style="text-align: center; font-size: 1.25em;">
-Evaluate your code from the exercise, how does it do?
-</div>
-
----
-layout: two-cols
----
-
-# Plan first
-
-<div class="pr-3">
-
-- A plan provides context as a persistent artefact across sessions.
-- Built-in 'Plan Mode' in agentic CLI tools:
-  - Claude Code
-  - Codex CLI
-- You can always plan without a 'Plan Mode':
-  - Use the chat interface to come up with a plan.
-  - Ask the agent to explore and perform research, then propose a plan.
-  - Write the plan yourself! (spec-driven development)
-  - No matter how, it is important to iterate and review the plan yourself.
-
-</div>
-
-::right::
-
-<div class="pl-3">
-
-- Why?
-  - Clarify what the agent should do.
-  - Invalid assumptions can be found earlier.
-  - Force yourself to review your approach before jumping to execution.
-
-</div>
-
-<style>
-.col-left li:first-child p:first-child {
-  margin-top: 0;
-}
-</style>
 
 ---
 
