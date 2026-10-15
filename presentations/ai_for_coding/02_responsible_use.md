@@ -127,7 +127,7 @@ BUT inexperienced <s>intern</s> <s>PhD student</s> postdoc
 # How do we check outputs responsibly?
 
 - C - Correctness
-- R - Readability (maintainability etc)
+- R - Readability (maintainability etc.)
 - E - Efficiency
 - D - Domain knowledge
 - I - Integrity (reproducibility/provenance)
@@ -166,9 +166,9 @@ Which would be easiest to overlook?
 
 - Task: Tracking bees in video frames using an object detection network.
 
-- Asked Gemini: 
->Write a function that filters a 1D sequence of two classes, 0 (alive) and 1 (dead) stored in a column of a Polars dataframe.
- Remove noise where the class switches from alive to dead for less than or equal to a specified number of frames
+- Asked Gemini:
+  > Write a function that filters a 1D sequence of two classes, 0 (alive) and 1 (dead) stored in a column of a Polars dataframe.
+  > Remove noise where the class switches from alive to dead for less than or equal to a specified number of frames
 
 - Gave example data as context:
 
@@ -180,8 +180,8 @@ frame_id,class_id,x,y,w,h,track_id,conf,stable_id
 ...
 ```
 
-- Reply: 
->Of course. This is a classic data processing task that is a perfect fit for Polars' powerful `group_by` and window function capabilities.
+- Reply:
+  > Of course. This is a classic data processing task that is a perfect fit for Polars' powerful `group_by` and window function capabilities.
 
 ---
 layout: two-cols
@@ -193,7 +193,7 @@ layout: two-cols
 
 - Code looks sensible with explanatory comments
 
-- However, an AttributeError() was raised
+- However, an `AttributeError` was raised
 
   `module 'polars' has no attribute 'Window'`
 
@@ -278,11 +278,11 @@ More info on Polars window functions can be found here<br />
 
 - Task: Creating a tabbed UI for a web app.
 - Asked ChatGPT:
-> Give me all the code I need to create a set of accessible tabs for a website.
+  > Give me all the code I need to create a set of accessible tabs for a website.
 - Response:
->Creating accessible tabs for a website involves HTML, CSS, and JavaScript code. Here's a simple example of how you can create accessible tabs:
-  ...
-  This code sets up three tabs and their corresponding content. When you click on a tab button, it will display the associated content and hide the others. It also manages keyboard focus for accessibility. You can customize the styles in the CSS and add more tabs as needed."
+  > Creating accessible tabs for a website involves HTML, CSS, and JavaScript code. Here's a simple example of how you can create accessible tabs:
+  > ...
+  > This code sets up three tabs and their corresponding content. When you click on a tab button, it will display the associated content and hide the others. It also manages keyboard focus for accessibility. You can customize the styles in the CSS and add more tabs as needed.
 
 ---
 
@@ -293,7 +293,7 @@ More info on Polars window functions can be found here<br />
 
 - Generated HTML DOM did not include ARIA (Accessible Rich Internet Applications) tab pattern roles & labels for screen readers.
   - A screen reader would not know that the UI elements are tabs, or which tab is selected.
-  - Ironically, missing ARIA roles make the UI harder to use by AI agents too.
+  - Ironically, missing ARIA roles make the UI harder for AI agents to use too.
 
 - **The prompt asked for code in an area where the model is not well-trained (accessibility).** The response is confidently wrong.
 
@@ -305,7 +305,7 @@ layout: two-cols
 
 - GitHub Copilot attempts to resolve an `ImportError`
 
-- Better to install files as a package to resolve these problems!
+- Better to install your code as a package to resolve these problems!
 
 ::right::
 
@@ -329,13 +329,10 @@ except ImportError:
             "track_id", "conf"
         ]
 
-cfg = Config()
+    cfg = Config()
 ```
 
 <style>
-.slidev-code,
-.slidev-code code,
-.slidev-code .line,
 .slidev-code,
 .slidev-code code,
 .slidev-code .line {
@@ -382,19 +379,9 @@ cfg = Config()
 
 - to use LLM agents to speed up the process of investigating a range of other techniques such as machine/deep learning
 - to use best practice
-  - Asked the agent to **record a log of the conversation, create separate output documents describing the methods, as well as the results**. Also to **use version control** 
+  - Asked the agent to **record a log of the conversation, create separate documents describing the methods and the results**. Also to **use version control**
 
 </v-click>
-
-<!-- - It ran the comparison **inline** --- a throwaway script, nothing kept
-  - 15 epochs, no augmentation, no validation split, no pretrained network
-  - **no training loss logged**
-
-- Verdict reported: "the CNN loses to the logistic"
-  - Indistinguishable from "the CNN never trained"
-
-- The comparison was also unfair --- the logistic had the projection **plus** six
-  scale columns, the CNN got the projection alone -->
 
 ---
 
@@ -409,12 +396,12 @@ cfg = Config()
 
 <v-click>
 
-**Then gave the agents access to the data (raw and processed)**
+**Then gave the agent access to the data (raw and processed)**
 
 - From this point it became less clear what was being done
   - e.g. "I'm just looking through the data" - what does it actually mean?
 - **The default is to run inline (throwaway) Bash or Python scripts so these steps are not reproducible**
-- Became apparent after the model was asked "Is this analysis recorded anywhere?" - Answer: "No"
+- Became apparent after the agent was asked "Is this analysis recorded anywhere?" - Answer: "No"
 
 </v-click>
 
@@ -429,19 +416,20 @@ For reproducible research, every step needs to be recorded
 
 # Example - Exploratory Data Analysis using LLMs
 
-**The models tried to give up early on**
+**The agent tried to give up early on**
 
-- The agents ran the existing analysis code on various subsets of the data
+- The agent ran the existing analysis code on various subsets of the data
   - then declared:
-  > the analysis-side levers for low signal samples are exhausted
-  - the agents also suggested that the hardware needs a redesign to record better data
+    > the analysis-side levers for low signal samples are exhausted
+  - the agent also suggested that the hardware needs a redesign to record better data
 
 <v-click>
 
-- In order to carry on for this (and other) occasions the model was asked:
-> Are you giving up? What about the other stages in the plan?
+- On this (and other) occasions, to keep it going, the agent was asked:
+  > Are you giving up? What about the other stages in the plan?
 - Asking this simple question uncovered other errors:
   - it had ignored many of the data files output by the analysis program (.npz files of the blobs and argmax projection images)
+
 </v-click>
 
 <v-click>
@@ -450,20 +438,6 @@ Even if there is a plan, <b>you</b> need to ensure the agent carries it out in f
 </div>
 </v-click>
 
-
-<!-- - Re-run as a saved script: 40 epochs, per-epoch train/held-out loss, the same
-  features as the baseline, augmentation, pretrained probe
-
-- The verdict reversed --- sample AUC **0.795 -> 0.953**. It was undertrained.
-
-- What to ask for, every time:
-  - "Write this as a reusable script, not inline code"
-  - "Log the parameters, the training curve, the metrics"
-  - "Is this a fair comparison? Is this the right approach?"
-
-- The default is a throwaway answer --- **recording and provenance are yours to
-  set up** -->
-
 ---
 
 # Example - Exploratory Data Analysis using LLMs
@@ -471,14 +445,14 @@ Even if there is a plan, <b>you</b> need to ensure the agent carries it out in f
 **How about testing out some computer vision techniques?**
 
 - The agent had tested 10 types of machine learning classifier on features derived from the data
-  - A logistic classifier was found to be best
+  - A logistic regression classifier was found to be best
 - When asked how a deep learning model would compare to this result, the agent decided to train a 3D CNN for comparison
-- Conclusion :
-> The voxels carry no more class information than the summary statistics.
+- Conclusion:
+  > The voxels carry no more class information than the summary statistics.
 
 <v-click>
 
-Asked the model: "What labels did the 3D CNN use, what was the train/validation split, the loss function and the final loss scores?"
+Asked the agent: "What labels did the 3D CNN use, what was the train/validation split, the loss function and the final loss scores?"
 
 > **no loss score has been recorded at all**. I cannot distinguish "there is no signal" from "the model never trained".
 
@@ -500,19 +474,19 @@ layout: two-cols-header
 
 ::left::
 
-<div class="pl-6;">
+<div class="pr-6">
 
 
-- **Seven weeks** of back and forth with the agent
+- **Seven weeks** of back-and-forth with the agent
 - Of 108 commits, **37 are corrections or retractions**
 - Of 12 types of error, **10 were found because of a question asked**, not by a check.
-- The best method was already found by day four
 
 <v-clicks depth="2">
 
+- The best method was already found by day four
 - During the making of these five slides:
   - Seven further errors corrected in the docs
-  - 6 out of 7 were found because the agent was challenged with a question
+  - six of the seven were found because the agent was challenged with a question
 
 </v-clicks>
 </div>
