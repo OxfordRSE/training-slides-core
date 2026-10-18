@@ -72,13 +72,31 @@ layout: two-cols-header
 
 ::left::
 
-Trend: desire to work with computers with higher level of abstraction
+The ambition is always to allow people to program in a:
 
-Assembler, compiler etc.
+<v-clicks>
+
+- higher level of abstraction
+- more convenient representation of human intent
+
+<div class="mt-24">
+
+> A-0 compiler, a series of specifications that automatically translates
+> high-level languages such as English into machine-readable binary code.
+
+<div class="text-sm text-right pt-2">Grace Hopper created the first 'compiler' in 1952</div>
+
+</div>
+
+</v-clicks>
 
 ::right::
-
-Grace Hopper compiler photos
+<div class="h-full flex flex-col items-center justify-center">
+<img src="./imgs/grace_hopper.png" alt="Photo of Grace Hopper examing magnetic tapes holding subroutines" class="w-4/5" />
+<div class="text-xs text-center opacity-60">
+<a href="https://spectrum.ieee.org/from-punch-cards-to-python/about-grace-hopper">From Punch Cards to Python</a>
+</div>
+</div>
 
 ---
 layout: two-cols-header
@@ -86,17 +104,30 @@ layout: two-cols-header
 
 # Automatic programming
 
-Quote wiki definition.
+::left::
 
-Some examples
+Programs to produce other programs.
 
-Note compiler etc. is deterministic but not LLM-powered coding agents
+- Program synthesis, construction of a computer program by:
+  - input-output specifications
+  - examples
+  - natural languages
+
+::right::
+<div class="h-full flex flex-col items-center justify-center">
+<img src="./imgs/dialogue_to_program.png" alt="Figure 1 showing English dialogue to construct simulation program" class="w-3/5" />
+<div class="text-xs text-center opacity-60">
+<a href="https://dl.acm.org/doi/pdf/10.1145/800233.807050">English as a very high level language for simulation programming, George E. Heidorn, 1974</a>
+</div>
+</div>
 
 ---
 layout: two-cols-header
 ---
 
-# Modern coding agents
+# Automatic programming by coding agents
+
+Popular modern coding agents:
 
 ::left::
 
@@ -105,8 +136,8 @@ layout: two-cols-header
 - **Copilot** (2021): inline suggestions
 - **Aider** (2023), **Cursor** (2024): instruction files, slash commands
 - **Claude Code** (2025): subagents, hooks, skills
-- Later coding agents such as **Codex**, **OpenCode**, **Copilot**,
-  **Antigravity** etc. are heavily influenced by Claude Code.
+- Later coding agents such as **Codex**, **OpenCode**, **Antigravity** etc.
+  are heavily influenced by Claude Code.
 
 <div class="text-sm opacity-60">
 JetBrains, <a href="https://blog.jetbrains.com/research/2026/08/ai-coding-agent-adoption-2026/">AI coding agent adoption</a>, August 2026 (15,509 developers surveyed May-July 2026).
@@ -124,21 +155,38 @@ JetBrains, <a href="https://blog.jetbrains.com/research/2026/08/ai-coding-agent-
 </div>
 
 ---
+layout: two-cols-header
+---
 
 # Interfaces for coding agents
 
-- Web
-  - can be connected to your GitHub account
+::left::
+
+- Cloud
+  - Can be connected to your GitHub account
+
+<div class="mt-24">
 
 Able to access files and tools locally:
 
 - Extension/plugins in editors
   - VS Code plugins
-  - Co-pilot
 - Desktop apps
-  - ChatGPT Desktop, Claude Desktop
+  - Codex app, Claude Desktop
 - Terminal
   - Claude Code, Codex CLI, OpenCode
+
+</div>
+
+::right::
+<div class="h-full flex flex-col justify-center gap-3">
+<div class="w-4/5 self-center">
+<img src="./imgs/codex_cloud_interface.png" alt="GitClear 2026 reuse signal trend" class="w-full" />
+</div>
+<div class="w-4/5 self-center">
+<img src="./imgs/codex_cli_interface.gif" alt="GitClear 2026 risk signal trend" class="w-full" />
+</div>
+</div>
 
 ---
 layout: two-cols-header
