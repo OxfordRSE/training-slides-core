@@ -318,6 +318,8 @@ But code review is never just about catching bugs:
 > discipline of explaining your code to your peers \[that\] drives a higher
 > standard of coding. I think the process is even more important than the result.
 
+<!-- for passing markdownlint -->
+
 > one of the things that should be happening with code reviews over time is a
 > distribution of knowledge. If you do a code review and did not learn anything
 > about the area and you still do not know anything about the area, then that
@@ -390,7 +392,7 @@ Know what deserves your valuable human attention:
 
 <div class="mt-4">
 
-> I’ve seen quite a few code reviews where someone commented
+> I've seen quite a few code reviews where someone commented
 > on formatting while missing the fact that there were security
 > issues or data model issues.
 
