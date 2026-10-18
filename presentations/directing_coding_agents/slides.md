@@ -68,6 +68,34 @@ Harness components after Anthropic, <a href="https://claude.com/blog/harnessing-
 layout: two-cols-header
 ---
 
+# Before coding agents
+
+::left::
+
+Trend: desire to work with computers with higher level of abstraction
+
+Assembler, compiler etc.
+
+::right::
+
+Grace Hopper compiler photos
+
+---
+layout: two-cols-header
+---
+
+# Automatic programming
+
+Quote wiki definition.
+
+Some examples
+
+Note compiler etc. is deterministic but not LLM-powered coding agents
+
+---
+layout: two-cols-header
+---
+
 # Modern coding agents
 
 ::left::
@@ -113,6 +141,368 @@ Able to access files and tools locally:
   - Claude Code, Codex CLI, OpenCode
 
 ---
+layout: two-cols-header
+---
+
+::left::
+
+# Characteristics of agents' generated code
+
+<div class="h-full flex flex-col justify-between">
+
+<v-clicks>
+
+- The difficulty is in its throughput
+- Often very verbose
+  - High coupling
+  - Convoluted code path
+- Common anti-patterns to watch out for:
+  - ignore what is available and implement its own solution
+  - employ shortcuts (reward hacking)
+    - amend tests
+    - adjust tolerance
+  - not aware of latest features/deprecations
+
+</v-clicks>
+
+<div class="text-sm opacity-60">
+GitClear, <a href="https://www.gitclear.com/the_ai_code_quality_maintainability_gap">The Maintainability Gap: AI Code Quality in 2026</a>, July 2026.
+</div>
+
+</div>
+
+::right::
+
+<div class="h-full flex flex-col justify-center gap-3">
+<div class="w-3/5 self-center">
+<img src="./imgs/gitclear_code_quality_2026_reuse.png" alt="GitClear 2026 reuse signal trend" class="w-full" />
+</div>
+<div class="w-3/5 self-center">
+<img src="./imgs/gitclear_code_quality_2026_risk.png" alt="GitClear 2026 risk signal trend" class="w-full" />
+</div>
+</div>
+
+---
+layout: two-cols-header
+---
+
+# Before prompting coding agents (Explore-Plan)
+
+::left::
+
+**Explore**
+
+- Is this actually a bug?
+- Is this the expected behaviour?
+- What does `ord=1` mean?
+  - Why did some `ord` work?
+- Why did it get cast to `float` in the stated change?
+
+<div class="mt-6 border border-stone-500 rounded p-2 text-stone-700">
+The purpose is to gather enough information to guide what should be done.
+</div>
+
+::right::
+<div class="h-full flex flex-col justify-center">
+<img src="./imgs/scipy_26281.png" alt="SciPy issue 26281" class="w-full" />
+<div class="text-xs text-center opacity-60">
+<a href="https://github.com/scipy/scipy/issues/26281">SciPy issue 26281</a>
+</div>
+</div>
+
+---
+layout: two-cols-header
+---
+
+# Before prompting coding agents (Explore-Plan)
+
+::left::
+
+**Plan**
+
+- How should I fix it?
+  - Should I remove the cast?
+  - Handle it as a special case?
+- How do I know it is fixed?
+  - What tests should I have?
+- How would the fix impact:
+  - users currently depend on the function
+  - internal functions that use this function
+
+<div class="mt-6 border border-stone-500 rounded p-2 text-stone-700">
+The purpose is to decide what should be done and revise the details.
+</div>
+
+::right::
+<div class="h-full flex flex-col justify-center">
+<img src="./imgs/scipy_26281.png" alt="SciPy issue 26281" class="w-full" />
+<div class="text-xs text-center opacity-60">
+<a href="https://github.com/scipy/scipy/issues/26281">SciPy issue 26281</a>
+</div>
+</div>
+
+---
+layout: two-cols-header
+---
+
+# Before prompting coding agents (Explore-Plan)
+
+::left::
+
+**Explore**
+
+- What is the motivation for this feature?
+  - Are the claimed benefits real?
+  - How big difference is it for 'scientific visualisation'?
+  - Is this a common format?
+  - If we implement this, why not the others?
+- Are the proposed backends:
+  - really an existing dependencies?
+  - able to support JPEG XL? which one is better?
+
+<div class="mt-2 border border-stone-500 rounded p-2 text-stone-700">
+The purpose is to collect enough evidence that this is worth implemented.
+</div>
+
+::right::
+<div class="h-full flex flex-col justify-center">
+<img src="./imgs/mpl_32467.png" alt="Matplotlib issue 32467" class="w-full" />
+<div class="text-xs text-center opacity-60">
+<a href="https://github.com/matplotlib/matplotlib/issues/32467">Matplotlib issue 32467</a>
+</div>
+</div>
+
+---
+layout: two-cols-header
+---
+
+# Before prompting coding agents (Explore-Plan)
+
+::left::
+
+**Plan**
+
+- How should the feature be implemented?
+  - 'Lossless by default', is this a good choice? Trade-off?
+  - Is `savefig` the only API affected?
+  - How should we deal with errors during conversion?
+- How should we verify the feature is successfully implemented?
+
+<div class="mt-6 border border-stone-500 rounded p-2 text-stone-700">
+The purpose is to decide what should be done and revise the details.
+</div>
+
+::right::
+<div class="h-full flex flex-col justify-center">
+<img src="./imgs/mpl_32467.png" alt="Matplotlib issue 32467" class="w-full" />
+<div class="text-xs text-center opacity-60">
+<a href="https://github.com/matplotlib/matplotlib/issues/32467">Matplotlib issue 32467</a>
+</div>
+</div>
+
+---
+layout: two-cols-header
+---
+
+# The purpose of code review (Code-Commit)
+
+::left::
+
+<div class="h-full flex flex-col justify-between">
+
+So perhaps, we can use a coding agent to review coding agent's generated code
+(`/code-review`)!
+
+But code review is never just about catching bugs:
+
+> discipline of explaining your code to your peers \[that\] drives a higher
+> standard of coding. I think the process is even more important than the result.
+
+> one of the things that should be happening with code reviews over time is a
+> distribution of knowledge. If you do a code review and did not learn anything
+> about the area and you still do not know anything about the area, then that
+> was not as good code review as it could have been.
+
+</div>
+
+::right::
+
+<div class="h-full flex flex-col justify-center">
+
+<img src="./imgs/code_review_motivation.png" alt="Ranked motivation of code
+review" class="w-full" />
+
+<div class="pb-5 text-sm opacity-60">
+A. Bacchelli and C. Bird, "Expectations, outcomes, and challenges of modern
+code review," ICSE, 2013, pp. 712-721, doi: <a
+href="https://ieeexplore.ieee.org/document/6606617">10.1109/ICSE.2013.6606617</a>
+</div>
+
+</div>
+---
+layout: two-cols-header
+---
+
+# Can coding agents help with reviewing code?
+
+::left::
+
+
+Coding agents can help with:
+
+<v-clicks>
+
+- flagging high-risk changes
+- catching known security issues
+- stress-testing assumptions
+- checking compliance
+- identifying dead codes
+
+</v-clicks>
+
+::right::
+
+<v-clicks>
+
+Remember:
+
+- Human retains the ownership and every decision
+- Coding agents should never (and can't!) take final accountability
+- Think twice before letting coding agents to auto-merge or auto-commit changes
+
+</v-clicks>
+
+---
+layout: two-cols-header
+---
+
+# Human attention is precious
+
+::left::
+
+Know what deserves your valuable human attention:
+
+- architecture design
+- core logics
+- implementation choice
+- human-readable documentation
+- understanding (cognitive and intent debt)
+
+<div class="mt-4">
+
+> I’ve seen quite a few code reviews where someone commented
+> on formatting while missing the fact that there were security
+> issues or data model issues.
+
+</div>
+
+::right::
+
+<div class="h-full flex flex-col justify-center">
+
+<img src="./imgs/code_review_activities.png" alt="Comments related to outcome
+of code review" class="w-4/5" />
+
+<div class="pb-5 text-sm opacity-60">
+<div class="text-center">(Types of comments in code review)</div>
+
+A. Bacchelli and C. Bird, "Expectations, outcomes, and challenges of modern
+code review," ICSE, 2013, pp. 712-721, doi: <a
+href="https://ieeexplore.ieee.org/document/6606617">10.1109/ICSE.2013.6606617</a>
+</div>
+
+</div>
+---
+
+# Working with agents' generated code
+
+<v-clicks>
+
+- Um, can we solve a problem without any code?
+  - Codes can be easily generated but doesn't mean we should
+- Distinguish a plausible solution with ones that really address the issues
+- Know when is 'good enough'
+- Independent verification:
+  - reference implementation
+  - specification
+  - formal verification
+
+</v-clicks>
+
+<div v-click class="mt-6 border border-teal-500 rounded p-2 text-sm text-teal-700">
+
+A simple question to ask yourself: 'can I really explain what have changed and why?'
+
+</div>
+
+---
+
+# About usage limit
+
+This is all about how you manage the context window in a session, some tips:
+
+<v-clicks>
+
+- Decompose a task into smaller pieces
+- Aggressively `/clear` to reset the context window
+- Consider `/compact` for long conversation
+  - More efficient when the cached prompt still hot
+- Keep a 'journal' as a persistent artefact that can be passed to another fresh session
+  - Modern coding agents implement this as 'memory'
+- Employ subagents for isolated tasks, e.g.:
+  - Explore a particular topic
+  - Make sense of an error message
+  - Looking for typos
+
+</v-clicks>
+
+---
+
+# About usage limit (con't)
+
+<v-clicks>
+
+- Use `/side`/`/btw` for query unrelated to the main task
+- Use a hierarchical `AGENTS.md`/`CLAUDE.md`
+- Use more LLM-friendly format whenever possible:
+  - Plain text/HTML instead of PDF
+  - Extract data points yourself for a plot instead of PNG/JPEG
+- Use appropriate model for your task
+  - Adjust the thinking level by `/effort`
+- Plan your day
+  - Start a session, e.g. 5 a.m. (automate this for your wellbeing)
+  - If you start working at 9 a.m., your usage limit will be reset at 10 a.m.
+    (assume a 5-hour reset)
+
+</v-clicks>
+
+---
+layout: two-cols-header
+---
+
+# Cautions
+
+::left::
+
+<v-clicks>
+
+- Implement whatever possible without careful consideration
+- Permission
+  - Think twice before using `--dangerously-skip-permissions` etc. flags
+- Burn out
+  - Fatigue of monitoring agents generated codes
+  - Babysit coding agents 24/7
+  - `/remote-control` could be intrusive to your life
+
+</v-clicks>
+
+::right::
+
+<div class="h-full flex flex-col justify-center">
+<img src="./imgs/rea.png" alt="Reverse Engineering Anything repository" class="w-full" />
+</div>
+
+---
 
 # Obstacles to using coding agents
 
@@ -151,237 +541,6 @@ N. Tang et al., "How coding agents fail their users", <a href="https://arxiv.org
 </div>
 
 ---
-layout: two-cols-header
----
-
-# Explore-Plan-Code-Commit quick demo 1
-
-::left::
-
-**Explore**
-
-- Is this actually a bug?
-- Is this the expected behaviour?
-- What does `ord=1` mean?
-  - Why did some `ord` work?
-- Why did it get cast to `float` in the stated change?
-
-The purpose is to gather enough information to guide what should be done.
-
-::right::
-<div class="h-full flex flex-col justify-center">
-<img src="./imgs/scipy_26281.png" alt="SciPy issue 26281" class="w-full" />
-</div>
-
----
-layout: two-cols-header
----
-
-# Explore-Plan-Code-Commit quick demo 1
-
-::left::
-
-**Plan**
-
-- How should I fix it?
-  - Should I remove the cast?
-  - Handle it as a special case?
-- How do I know it is fixed?
-  - What tests should I have?
-- How would the fix impact:
-  - users currently depend on the function
-  - internal functions that use this function
-
-The purpose is to decide what should be done and revise the details.
-
-::right::
-<div class="h-full flex flex-col justify-center">
-<img src="./imgs/scipy_26281.png" alt="SciPy issue 26281" class="w-full" />
-</div>
-
----
-layout: two-cols-header
----
-
-# Explore-Plan-Code-Commit quick demo 2
-
-::left::
-
-**Explore**
-
-- What is the motivation for this feature?
-  - Are the claimed benefits real?
-  - How big difference is it for 'scientific visualisation'?
-  - Is this a common format?
-  - If we implement this, why not the others?
-- Are the proposed backends:
-  - really an existing dependencies?
-  - able to support JPEG XL? which one is better?
-
-The purpose is to collect enough evidence that this is worth implement.
-
-::right::
-<div class="h-full flex flex-col justify-center">
-<img src="./imgs/mpl_32467.png" alt="Matplotlib issue 32467" class="w-full" />
-</div>
-
----
-layout: two-cols-header
----
-
-# Explore-Plan-Code-Commit quick demo 2
-
-::left::
-
-**Plan**
-
-- How should the feature be implemented?
-  - 'Lossless by default', is this a good choice? Trade-off?
-  - Is `savefig` the only API affected?
-  - How should we deal with errors during conversion?
-- How should we verify the feature is successfully implemented?
-
-The purpose is to decide what should be done and revise the details.
-
-::right::
-<div class="h-full flex flex-col justify-center">
-<img src="./imgs/mpl_32467.png" alt="Matplotlib issue 32467" class="w-full" />
-</div>
-
----
-layout: two-cols-header
----
-
-::left::
-
-# Characteristics of generated code
-
-- The difficulty is in its throughput
-- Often quite verbose
-  - Full of emoji/em-dashes (encoding issues)
-- Common anti-patterns to watch out for:
-  - ignore what is available and implement its own solution
-  - employ shortcuts (reward hacking)
-    - amend tests
-    - adjust tolerance
-  - not aware of latest features/deprecations
-
-<div class="text-sm opacity-60">
-GitClear, <a href="https://www.gitclear.com/the_ai_code_quality_maintainability_gap">The Maintainability Gap: AI Code Quality in 2026</a>, July 2026.
-</div>
-
-::right::
-
-<div class="pl-4 h-full flex flex-col justify-center gap-3">
-<img src="./imgs/gitclear_code_quality_2026_reuse.png" alt="AI tool use at work" class="w-3/5" />
-<div class="w-3/5 self-center">
-<img src="./imgs/gitclear_code_quality_2026_risk.png" alt="AI tool use at work" class="w-full" />
-</div>
-</div>
-
----
-
-# Using coding agents to review generated code
-
-So perhaps, we can use a coding agent to review coding agent's generated code!
-(`/code-review`)
-
-Remember code review is never just about catching bugs:
-
-- knowledge sharing/teaching
-- community/culture building
-
-With the volume of generated code, no one can keeps up with what is happening
-by reading code line-by-line, but doesn't mean you
-
-Know what deserves your valuable human attention!
-
-- architecture design
-- core logics
-- implementation choice
-- human-readable documentation
-
-Coding agents are good at:
-
-- explore edge cases
-- detect
-
-- Happy to take in whatever push-back you may have
-  - 'You are absolutely right to challenge this!'
-  - It simply doesn't care
-
----
-
-# Some suggestion to deal with generated code
-
-- Human retains the ownership and every decision
-- Can we solve a problem without any code?
-- Distinguish a plausible solution with ones that really address the issues
-- Know when is 'good enough'
-- 'Third-party' independent verification:
-  - comapre with a reference implementation
-  - specification
-  - formal verification
-
-A simple question to ask yourself: 'can I explain what have changed and why?'
-
----
-
-# About usage limit
-
-This is all about how you manage the context window in a session, some tips:
-
-- Decompose a task into smaller pieces
-- Aggressively `/clear` to reset the context window
-- Consider `/compact` for long conversation
-  - More efficient when the cached prompt still hot
-- Keep a 'journal' as a persistent artefact that can be passed to another fresh session
-  - Modern coding agents implement this as 'memory'
-- Employ subagents for isolated tasks, e.g.:
-  - Explore a particular topic
-  - Make sense of an error message
-  - Looking for typos
-
----
-
-# About usage limit (con't)
-
-- Use `/side`/`/btw` for query unrelated to the main task
-- Use a hierarchial `AGENTS.md`/`CLAUDE.md`
-- Use more LLM-friendly format whenever possible:
-  - Plain text/HTML instead of PDF
-  - Extract data points yourself for a plot instead of PNG/JPEG
-- Use appropriate model for your task
-  - Adjust the thinking level by `/effort`
-- Plan your day
-  - Start a session, e.g. 5 am (automate it!)
-  - If you start working at 9 am, your usage limit will be reset at 10 am
-    (assume a 5-hour reset)
-
----
-layout: two-cols-header
----
-
-# Cautions
-
-::left::
-
-- Permission
-  - Set up a container instance/run in a sandbox environment
-  - Think twice before using `--dangerously-skip-permissions` etc. flags
-- Implement whatever possible without careful consideration
-- Burn out
-  - Babysit coding agents 24/7
-  - You could still be 'coding' in a mobile phone during your holiday!
-    (`/remote-control`)
-
-::right::
-
-<div class="h-full flex flex-col justify-center">
-<img src="./imgs/rea.png" alt="Reverse Engineering Anything repository" class="w-full" />
-</div>
-
----
 
 # Learning objectives
 
@@ -395,9 +554,11 @@ The practical session has four modules:
    must not change, and what counts as done.
 4. Familiarise yourself with code you did not write.
 
+<div class="mt-10 border border-stone-500 rounded p-2 text-stone-700">
 You will look at some issues from real-world codebases, but the purpose of the
 practical session is not to teach you how to contribute to those codebases by
 using coding agents (read their AI policy).
+</div>
 
 ---
 
