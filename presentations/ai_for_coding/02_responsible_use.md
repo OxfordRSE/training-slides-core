@@ -15,7 +15,7 @@ title: " "
   - Documentation
   - Tests
   - Debugging suggestions
-  - Ideation!
+  - Ideation
 
 ---
 layout: two-cols
@@ -23,7 +23,7 @@ layout: two-cols
 
 # Risks
 
-- Great capacity to harm!
+- Great capacity to harm
   - e.g. Inappropriate permissions given to Agents
 
 - Hallucination
@@ -78,7 +78,7 @@ layout: two-cols
 
 - PocketOS --- SaaS used by car rental businesses to manage reservations and vehicle assignments
 
-- The stack: Cursor agent powered by Claude Opus 4.6, deployed on Railway
+- Software stack: Cursor agent powered by Claude Opus 4.6, deployed on Railway (cloud service)
   - "the best model the industry sells" + the most-marketed AI coding tool
 
 - 24 April 2026: while trying to "fix" a credential mismatch in staging, the agent issued a single Railway API call that wiped the entire production database **and the backups** --- in 9 seconds
@@ -88,6 +88,15 @@ layout: two-cols
 <div style="text-align: right; font-size: 0.85em; color: #6b7280; margin-top: 1em;">
 Source: <a href="https://www.theguardian.com/technology/2026/apr/29/claude-ai-deletes-firm-database">The Guardian, 29 April 2026</a>
 </div>
+
+<!--
+- Source is founder Jer (Jeremy) Crane's posts on X over the weekend of 25/26 April, widely reported since. Mostly his account.
+- The agent was doing a routine task in the staging environment, hit a credential mismatch, and decided on its own to "fix" it by deleting a Railway volume.
+- It had a fully permissioned Railway API token. Railway's CEO called it a "rogue customer AI granted a fully permission API token". Nothing scoped the token to staging.
+- One GraphQL API call through a legacy endpoint that had no delayed delete. Nine seconds, no confirmation.
+- The volume level backups lived with the volume, so they went too. The newest backup Crane could recover himself was three months old.
+- Impact: the rental firms using PocketOS lost three months of reservations and new signups. Crane: "Every single one of them is doing emergency manual work because of a 9-second API call."
+-->
 
 ---
 
@@ -105,20 +114,29 @@ Source: <a href="https://www.theguardian.com/technology/2026/apr/29/claude-ai-de
 
 - Even with explicit safety rules in the project config, the agent took a destructive action **on its own initiative** to "fix" a problem it should have escalated.
 
+<!--
+- The "confession" also admitted it had not verified the volume ID, had not checked whether the volume was shared between environments, and had not read Railway's docs before running the command.
+- Outcome: Railway restored the data from its offsite disaster backups, about 30 minutes after its CEO got involved. A support ticket had lapsed for over 24 hours before that. Crane says significant gaps remain and has retained legal counsel.
+- Railway's fixes: deletes now soft delete for 48 hours, the legacy endpoint was patched, and token permissions are being reassessed. Cursor and Anthropic had not commented at the time of reporting.
+- No single failure: an over permissioned token the agent could reach, no confirmation on a destructive API, backups stored alongside the data, and an agent acting beyond its task.
+- Lessons for us: least privilege, separate credentials per environment, backups kept somewhere else, and a human approving anything destructive.
+- Crane: "every tool we've built is for a human in the loop."
+-->
+
 ---
 layout: center
 ---
 
 # Key responsibility takeaway
 
-<div style="text-align: center; font-size: 1.5em; line-height: 1.6; color: #9ca3af;">
+<div style="text-align: center; font-size: 1.5em; line-height: 1.6; color: #5c626b;">
 AI is a bright, enthusiastic,<br />
-BUT inexperienced intern
+BUT inexperienced <s>intern</s> <s>PhD student</s> postdoc
 </div>
 
 <br />
 
-<div style="text-align: center; font-size: 1.5em; color: #9ca3af;">
+<div style="text-align: center; font-size: 1.5em; color: #5c626b;">
 <span v-mark.underline.orange="1">You</span> are responsible for its output/actions
 </div>
 
@@ -127,7 +145,7 @@ BUT inexperienced intern
 # How do we check outputs responsibly?
 
 - C - Correctness
-- R - Readability (maintainability etc)
+- R - Readability (maintainability etc.)
 - E - Efficiency
 - D - Domain knowledge
 - I - Integrity (reproducibility/provenance)
@@ -164,9 +182,11 @@ Which would be easiest to overlook?
 
 # Example - Using Polars
 
-- Background: Tracking bees in video frames using an object detection network.
+- Task: Tracking bees in video frames using an object detection network.
 
-- Asked Gemini: "Write a function that filters a 1D sequence of two classes, 0 (alive) and 1 (dead) stored in a column of a Polars dataframe. Remove noise where the class switches from alive to dead for less than or equal to a specified number of frames"
+- Asked Gemini:
+  > Write a function that filters a 1D sequence of two classes, 0 (alive) and 1 (dead) stored in a column of a Polars dataframe.
+  > Remove noise where the class switches from alive to dead for less than or equal to a specified number of frames
 
 - Gave example data as context:
 
@@ -178,7 +198,8 @@ frame_id,class_id,x,y,w,h,track_id,conf,stable_id
 ...
 ```
 
-- Reply: "Of course. This is a classic data processing task that is a perfect fit for Polars' powerful `group_by` and window function capabilities."
+- Reply:
+  > Of course. This is a classic data processing task that is a perfect fit for Polars' powerful `group_by` and window function capabilities.
 
 ---
 layout: two-cols
@@ -190,11 +211,11 @@ layout: two-cols
 
 - Code looks sensible with explanatory comments
 
-- However, got an AttributeError()
+- However, an `AttributeError` was raised
 
   `module 'polars' has no attribute 'Window'`
 
-- Fed the error back to the LLM
+- The error was fed back to the LLM
 
   > You're using an older version of the Polars library that doesn't have pl.Window. Upgrade your Polars installation ... The pl.Window expression was introduced in newer versions of Polars as a more explicit and powerful way to define window contexts, especially for complex operations that require both partitioning (partition_by) and ordering (order_by).
 
@@ -209,19 +230,34 @@ layout: two-cols
 ```python {maxHeight:'380px'}
 import polars as pl
 
-def filter_detections_by_duration(df: pl.DataFrame, min_duration: int) -> pl.DataFrame:
+def filter_detections_by_duration(
+    df: pl.DataFrame, min_duration: int
+) -> pl.DataFrame:
 
-    # Define the window for operations grouped by 'stable_id' and sorted by 'frame_id'
-    window = pl.Window(partition_by="stable_id", order_by="frame_id")
+    # Define the window for operations grouped
+    # by 'stable_id' and sorted by 'frame_id'
+    window = pl.Window(
+        partition_by="stable_id",
+        order_by="frame_id",
+    )
 
-    # Apply the filtering logic in a single, chained expression
+    # Apply the filtering logic in a single,
+    # chained expression
     filtered_df = df.with_columns(
-        # Step 1: Find the start of a sequence of 1s
-        _is_first=(pl.col('class_id') == 1) &
-            (pl.col('class_id').shift(1).fill_null(0).over(window) == 0)
+        # Step 1: Find the start of a
+        # sequence of 1s
+        _is_first=(pl.col('class_id') == 1) & (
+            pl.col('class_id')
+            .shift(1)
+            .fill_null(0)
+            .over(window) == 0
+        )
     ).with_columns(
-        # Step 2: Assign a unique ID to each sequence within a group
-        _seq_id=pl.col('_is_first').cumsum().over('stable_id')
+        # Step 2: Assign a unique ID to each
+        # sequence within a group
+        _seq_id=pl.col('_is_first')
+            .cumsum()
+            .over('stable_id')
     ).with_columns(
         ...
         ...
@@ -269,44 +305,54 @@ More info on Polars window functions can be found here<br />
 <a href="https://docs.pola.rs/user-guide/expressions/window-functions/">https://docs.pola.rs/user-guide/expressions/window-functions/</a>
 </div>
 
+<!--
+- Polars has never had a `pl.Window` class. Windows in Polars are done with the `.over()` method on an expression.
+- Most likely source is PySpark, where this is exactly the pattern: `w = Window.partitionBy("stable_id").orderBy("frame_id")`, then `F.lag("class_id").over(w)`. Build a window object, pass it to `.over()`.
+- Snowflake's Snowpark uses the same pattern with the very same snake_case names: `Window.partition_by(...).order_by(...)`. In SQL it is `OVER (PARTITION BY stable_id ORDER BY frame_id)`.
+- The model has seen far more Spark and SQL than Polars. Both have a DataFrame API with `.over()`, so it blended them into a plausible API that does not exist.
+- The real Polars version: `pl.col("class_id").shift(1).fill_null(0).over("stable_id", order_by="frame_id")`. Older Polars versions have no `order_by` on `over()`, so sort by `frame_id` first.
+- Bonus: `.cumsum()` was renamed `cum_sum()` and removed in Polars 1.0, so the code would fail again even after fixing the window. Pandas still uses `cumsum`, another blend.
+- The claim that `pl.Window` was "introduced in newer versions" was also made up, to explain away the error. Even when challenged, it insisted it "did not hallucinate the feature".
+-->
+
 ---
 
-# Example - JavaScript
+# Example - Accessible Web Development
 
-- Background: tabbed UI for a web app.
-- Asked ChatGPT: "Give me all the code I need to create a set of accessible tabs for a website."
-- "Creating accessible tabs for a website involves HTML, CSS, and JavaScript code. Here's a simple example of how you can create accessible tabs:
-  ...
-  This code sets up three tabs and their corresponding content. When you click on a tab button, it will display the associated content and hide the others. It also manages keyboard focus for accessibility. You can customize the styles in the CSS and add more tabs as needed."
+- Task: Creating a tabbed UI for a web app.
+- Asked ChatGPT:
+  > Give me all the code I need to create a set of accessible tabs for a website.
+- Response:
+  > Creating accessible tabs for a website involves HTML, CSS, and JavaScript code. Here's a simple example of how you can create accessible tabs:
+  > ...
+  > This code sets up three tabs and their corresponding content. When you click on a tab button, it will display the associated content and hide the others. It also manages keyboard focus for accessibility. You can customize the styles in the CSS and add more tabs as needed.
 
 ---
 
-# Example - JavaScript
+# Example - Accessible Web Development
 
-- Generated JS code only included mouse/pointer event handlers.
-  - Accessible UI needs keyboard event handlers for the cursor keys, to switch between tabs.
+- The generated JS code only included mouse/pointer event handlers.
+  - But an accessible UI needs **keyboard** event handlers for the cursor keys, to switch between tabs.
 
-- Generated HTML DOM didn't include ARIA tab pattern roles & labels for screen readers.
-  - A screen reader won't know that the UI elements are tabs, or which tab is selected.
-  - Ironically, missing roles make the UI harder to use by AI agents too.
+- Generated HTML DOM did not include ARIA (Accessible Rich Internet Applications) tab pattern roles & labels for screen readers.
+  - A screen reader would not know that the UI elements are tabs, or which tab is selected.
+  - Ironically, missing ARIA roles make the UI harder for AI agents to use too.
 
-- The prompt asked for code in an area where the model isn't well-trained (accessibility). The response is confidently wrong.
+- **The prompt asked for code in an area where the model is not well-trained (accessibility).** The response is confidently wrong.
 
 ---
 layout: two-cols
 ---
 
-# Example - Imports
+# Example - Copilot Errors
 
-- GitHub Copilot suggests replacing a problematic import with a hardcoded alternative in case of failure
+- GitHub Copilot attempts to resolve an `ImportError`
 
-- Another hack - appending to system PATH variable to overcome import issues
-
-- Better to install files as a package to resolve these problems!
+- Better to install your code as a package to resolve these problems!
 
 ::right::
 
-```python {3}{lines:true, maxHeight:'200px'}
+```python {3}{lines:true, maxHeight:'410px'}
 import numpy as np
 from ..object_detection import config as cfg
 from object_detection import config as cfg
@@ -326,30 +372,10 @@ except ImportError:
             "track_id", "conf"
         ]
 
-cfg = Config()
-```
-
-<hr style="border: none; border-top: 1px solid #6b7280; margin: 0.75em 0;" />
-
-```python {lines:true}
-import sys
-import os
-
-# Add the analysis directory to the path
-sys.path.insert(
-    0,
-    os.path.join(os.path.dirname(__file__), '..', 'analysis')
-)
+    cfg = Config()
 ```
 
 <style>
-.slidev-code,
-.slidev-code code,
-.slidev-code .line,
-.slidev-code span {
-  font-size: 0.85em !important;
-  line-height: 1.4 !important;
-}
 .slidev-code,
 .slidev-code code,
 .slidev-code .line {
@@ -380,52 +406,151 @@ sys.path.insert(
 
 ---
 
-# Example - Hidden agent actions
+# Example - Exploratory Data Analysis using LLMs
 
-- Restricting which shell commands an agent can run isn't enough --- agents can also act through their **built-in tools**, which bypass command-level guardrails
+**Background**
 
-- A colleague's agent silently set up a git worktree via a built-in feature (no shell command shown)
+- Analysis of data from an imaging system (3D images from back-scattered light)
+- Existing analysis technique:
+  - a high-pass filter on the images
+  - counting the remaining spots/blobs
+  - deriving numerical features from the spots to describe the data
+  
+<v-click>
 
-- The worktree's new branch was configured to track `main` directly, instead of a separate remote branch
+**Aim**
 
-- In the IDE it looked like any other feature branch --- no warning, no indication of the upstream
+- to use LLM agents to speed up the process of investigating a range of other techniques such as machine/deep learning
+- to use best practice
+  - Asked the agent to **record a log of the conversation, create separate documents describing the methods and the results**. Also to **use version control**
 
-- When the colleague ran `git push`, the changes went **straight to `main`**
-
-- Lesson: check the state your agent leaves behind --- branch tracking, file permissions, config --- not just the commands it ran
-
----
-
-# Example - Data analysis by LLM
-
-- Asked an agent to try a 2D CNN alongside an existing logistic regression baseline
-
-- It ran the comparison **inline** --- a throwaway script, nothing kept
-  - 15 epochs, no augmentation, no validation split, no pretrained network
-  - **no training loss logged**
-
-- Verdict reported: "the CNN loses to the logistic"
-  - Indistinguishable from "the CNN never trained"
-
-- The comparison was also unfair --- the logistic had the projection **plus** six
-  scale columns, the CNN got the projection alone
+</v-click>
 
 ---
 
-# Example - Data analysis by LLM
+# Example - Exploratory Data Analysis using LLMs
 
-- Re-run as a saved script: 40 epochs, per-epoch train/held-out loss, the same
-  features as the baseline, augmentation, pretrained probe
+**Initial conversations with the LLM - creating the plan**
 
-- The verdict reversed --- sample AUC **0.795 -> 0.953**. It was undertrained.
+- Outlined the technique
+- Outlined what the analysis was needed for
+- Critiqued previous work done on this task
+- Discussed some initial ideas about an approach
 
-- What to ask for, every time:
-  - "Write this as a reusable script, not inline code"
-  - "Log the parameters, the training curve, the metrics"
-  - "Is this a fair comparison? Is this the right approach?"
+<v-click>
 
-- The default is a throwaway answer --- **recording and provenance are yours to
-  set up**
+**Then gave the agent access to the data (raw and processed)**
+
+- From this point it became less clear what was being done
+  - e.g. "I'm just looking through the data" - what does it actually mean?
+- **The default is to run inline (throwaway) Bash or Python scripts so these steps are not reproducible**
+- Became apparent after the agent was asked "Is this analysis recorded anywhere?" - Answer: "No"
+
+</v-click>
+
+
+<v-click>
+<div style="text-align: center; font-size: 1.25em; color: blue; margin-top:30px;">
+For reproducible research, every step needs to be recorded
+</div>
+</v-click>
+
+---
+
+# Example - Exploratory Data Analysis using LLMs
+
+**The agent tried to give up early on**
+
+- The agent ran the existing analysis code on various subsets of the data
+  - then declared:
+    > the analysis-side levers for low signal samples are exhausted
+  - the agent also suggested that the hardware needs a redesign to record better data
+
+<v-click>
+
+- On this (and other) occasions, to keep it going, the agent was asked:
+  > Are you giving up? What about the other stages in the plan?
+- Asking this simple question uncovered other errors:
+  - it had ignored many of the data files output by the analysis program (.npz files of the blobs and argmax projection images)
+
+</v-click>
+
+<v-click>
+<div style="text-align: center; font-size: 1.25em; color: blue; margin-top:30px;">
+Even if there is a plan, <b>you</b> need to ensure the agent carries it out in full
+</div>
+</v-click>
+
+---
+
+# Example - Exploratory Data Analysis using LLMs
+
+**How about testing out some computer vision techniques?**
+
+- The agent had tested 10 types of machine learning classifier on features derived from the data
+  - A logistic regression classifier was found to be best
+- When asked how a deep learning model would compare to this result, the agent decided to train a 3D CNN for comparison
+- Conclusion:
+  > The voxels carry no more class information than the summary statistics.
+
+<v-click>
+
+Asked the agent: "What labels did the 3D CNN use, what was the train/validation split, the loss function and the final loss scores?"
+
+> **No loss score has been recorded at all**. I cannot distinguish "there is no signal" from "the model never trained".
+
+</v-click>
+
+<v-click>
+<div style="text-align: center; font-size: 1.25em; color: blue; margin-top:30px;">
+Query every detail. Use your domain knowledge to challenge findings.
+</div>
+</v-click>
+
+---
+layout: two-cols-header
+---
+
+# Example - Exploratory Data Analysis - Learnings
+
+**LLMs can give huge productivity gains but you still need to keep on top of the mass of information**
+
+::left::
+
+<div class="pr-6">
+
+
+- **Seven weeks** of back-and-forth with the agent
+- Of 108 commits, **37 are corrections or retractions**
+- Of 12 types of error, **10 were found because of a question asked**, not by a check.
+
+<v-clicks depth="2">
+
+- The best method was already found by day four
+- During the making of these five slides:
+  - Seven further errors corrected in the docs
+  - Six of the seven were found because the agent was challenged with a question
+
+</v-clicks>
+</div>
+
+
+::right::
+
+<v-click>
+<div class="pl-6">
+
+### Ask where the result came from
+
+- Which file did this read?
+- Did it train?
+- Which methods ran, of those planned?
+- Could this measurement have changed at all?
+- Is this a fair comparison?
+- Is this the right approach?
+
+</div>
+</v-click>
 
 ---
 layout: center
@@ -437,74 +562,60 @@ layout: center
 Have you got any examples?
 </div>
 
-<div style="text-align: center; font-size: 1.25em;">
-Evaluate your code from the exercise, how does it do?
-</div>
+---
+
+# Responsible Use Workflow: Before
+
+- Think about the data the model was trained on
+  - Uncommon, niche or fast-moving libraries -> uncertain results
+- Plan first - agree the approach before any code is written
+  - Invalid assumptions surface early, and the plan persists across sessions
+- Least privilege for agents
+  - No production credentials; sandbox or container where possible
+  - Keep destructive commands behind a confirmation
+- Set up provenance from the start - the agent won't by default
+  - Ask for a log, saved scripts and version control up front
+
+---
+
+# Responsible Use Workflow: During
+
+- Probabilistic - the same question can give different answers
+- Ask for reusable scripts, not inline one-offs
+  - Log parameters, metrics and training curves
+- Challenge the output
+  - "Are you sure?" "Is this a fair comparison?" "Did you follow the plan?"
+- Beware of sycophancy - agreement is not verification
+- Watch for early give-ups and silent shortcuts (skipped files, hard-coded values)
 
 ---
 layout: two-cols
 ---
 
-# Plan first
+# Responsible Use Workflow: After
 
-<div class="pr-3">
+### Check
 
-- A plan provides context as a persistent artefact across sessions.
-- Built-in 'Plan Mode' in agentic CLI tools:
-  - Claude Code
-  - Codex CLI
-- You can always plan without a 'Plan Mode':
-  - Use the chat interface to come up with a plan.
-  - Ask the agent to explore and perform research, then propose a plan.
-  - Write the plan yourself! (spec-driven development)
-  - No matter how, it is important to iterate and review the plan yourself.
-
-</div>
+- **REVIEW** - read and understand the code BEFORE running it
+- Tests, linters and CI against _your_ requirements
+  - An LLM doesn't understand the environment outside its context
+- Check the docs - there may be a recommended way already
+- Check the state the agent leaves behind (branches, config, files)
 
 ::right::
+<v-click>
 
-<div class="pl-3">
+### Record
 
-- Why?
-  - Clarify what the agent should do.
-  - Invalid assumptions can be found earlier.
-  - Force yourself to review your approach before jumping to execution.
+- <u>Version control</u> with small commits, so you can go back
+- Provenance - prompts, model and version, outputs and decisions
+- Disclose AI use where journals, funders or your institution require it
+- Check licences - generated code can copy licensed code verbatim, and new dependencies bring their own licence
 
+</v-click>
+
+<v-click>
+<div style="text-align: center; font-size: 1.25em; font-weight: 700; margin-top: 1.5em;">
+RESPONSIBILITY REMAINS WITH YOU
 </div>
-
-<style>
-.col-left li:first-child p:first-child {
-  margin-top: 0;
-}
-</style>
-
----
-
-# Responsible Use Workflow
-
-- Think about the data the model was trained on
-  - Uncommon (or poorly documented) libraries -> uncertain results
-
-- Probabilistic nature
-  - Asking the same thing twice may lead to different answers
-
-- **REVIEW**
-  - Read the code and understand what it is doing BEFORE running it
-
-- <u>Version control</u>
-  - Iterative revisions will often break your code; ensure you can go back if needed
-
----
-
-# Responsible Use Workflow
-
-- Check against docs for a second opinion
-  - There may already be a recommended way to solve a problem
-
-- Always use tests, linters, CI pipelines to check correctness
-  - Check against your requirements, an LLM doesn't understand the environment outside its own context
-
-- Record provenance
-  - Prompts, outputs and decisions should be recorded
-
-- **RESPONSIBILITY REMAINS WITH YOU**
+</v-click>
