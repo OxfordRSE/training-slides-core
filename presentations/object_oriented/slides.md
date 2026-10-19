@@ -58,7 +58,7 @@ steps = int(1e8)
 for _ in range(steps):
     gas = initialise_gas(temperature)
     photons = generate_photons()
-    temperature += calculate_temperature(gas, photons)
+    temperature += calc_temp(gas, photons)
 
 print(f"Temperature is: {temperature}")
 ```
@@ -95,7 +95,7 @@ for _ in range(steps):
         photons = generate_photons_black_hole()
     elif photon_source == "White dwarf":
         photons = generate_photons_white_dwarf()
-    temperature += calculate_temperature(gas, photons)
+    temperature += calc_temp(gas, photons)
 
 print(f"Temperature is: {temperature}")
 ```
@@ -147,9 +147,9 @@ for _ in range(steps):
         photons = generate_photons_white_dwarf()
 
     if temperature_model == "Matthews":
-        temperature += calculate_temperature_matthews(gas, photons)
+        temperature += calc_temp_matthews(gas, photons)
     elif temperature_model == "Sims":
-        temperature += calculate_temperature_sims(gas, photons)
+        temperature += calc_temp_sims(gas, photons)
 
 print(f"Temperature is: {temperature}")
 ```
@@ -853,9 +853,9 @@ gas_cloud = GasCloud(
 )
 
 for _ in range(steps):
-    gas_cloud.calculate_structure()
+    gas_cloud.calc_struct()
     photons = photon_source.generate()
-    gas_cloud.calculate_temperature(photons)
+    gas_cloud.calc_temp(photons)
 
 print(f"Temperature is: {gas_cloud.temperature}")
 ```

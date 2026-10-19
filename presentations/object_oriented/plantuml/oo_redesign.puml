@@ -5,13 +5,13 @@ skinparam ArrowFontColor #446e9b
 scale 0.84
 
 abstract class TemperatureModel {
-  {abstract} +calculate_temperature(gas, photons)
+  {abstract} +calc_temp(gas, photons)
 }
 class MatthewsModel {
-  +calculate_temperature(gas, photons)
+  +calc_temp(gas, photons)
 }
 class SimsModel {
-  +calculate_temperature(gas, photons)
+  +calc_temp(gas, photons)
 }
 
 abstract class PhotonSource {
@@ -28,8 +28,8 @@ class GasCloud {
   -temperature_model: TemperatureModel
   +temperature
   -structure
-  +calculate_temperature(photons)
-  +calculate_structure()
+  +calc_temp(photons)
+  +calc_struct()
 }
 
 TemperatureModel <|-- MatthewsModel
