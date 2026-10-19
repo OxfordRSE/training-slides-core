@@ -16,15 +16,6 @@ fonts:
 ---
 
 ---
-
-```yaml
-layout: orientation
-title: Orientation
-highlight: Introduction to HPC
-training-event-only: true
-```
-
----
 layout: two-cols
 ---
 
@@ -528,18 +519,3 @@ It was featured in Dan Brown's _Origin_ (2017).
 <div class="h-full w-full flex items-center justify-center">
   <img src="./img/marenostrum.jpg" class="object-cover h-full w-full"  alt="Photo of MareNostrum supercomputer in the neo-gothic chapel Torre Girona"/>
 </div>
-
-
----
-
-```yaml
-layout: questions
-training-event-only: true
-```
-
----
-
-```yaml
-src: ../../epilogue/main.md
-training-event-only: true
-```

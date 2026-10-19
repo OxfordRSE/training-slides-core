@@ -2,37 +2,37 @@ year: 2026
 sessions:
   - date: "22 Jan"
     slot: "09:30"
-    topic: Object-Oriented Programming
+    deck: object_oriented
     background: "#eef2f6"
   - date: "22 Jan"
     slot: "14:00"
-    topic: Functional Programming
+    deck: functional
     background: "#eef2f6"
   - date: "29 Jan"
     slot: "09:30"
-    topic: Version control with Git
+    deck: version_control
   - date: "29 Jan"
     slot: "14:00"
-    topic: Collaborative Code Development
+    deck: collaborative_code_development
   - date: "05 Feb"
     slot: "09:30"
-    topic: Software Testing
+    deck: testing
     background: "#eef2f6"
   - date: "05 Feb"
     slot: "14:00"
-    topic: Continuous Integration
+    deck: continuous_integration
     background: "#eef2f6"
   - date: "12 Feb"
     slot: "09:30"
-    topic: Packaging and Dependency Management
+    deck: packaging_dependency
   - date: "12 Feb"
     slot: "14:00"
-    topic: Containerisation with Docker
+    deck: containerisation
   - date: "19 Feb"
     slot: "09:30"
-    topic: Introduction to HPC
+    deck: hpc
     background: "#eef2f6"
   - date: "19 Feb"
     slot: "14:00"
-    topic: Workflows with Snakemake
+    deck: snakemake
     background: "#eef2f6"

@@ -8,6 +8,7 @@ addons:
   - ../addon
   - fancy-arrow
 layout: cover
+train-rse-walkthrough: false
 highlighter: shiki
 drawings:
   persist: false
@@ -84,13 +85,3 @@ Thanks to all who contributed to this talk:
 - Martin Robinson
 - John Brittain
 - Jim O'Donnell
-
----
-layout: center
----
-
-# Thanks for listening
-
-<div style="text-align: center; font-size: 1.5em; margin-top: 1em;">
-Questions/comments welcome!
-</div>

@@ -16,15 +16,6 @@ fonts:
 ---
 
 ---
-
-```yaml
-layout: orientation
-title: Orientation
-highlight: Workflows with Snakemake
-training-event-only: true
-```
-
----
 layout: two-cols-header
 ---
 
@@ -613,18 +604,3 @@ Disjoint paths in DAG can be executed in parallel
 ---
 
 <img src="./img/workflow-catalog.png" alt="workflow catalog" width="660"/>
-
-
----
-
-```yaml
-layout: questions
-training-event-only: true
-```
-
----
-
-```yaml
-src: ../../epilogue/main.md
-training-event-only: true
-```

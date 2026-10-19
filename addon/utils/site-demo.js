@@ -1,9 +1,9 @@
 // Shared helpers for the animated train.rse.ox.ac.uk walkthroughs in the
 // epilogue (SiteDemo.vue plays them; *Demo.vue components describe each scene).
 
-// Injected by slidev-theme-oxrse from the event YAML; tolerate it being absent
+// Defined by addon/setup/vite-plugins.ts from the event YAML; tolerate it being absent
 // eslint-disable-next-line no-undef
-export const schedule = typeof __EVENT_SCHEDULE__ === 'undefined' ? {} : __EVENT_SCHEDULE__
+export const schedule = typeof __EVENT__ === 'undefined' ? {} : __EVENT__
 
 // String() so that e.g. `enrolment_key: 2026` in the YAML still works
 export const eventName = String(schedule.name || 'Your event')

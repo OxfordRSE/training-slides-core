@@ -5,7 +5,7 @@ import { computed } from 'vue'
 import ThemeCover from 'slidev-theme-oxrse/layouts/cover.vue'
 
 // eslint-disable-next-line no-undef
-const schedule = typeof __EVENT_SCHEDULE__ === 'undefined' ? {} : __EVENT_SCHEDULE__
+const schedule = typeof __EVENT__ === 'undefined' ? {} : __EVENT__
 const props = defineProps({
   date: { type: String, default: '' },
 })

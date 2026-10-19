@@ -4,37 +4,37 @@ enrolment_key: dtc-soft-eng
 sessions:
   - date: "12 Oct"
     slot: "09:30"
-    topic: Object-Oriented Programming
+    deck: object_oriented
   - date: "12 Oct"
     slot: "14:00"
-    topic: Functional Programming
+    deck: functional
   - date: "13 Oct"
     slot: "09:30"
-    topic: Version Control with Git
+    deck: version_control
   - date: "13 Oct"
     slot: "14:00"
-    topic: Collaborative Code Development
+    deck: collaborative_code_development
   - date: "15 Oct"
     slot: "09:30"
-    topic: Software Testing
+    deck: testing
   - date: "16 Oct"
     slot: "09:30"
-    topic: Continuous Integration
+    deck: continuous_integration
   - date: "19 Oct"
     slot: "09:30"
-    topic: Packaging and Dependency Management
+    deck: packaging_dependency
   - date: "19 Oct"
     slot: "14:00"
-    topic: Containerisation with Docker
+    deck: containerisation
   - date: "20 Oct"
     slot: "09:30"
-    topic: Using AI for Coding
+    deck: ai_for_coding
   - date: "20 Oct"
     slot: "14:00"
-    topic: Directing Coding Agents
+    deck: directing_coding_agents
   - date: "22 Oct"
     slot: "09:30"
-    topic: Introduction to HPC
+    deck: hpc
   - date: "23 Oct"
     slot: "09:30"
-    topic: Workflows with Snakemake
+    deck: snakemake

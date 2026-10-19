@@ -16,15 +16,6 @@ fonts:
 ---
 
 ---
-
-```yaml
-layout: orientation
-title: Orientation
-highlight: Containerisation with Docker
-training-event-only: true
-```
-
----
 layout: two-cols
 ---
 
@@ -371,18 +362,3 @@ th { border-bottom: 2px solid #888; }
   - Containers on GitHub Actions
   - Containers on HPC with Apptainer
 - Help with containerising your own code
-
-
----
-
-```yaml
-layout: questions
-training-event-only: true
-```
-
----
-
-```yaml
-src: ../../epilogue/main.md
-training-event-only: true
-```

@@ -17,15 +17,6 @@ fonts:
 ---
 
 ---
-
-```yaml
-layout: orientation
-title: Orientation
-highlight: Object-Oriented Programming
-training-event-only: true
-```
-
----
 layout: default
 ---
 
@@ -880,18 +871,3 @@ print(f"Temperature is: {gas_cloud.temperature}")
   - Composition
   - Inheritance
   - Polymorphism
-
-
----
-
-```yaml
-layout: questions
-training-event-only: true
-```
-
----
-
-```yaml
-src: ../../epilogue/main.md
-training-event-only: true
-```

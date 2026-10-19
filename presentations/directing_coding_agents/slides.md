@@ -16,15 +16,6 @@ fonts:
 ---
 
 ---
-
-```yaml
-layout: orientation
-title: Orientation
-highlight: Directing Coding Agents
-training-event-only: true
-```
-
----
 layout: two-cols-header
 ---
 
@@ -611,17 +602,3 @@ You will look at some issues from real-world codebases, but the purpose of the
 practical session is not to teach you how to contribute to those codebases by
 using coding agents (read their AI policy).
 </div>
-
----
-
-```yaml
-layout: questions
-training-event-only: true
-```
-
----
-
-```yaml
-src: ../../epilogue/main.md
-training-event-only: true
-```

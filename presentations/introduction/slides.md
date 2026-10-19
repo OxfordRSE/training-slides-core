@@ -6,6 +6,8 @@ addons:
   - fancy-arrow
 layout: cover
 date: first-session
+feedback-slide: false
+train-rse-walkthrough: false
 highlighter: shiki
 drawings:
   persist: false
@@ -16,15 +18,6 @@ fonts:
   mono: JetBrains Mono Variable
   provider: none
 ---
-
----
-
-```yaml
-layout: orientation
-title: Orientation
-highlight: Course Introduction
-training-event-only: true
-```
 
 ---
 layout: center
@@ -880,11 +873,3 @@ class: text-sm
 ::center
 <img src="./imgs/material-help.png" alt="Material" style="width: 62%;"/>
 ::
-
-
----
-
-```yaml
-layout: questions
-training-event-only: true
-```

@@ -1,19 +1,21 @@
 <script setup>
 // Replaces the theme's `orientation` layout: the event timetable, one session
-// per row, with the current session (`highlight`) outlined. Each row shows the
-// weekday, date and start time together in one label; a session can set an
-// optional `background` colour in the event YAML, e.g. to shade alternate days.
+// per row, with the deck's own sessions (`deck`, the deck's slug) outlined. An
+// event build adds this slide to each deck (see addon/setup/preparser.ts). Each
+// row shows the weekday, date and start time together in one label; a session
+// can set an optional `background` colour in the event YAML, e.g. to shade
+// alternate days.
 //
 // @unocss-ignore: this file uses its own class names, not UnoCSS utilities
 const props = defineProps({
-  highlight: { type: String, default: '' },
+  deck: { type: String, default: '' },
   // Sessions to show instead of the event's, as in the theme's layout
   sessions: { type: Array, default: null },
 })
 
-// Injected by slidev-theme-oxrse from the event YAML
+// Defined by addon/setup/vite-plugins.ts from the event YAML
 // eslint-disable-next-line no-undef
-const schedule = typeof __EVENT_SCHEDULE__ === 'undefined' ? {} : __EVENT_SCHEDULE__
+const schedule = typeof __EVENT__ === 'undefined' ? {} : __EVENT__
 const sessions = props.sessions || schedule.sessions || []
 
 // "29 Sep" + year -> "Mon 29 Sep"; anything unexpected is shown as written
@@ -35,7 +37,7 @@ function day(s) {
       <tbody>
         <tr
           v-for="(s, i) in sessions" :key="i"
-          :class="{ highlighted: s.topic === props.highlight, shaded: s.background }"
+          :class="{ highlighted: props.deck && s.deck === props.deck, shaded: s.background }"
           :style="{ background: s.background }"
         >
           <td class="session-when"><span class="when"><span class="day">{{ day(s) }}</span><span class="time">{{ s.slot }}</span></span></td>

@@ -16,15 +16,6 @@ fonts:
 ---
 
 ---
-
-```yaml
-layout: orientation
-title: Orientation
-highlight: Version Control with Git
-training-event-only: true
-```
-
----
 layout: section
 title: " "
 ---
@@ -579,18 +570,3 @@ pass and come back once the everyday workflow feels comfortable.
 - Manage branches and resolve merge conflicts
 - Exclude certain files from version control
 - _(Optional)_ Explore advanced Git tools: rebasing, bisecting, stashing, and multiple remotes
-
-
----
-
-```yaml
-layout: questions
-training-event-only: true
-```
-
----
-
-```yaml
-src: ../../epilogue/main.md
-training-event-only: true
-```
