@@ -110,8 +110,9 @@ Programs to produce other programs.
 
 - Program synthesis, construction of a computer program by:
   - Input-output specifications
-  - Examples
+  - Examples/demonstrations
   - Natural language
+  - Logics/constraints
 
 ::right::
 <div class="h-full flex flex-col items-center justify-center">
@@ -496,7 +497,7 @@ This is all about how you manage the context window in a session, some tips:
 - Decompose a task into smaller pieces
 - Aggressively `/clear` to reset the context window
 - Consider `/compact` for long conversation
-  - More efficient when the cached prompt still hot
+  - More efficient when the cached prompts are still hot
 - Keep a 'journal' as a persistent artefact that can be passed to another fresh session
   - Modern coding agents implement this as 'memory'
 - Employ subagents for isolated tasks, e.g.:
@@ -514,6 +515,7 @@ This is all about how you manage the context window in a session, some tips:
 
 - Use `/side`/`/btw` for query unrelated to the main task
 - Use a hierarchical `AGENTS.md`/`CLAUDE.md`
+- Use `@filename` to refer to a file
 - Use more LLM-friendly format whenever possible:
   - Plain text/HTML instead of PDF
   - Extract data points yourself for a plot instead of PNG/JPEG
@@ -600,8 +602,8 @@ The practical session has four modules:
    conditions it needs.
 2. Judge whether a bug report is written well enough for an agent to act on at
    all.
-3. Decide whether a feature should exist at all, then say what must exist, what
-   must not change, and what counts as done.
+3. Decide whether a feature should exist at all, then think about what must
+   exist, what must not change, and what counts as done.
 4. Familiarise yourself with code you did not write.
 
 <div class="mt-10 border border-stone-500 rounded p-2 text-stone-700">
