@@ -1,4 +1,6 @@
 year: 2026
+name: "[MT26] Fundamentals of Software Engineering for Research"
+enrolment_key: oxrse-mt26
 sessions:
   - date: "20 Oct"
     slot: "09:30"
