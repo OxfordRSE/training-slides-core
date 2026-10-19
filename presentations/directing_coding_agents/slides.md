@@ -109,9 +109,9 @@ layout: two-cols-header
 Programs to produce other programs.
 
 - Program synthesis, construction of a computer program by:
-  - input-output specifications
-  - examples
-  - natural languages
+  - Input-output specifications
+  - Examples
+  - Natural language
 
 ::right::
 <div class="h-full flex flex-col items-center justify-center">
@@ -205,11 +205,11 @@ layout: two-cols-header
   - High coupling
   - Convoluted code path
 - Common anti-patterns to watch out for:
-  - ignore what is available and implement its own solution
-  - employ shortcuts (reward hacking)
-    - amend tests
-    - adjust tolerance
-  - not aware of latest features/deprecations
+  - Ignore what is available and implement its own solution
+  - Employ shortcuts (reward hacking)
+    - Amend tests
+    - Adjust tolerance
+  - Not aware of latest features/deprecations
 
 </v-clicks>
 
