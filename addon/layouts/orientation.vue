@@ -11,9 +11,9 @@ const props = defineProps({
   sessions: { type: Array, default: null },
 })
 
-// Injected by slidev-theme-oxrse from the event YAML
+// Defined by addon/setup/vite-plugins.ts from the event YAML
 // eslint-disable-next-line no-undef
-const schedule = typeof __EVENT_SCHEDULE__ === 'undefined' ? {} : __EVENT_SCHEDULE__
+const schedule = typeof __EVENT__ === 'undefined' ? {} : __EVENT__
 const sessions = props.sessions || schedule.sessions || []
 
 // "29 Sep" + year -> "Mon 29 Sep"; anything unexpected is shown as written

@@ -2,14 +2,14 @@
 import { useSlideContext } from '@slidev/client'
 import QRCode from 'qrcode'
 
-// Injected by slidev-theme-oxrse from events/$TRAINING_EVENT.yaml
-declare const __EVENT_SCHEDULE__: { feedback_form?: string }
+// Defined by addon/setup/vite-plugins.ts from events/$TRAINING_EVENT.yaml
+declare const __EVENT__: { feedback_form?: string }
 
 // Used when the training event does not set `feedback_form`
 const DEFAULT_FEEDBACK_FORM = 'aMrPrz2HLg'
 
 // `feedback_form` is a Microsoft Forms ID, or a full URL for any other form
-const form = __EVENT_SCHEDULE__.feedback_form || DEFAULT_FEEDBACK_FORM
+const form = __EVENT__.feedback_form || DEFAULT_FEEDBACK_FORM
 const url = /^https?:\/\//i.test(form) ? form : `https://forms.cloud.microsoft/e/${form}`
 
 const border = 4

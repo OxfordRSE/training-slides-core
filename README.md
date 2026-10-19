@@ -19,49 +19,37 @@ npx slidev --open --entry presentations/functional/slides.md
 
 ### Build with a specific training event
 
-You may set up a YAML fle for a training event that contains all the dates of
-different sessions, and by using the theme `theme-oxrse` with the `orientation`
-layout, it will include the 'Orientation' slide in the PowerPoint presentation
-using the dates in the YAML file. The YAML file provides a single source of
-truth for all the dates of a training event and highlight the current session.
+A training event is a YAML file in `events/` listing its sessions. It is the
+single source of truth for which decks the event uses and when: an event build
+lists only those decks on the landing page, and their orientation slides show
+its timetable.
 
-For example, if you have a YAML file `events/hilary-2026.yaml` with the
-following content:
+For example, `events/hilary-2026.yaml`:
 
 ```yaml
 year: 2026
 sessions:
   - date: "22 Jan"
     slot: "09:30"
-    topic: Object-Oriented Programming
+    deck: object_oriented
   - date: "22 Jan"
     slot: "14:00"
-    topic: Functional Programming
+    deck: functional
   - date: "29 Jan"
     slot: "09:30"
-    topic: Version control with Git
-  - date: "29 Jan"
-    slot: "14:00"
-    topic: Collaborative Code Development
-  - date: "05 Feb"
-    slot: "09:30"
-    topic: Software Testing
-  - date: "05 Feb"
-    slot: "14:00"
-    topic: Continuous Integration
-  - date: "12 Feb"
-    slot: "09:30"
-    topic: Packaging and Dependency Management
-  - date: "12 Feb"
-    slot: "14:00"
-    topic: Containerisation with Docker
-  - date: "19 Feb"
-    slot: "09:30"
-    topic: Introduction to HPC
+    deck: version_control
+  ...
   - date: "19 Feb"
     slot: "14:00"
-    topic: Workflows with Snakemake
+    topic: Drop-in session
 ```
+
+Each session's `deck` is the name of its directory in `presentations/`. Its
+`topic`, shown on the orientation slide, defaults to the deck's title as the
+landing page shows it (`title` in `presentations/index-metadata.yaml`, else the
+deck's own `title`). Set `topic` to show something else, or on its own for a
+session without slides, such as a drop-in. The build fails if a session names a
+deck that does not exist, or has neither a `deck` nor a `topic`.
 
 You can build with:
 
@@ -129,7 +117,7 @@ slide, for example to shade alternate days:
 ```yaml
   - date: "29 Sep"
     slot: "09:30"
-    topic: Object-Oriented Programming
+    deck: object_oriented
     background: "#eef2f6"
 ```
 
@@ -145,11 +133,12 @@ first date in an event build rather than the date it was built.
 Decks in an event end with an event-only questions slide, using the `questions`
 layout from `addon/layouts/`.
 
+#### Landing page
+
 The landing page, built by `scripts/build-index.mjs`, lists every course with a
-deck in `presentations/`. In an event build it lists only the courses in that
-event, in timetable order: a deck belongs to the event when the `highlight:` of
-its orientation slide matches a session `topic`. A deck with `date:
-first-session` (the course introduction) is listed first. Each card then shows its
+deck in `presentations/`. In an event build it lists only the decks named by
+the event's sessions, in timetable order, after any deck with `date:
+first-session` (the course introduction). Each card then shows its
 session's date and start time, and a short script highlights the session in
 progress (in Oxford time, from an hour before it starts) and scrolls it into
 view. To preview another moment, append `?now=` to the address, e.g.
