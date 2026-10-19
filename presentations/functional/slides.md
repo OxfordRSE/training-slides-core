@@ -16,15 +16,6 @@ fonts:
 ---
 
 ---
-
-```yaml
-layout: orientation
-title: Orientation
-highlight: Functional Programming
-training-event-only: true
-```
-
----
 layout: default
 ---
 
@@ -642,18 +633,3 @@ There is a lot more to it than what we have seen today (e.g. monads, currying, p
     p { @apply leading-normal }
     strong { color: var(--oxrse-bg-colour); }
 </style>
-
-
----
-
-```yaml
-layout: questions
-training-event-only: true
-```
-
----
-
-```yaml
-src: ../../epilogue/main.md
-training-event-only: true
-```

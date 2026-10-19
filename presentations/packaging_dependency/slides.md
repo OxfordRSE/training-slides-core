@@ -16,15 +16,6 @@ fonts:
 ---
 
 ---
-
-```yaml
-layout: orientation
-title: Orientation
-highlight: Packaging and Dependency Management
-training-event-only: true
-```
-
----
 layout: two-cols
 ---
 
@@ -529,18 +520,3 @@ my-package/
 [https://github.com/OxfordRSE/python-packaging-course](https://github.com/OxfordRSE/python-packaging-course)
 
 </div>
-
-
----
-
-```yaml
-layout: questions
-training-event-only: true
-```
-
----
-
-```yaml
-src: ../../epilogue/main.md
-training-event-only: true
-```

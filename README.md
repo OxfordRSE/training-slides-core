@@ -1,7 +1,7 @@
 # OxRSE core training slides
 
 This repo conains [sli.dev](https://sli.dev/) slideshows for our training material.
-Each course is a single slideshow, `presentations/<name>/slides.md`, with its images alongside it. Shared pieces live at the top level: `addon/` (a local Slidev addon that every slideshow loads, with shared components, layouts and styles), `epilogue/` (slides appended to every slideshow in an event build) and `events/` (one YAML file per training event).
+Each course is a single slideshow, `presentations/<name>/slides.md`, with its images alongside it. Shared pieces live at the top level: `addon/` (a local Slidev addon that every slideshow loads, with shared components, layouts and styles), `epilogue/` (closing slides added to a slideshow in an event build) and `events/` (one YAML file per training event).
 
 ## Slidev build
 
@@ -21,8 +21,8 @@ npx slidev --open --entry presentations/functional/slides.md
 
 A training event is a YAML file in `events/` listing its sessions. It is the
 single source of truth for which decks the event uses and when: an event build
-lists only those decks on the landing page, and their orientation slides show
-its timetable.
+lists only those decks on the landing page, and adds the event's own slides to
+each of them (see below).
 
 For example, `events/hilary-2026.yaml`:
 
@@ -130,8 +130,28 @@ A deck that is not a timetabled session, such as the course introduction, can
 set `date: first-session` in its headmatter, so that its cover shows the event's
 first date in an event build rather than the date it was built.
 
-Decks in an event end with an event-only questions slide, using the `questions`
-layout from `addon/layouts/`.
+#### Slides added in an event build
+
+Decks do not contain any event slides themselves. In an event build, each deck
+that is one of the event's sessions, or has `date: first-session`, gets these
+from `addon/setup/preparser.ts`:
+
+- after the cover, the orientation slide: the event's timetable, with the deck's
+  own session outlined;
+- at the end, a questions slide (the `questions` layout from `addon/layouts/`),
+  then the feedback slide (`epilogue/feedback.md`), then the animated
+  walkthroughs of train.rse.ox.ac.uk (`epilogue/train-rse.md`).
+
+A deck leaves out the last two with these in its headmatter, e.g. when it has no
+course material on train.rse.ox.ac.uk to work through:
+
+```yaml
+feedback-slide: false
+train-rse-walkthrough: false
+```
+
+The generic build adds none of these. Any other slide can be shown only in an
+event build by giving it `training-event-only: true` in its frontmatter.
 
 #### Landing page
 

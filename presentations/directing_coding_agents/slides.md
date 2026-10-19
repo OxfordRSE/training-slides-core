@@ -16,15 +16,6 @@ fonts:
 ---
 
 ---
-
-```yaml
-layout: orientation
-title: Orientation
-highlight: Directing Coding Agents
-training-event-only: true
-```
-
----
 layout: two-cols-header
 ---
 
@@ -147,18 +138,3 @@ The practical session has four modules:
    must not change, and what counts as done.
 4. Familiarise yourself with code you did not write (or written by yourself
    5 years ago).
-
-
----
-
-```yaml
-layout: questions
-training-event-only: true
-```
-
----
-
-```yaml
-src: ../../epilogue/main.md
-training-event-only: true
-```

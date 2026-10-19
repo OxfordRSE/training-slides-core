@@ -16,15 +16,6 @@ fonts:
 ---
 
 ---
-
-```yaml
-layout: orientation
-title: Orientation
-highlight: Software Testing
-training-event-only: true
-```
-
----
 layout: two-cols
 ---
 
@@ -367,18 +358,3 @@ layout: default
 </ul>
 
 <span v-click class="text-lg font-semibold text-red-700">Tests do not guarantee bug-free software, but they reduce risk significantly</span>
-
-
----
-
-```yaml
-layout: questions
-training-event-only: true
-```
-
----
-
-```yaml
-src: ../../epilogue/main.md
-training-event-only: true
-```

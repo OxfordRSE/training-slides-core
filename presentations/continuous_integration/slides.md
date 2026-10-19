@@ -16,15 +16,6 @@ fonts:
 ---
 
 ---
-
-```yaml
-layout: orientation
-title: Orientation
-highlight: Continuous Integration
-training-event-only: true
-```
-
----
 layout: default
 ---
 
@@ -598,18 +589,3 @@ layout: two-cols
     class="w-4/5"
   />
 </div>
-
-
----
-
-```yaml
-layout: questions
-training-event-only: true
-```
-
----
-
-```yaml
-src: ../../epilogue/main.md
-training-event-only: true
-```

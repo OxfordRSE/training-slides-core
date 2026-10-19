@@ -16,15 +16,6 @@ fonts:
 ---
 
 ---
-
-```yaml
-layout: orientation
-title: Orientation
-highlight: Collaborative Code Development
-training-event-only: true
-```
-
----
 layout: section
 title: " "
 ---
@@ -415,18 +406,3 @@ layout: two-cols
   <img src="./imgs/chaste.png" alt="Chaste" style="width: 25%; margin-top: 20px;" />
   <a href="https://github.com/Chaste/Chaste">https://github.com/Chaste/Chaste</a>
 </div>
-
-
----
-
-```yaml
-layout: questions
-training-event-only: true
-```
-
----
-
-```yaml
-src: ../../epilogue/main.md
-training-event-only: true
-```
