@@ -59,3 +59,11 @@ export function readEvent(name = process.env.TRAINING_EVENT) {
   })
   return { ...event, sessions }
 }
+
+// The decks an event build includes: each session's deck, and any deck that
+// opens the event (`date: first-session`, e.g. the introduction)
+export function eventDecks(event) {
+  const openers = fs.readdirSync(presentationsDir)
+    .filter(slug => hasDeck(slug) && readDeckHeadmatter(slug).date === 'first-session')
+  return [...new Set([...openers, ...event.sessions.map(s => s.deck).filter(Boolean)])]
+}

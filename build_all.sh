@@ -15,8 +15,15 @@ pushd "$(dirname "$0")" > /dev/null
 rm -rf dist
 mkdir -p dist
 
-for dir in presentations/*/; do
-    ./build.sh "$dir" "$repo_root"
+# An event build builds only the event's decks; the generic build, every deck
+if [ -n "${TRAINING_EVENT:-}" ]; then
+    decks=$(node ./scripts/event-decks.mjs)
+else
+    decks=$(basename -a presentations/*/)
+fi
+
+for deck in $decks; do
+    ./build.sh "presentations/${deck}/" "$repo_root"
 done
 
 node ./scripts/build-index.mjs

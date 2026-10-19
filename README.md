@@ -21,8 +21,8 @@ npx slidev --open --entry presentations/functional/slides.md
 
 A training event is a YAML file in `events/` listing its sessions. It is the
 single source of truth for which decks the event uses and when: an event build
-lists only those decks on the landing page, and adds the event's own slides to
-each of them (see below).
+builds only those decks (and the introduction), lists them on the landing page,
+and adds the event's own slides to each of them (see below).
 
 For example, `events/hilary-2026.yaml`:
 
@@ -323,7 +323,7 @@ characters are legitimate elsewhere and each replacement wants a human eye.
 
 ## Deployment
 
-When the repository is updated, a Github action will use `./build_all.sh` to build all presentations into a `dist/` folder and deploy to github pages.
+When the repository is updated, a Github action will use `./build_all.sh` to build all presentations (or, with `TRAINING_EVENT` set, the event's) into a `dist/` folder and deploy to github pages.
 
 The generated course landing page at `dist/index.html` now uses a custom template
 that pulls presentation titles from each `slides.md`, reuses the OxRSE logo, and

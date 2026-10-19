@@ -1,6 +1,6 @@
 import path from 'node:path'
 import { definePreparserSetup } from '@slidev/types'
-import { readEvent, repoRoot } from '../../scripts/events.mjs'
+import { eventDecks, readEvent, repoRoot } from '../../scripts/events.mjs'
 
 // In an event build (TRAINING_EVENT set), a deck that is one of the event's
 // sessions, or that opens the event (`date: first-session`, e.g. the
@@ -11,7 +11,7 @@ import { readEvent, repoRoot } from '../../scripts/events.mjs'
 export default definePreparserSetup(({ filepath, headmatter }) => {
   const event = readEvent()
   const deck = path.basename(path.dirname(filepath))
-  const inEvent = Boolean(event) && (headmatter.date === 'first-session' || event.sessions.some(s => s.deck === deck))
+  const inEvent = Boolean(event) && eventDecks(event).includes(deck)
   const epilogue = (file: string) => path.relative(path.dirname(filepath), path.join(repoRoot, 'epilogue', file)).replaceAll('\\', '/')
 
   // Slidev parses the deck itself first, then each file it imports with `src:`
