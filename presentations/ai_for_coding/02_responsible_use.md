@@ -89,6 +89,15 @@ layout: two-cols
 Source: <a href="https://www.theguardian.com/technology/2026/apr/29/claude-ai-deletes-firm-database">The Guardian, 29 April 2026</a>
 </div>
 
+<!--
+- Source is founder Jer (Jeremy) Crane's posts on X over the weekend of 25/26 April, widely reported since. Mostly his account.
+- The agent was doing a routine task in the staging environment, hit a credential mismatch, and decided on its own to "fix" it by deleting a Railway volume.
+- It had a fully permissioned Railway API token. Railway's CEO called it a "rogue customer AI granted a fully permission API token". Nothing scoped the token to staging.
+- One GraphQL API call through a legacy endpoint that had no delayed delete. Nine seconds, no confirmation.
+- The volume level backups lived with the volume, so they went too. The newest backup Crane could recover himself was three months old.
+- Impact: the rental firms using PocketOS lost three months of reservations and new signups. Crane: "Every single one of them is doing emergency manual work because of a 9-second API call."
+-->
+
 ---
 
 # A warning: goodbye production database
@@ -104,6 +113,15 @@ Source: <a href="https://www.theguardian.com/technology/2026/apr/29/claude-ai-de
   > I violated every principle I was given: I guessed instead of verifying. I ran a destructive action without being asked.
 
 - Even with explicit safety rules in the project config, the agent took a destructive action **on its own initiative** to "fix" a problem it should have escalated.
+
+<!--
+- The "confession" also admitted it had not verified the volume ID, had not checked whether the volume was shared between environments, and had not read Railway's docs before running the command.
+- Outcome: Railway restored the data from its offsite disaster backups, about 30 minutes after its CEO got involved. A support ticket had lapsed for over 24 hours before that. Crane says significant gaps remain and has retained legal counsel.
+- Railway's fixes: deletes now soft delete for 48 hours, the legacy endpoint was patched, and token permissions are being reassessed. Cursor and Anthropic had not commented at the time of reporting.
+- No single failure: an over permissioned token the agent could reach, no confirmation on a destructive API, backups stored alongside the data, and an agent acting beyond its task.
+- Lessons for us: least privilege, separate credentials per environment, backups kept somewhere else, and a human approving anything destructive.
+- Crane: "every tool we've built is for a human in the loop."
+-->
 
 ---
 layout: center
@@ -212,19 +230,34 @@ layout: two-cols
 ```python {maxHeight:'380px'}
 import polars as pl
 
-def filter_detections_by_duration(df: pl.DataFrame, min_duration: int) -> pl.DataFrame:
+def filter_detections_by_duration(
+    df: pl.DataFrame, min_duration: int
+) -> pl.DataFrame:
 
-    # Define the window for operations grouped by 'stable_id' and sorted by 'frame_id'
-    window = pl.Window(partition_by="stable_id", order_by="frame_id")
+    # Define the window for operations grouped
+    # by 'stable_id' and sorted by 'frame_id'
+    window = pl.Window(
+        partition_by="stable_id",
+        order_by="frame_id",
+    )
 
-    # Apply the filtering logic in a single, chained expression
+    # Apply the filtering logic in a single,
+    # chained expression
     filtered_df = df.with_columns(
-        # Step 1: Find the start of a sequence of 1s
-        _is_first=(pl.col('class_id') == 1) &
-            (pl.col('class_id').shift(1).fill_null(0).over(window) == 0)
+        # Step 1: Find the start of a
+        # sequence of 1s
+        _is_first=(pl.col('class_id') == 1) & (
+            pl.col('class_id')
+            .shift(1)
+            .fill_null(0)
+            .over(window) == 0
+        )
     ).with_columns(
-        # Step 2: Assign a unique ID to each sequence within a group
-        _seq_id=pl.col('_is_first').cumsum().over('stable_id')
+        # Step 2: Assign a unique ID to each
+        # sequence within a group
+        _seq_id=pl.col('_is_first')
+            .cumsum()
+            .over('stable_id')
     ).with_columns(
         ...
         ...
@@ -271,6 +304,16 @@ def filter_detections_by_duration(df: pl.DataFrame, min_duration: int) -> pl.Dat
 More info on Polars window functions can be found here<br />
 <a href="https://docs.pola.rs/user-guide/expressions/window-functions/">https://docs.pola.rs/user-guide/expressions/window-functions/</a>
 </div>
+
+<!--
+- Polars has never had a `pl.Window` class. Windows in Polars are done with the `.over()` method on an expression.
+- Most likely source is PySpark, where this is exactly the pattern: `w = Window.partitionBy("stable_id").orderBy("frame_id")`, then `F.lag("class_id").over(w)`. Build a window object, pass it to `.over()`.
+- Snowflake's Snowpark uses the same pattern with the very same snake_case names: `Window.partition_by(...).order_by(...)`. In SQL it is `OVER (PARTITION BY stable_id ORDER BY frame_id)`.
+- The model has seen far more Spark and SQL than Polars. Both have a DataFrame API with `.over()`, so it blended them into a plausible API that does not exist.
+- The real Polars version: `pl.col("class_id").shift(1).fill_null(0).over("stable_id", order_by="frame_id")`. Older Polars versions have no `order_by` on `over()`, so sort by `frame_id` first.
+- Bonus: `.cumsum()` was renamed `cum_sum()` and removed in Polars 1.0, so the code would fail again even after fixing the window. Pandas still uses `cumsum`, another blend.
+- The claim that `pl.Window` was "introduced in newer versions" was also made up, to explain away the error. Even when challenged, it insisted it "did not hallucinate the feature".
+-->
 
 ---
 
