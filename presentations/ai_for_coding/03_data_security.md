@@ -50,6 +50,7 @@ layout: two-cols
 - Grant access only to the data strictly needed
   - Run in a project folder or container, never your home directory
 - Deny-list secrets and data files in the agent's permission settings
-- Never paste secrets into prompts; enable secret scanning (e.g. GitHub push protection)
+- Never paste secrets into prompts
+- Use secret scanning to block keys before they are pushed (e.g. GitHub push protection, gitleaks)
 - Check a package exists and is reputable before installing
 - Only install MCP servers and skills from trusted sources

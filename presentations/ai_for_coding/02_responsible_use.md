@@ -454,7 +454,7 @@ Even if there is a plan, <b>you</b> need to ensure the agent carries it out in f
 
 Asked the agent: "What labels did the 3D CNN use, what was the train/validation split, the loss function and the final loss scores?"
 
-> **no loss score has been recorded at all**. I cannot distinguish "there is no signal" from "the model never trained".
+> **No loss score has been recorded at all**. I cannot distinguish "there is no signal" from "the model never trained".
 
 </v-click>
 
@@ -486,7 +486,7 @@ layout: two-cols-header
 - The best method was already found by day four
 - During the making of these five slides:
   - Seven further errors corrected in the docs
-  - six of the seven were found because the agent was challenged with a question
+  - Six of the seven were found because the agent was challenged with a question
 
 </v-clicks>
 </div>
@@ -567,7 +567,7 @@ layout: two-cols
 - <u>Version control</u> with small commits, so you can go back
 - Provenance - prompts, model and version, outputs and decisions
 - Disclose AI use where journals, funders or your institution require it
-- Check the licence of generated or suggested code
+- Check licences - generated code can copy licensed code verbatim, and new dependencies bring their own licence
 
 </v-click>
 
