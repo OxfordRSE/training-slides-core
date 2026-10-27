@@ -350,9 +350,11 @@ layout: two-cols
 Bash expands unquoted patterns into matching entries:
 
 - `*`: zero or more characters
-  - `sample_*.txt` matches both `sample_1.txt` and `sample_10.txt`
+  - `sample_*.txt` matches all `sample_1.txt`, `sample_a.txt` and `sample_10.txt`
+  - `sample_1*.txt` does not match `sample_a.txt`
 - `?`: exactly one character
-  - `sample_?.txt` matches `sample_1.txt`, but not `sample_10.txt`
+  - `sample_?.txt` matches `sample_1.txt` and `sample_a.txt` but not `sample_10.txt`
+  - `sample_1?.txt` does not match `sample_1.txt` and `sample_a.txt`
 
 ::right::
 
