@@ -58,3 +58,8 @@ directing_coding_agents:
   title: Directing Coding Agents
   description: Working with modern coding agents effectively by providing the right context and clear specification.
   audience: Tooling
+bash_introduction:
+  number: 14
+  title: Introduction to the Bash shell
+  description: An introduction to the Bash shell, basic operations to navigate the file system and useful commands.
+  audience: Tooling
