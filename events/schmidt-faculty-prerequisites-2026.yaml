@@ -1,0 +1,16 @@
+year: 2026
+name: "Schmidt Faculty Fellowship - Prerequisites for Software Engineering 2026"
+enrolment_key: schmidt_faculty_2026
+sessions:
+  - date: "29 Oct"
+    slot: "09:00"
+    deck: bash_introduction
+  - date: "12 Nov"
+    slot: "09:00"
+    deck: python_introduction
+  - date: "26 Nov"
+    slot: "09:00"
+    deck: version_control
+  - date: "10 Dec"
+    slot: "09:00"
+    deck: procedural
