@@ -63,3 +63,13 @@ bash_introduction:
   title: Introduction to the Bash shell
   description: An introduction to the Bash shell, basic operations to navigate the file system and useful commands.
   audience: Tooling
+python_introduction:
+  number: 15
+  title: Introduction to Python
+  description: An introduction to the Python programming language
+  audience: Tooling
+procedural:
+  number: 16
+  title: Procedural Programming
+  description: An introduction to the procedural programming
+  audience: Paradigms
