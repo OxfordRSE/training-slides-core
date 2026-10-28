@@ -50,7 +50,6 @@ async function getPresentationEntries() {
 
     return {
       slug,
-      number: metadata.number,
       title: metadata.title || frontmatter.title || humanize(slug),
       description: metadata.description || 'Course presentation',
       audience: metadata.audience || '',
@@ -159,7 +158,7 @@ function renderCards(presentations, eventSchedule) {
 
     return `
           <${tagName} class="deck-card${availabilityClass}"${hrefAttribute}${startAttribute}>
-            <span class="card-index">${presentation.number ?? '?'}</span>
+            <span class="card-index">${presentation.number}</span>
             <div class="card-copy">
               ${renderWhen(presentation, eventSchedule)}
               <h3>${escapeHtml(presentation.title)}</h3>
@@ -605,6 +604,9 @@ async function main() {
         .sort((a, b) => start(a).localeCompare(start(b))),
     ]
   }
+  // Number cards by position: a deck that opens the event is 0, the rest count from 1
+  let n = 0
+  presentations = presentations.map(p => ({ ...p, number: p.opensEvent ? 0 : ++n }))
 
   await fs.mkdir(logoDir, { recursive: true })
   await fs.copyFile(logoSource, logoDest)
