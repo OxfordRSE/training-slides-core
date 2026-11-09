@@ -65,11 +65,16 @@ bash_introduction:
   audience: Tooling
 python_introduction:
   number: 15
-  title: Introduction to Python
-  description: Running Python, variables and types, libraries for data analysis and plotting, loops, conditionals, errors and functions.
+  title: "Introduction to Python 1: The Core Language"
+  description: Running Python, variables and types, lists, loops and conditionals, and reading errors.
+  audience: Tooling
+python_introduction_2:
+  number: 16
+  title: "Introduction to Python 2: Functions, Containers and Data"
+  description: Writing functions, exceptions, tuples and dictionaries, and data analysis with NumPy, Matplotlib and Pandas.
   audience: Tooling
 procedural:
-  number: 16
+  number: 17
   title: Procedural Programming
-  description: An introduction to the procedural programming
+  description: An introduction to the procedural programming paradigm.
   audience: Paradigms

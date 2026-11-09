@@ -1,6 +1,6 @@
 ---
 theme: oxrse
-title: Introduction to Python
+title: "Introduction to Python 1: The Core Language"
 addons:
   - ../addon
 layout: cover
@@ -20,16 +20,14 @@ fonts:
 # Overview
 
 1. Getting started: running Python, variables and types
-2. Libraries and data: NumPy, Matplotlib and Pandas
-3. Control flow: lists, loops and conditionals
-4. When things go wrong: errors, functions and scope
+2. Control flow: lists, loops and conditionals
+3. When things go wrong: reading errors
 
 <div class="pt-8">
 
-- Everything here is in the **Intro to Python** course on train.rse
-  - Full notes, exercises and solutions
-  - Example data: download `uniqplus_python_data.zip` from the course
-- These slides are the map, not the territory
+- Full notes, exercises and solutions are in the **Intro to Python** course on train.rse
+- These slides summarise the main ideas
+- Part 2 covers functions, containers and data
 
 </div>
 
@@ -40,11 +38,11 @@ layout: two-cols
 # Why Python?
 
 - **Readable**: the syntax is close to pseudocode
-- **Interpreted**: no compile step, just run it
+- **Interpreted**: run code without a separate compilation step
 - **Dynamically typed**: no need to declare types
 - **Multi-paradigm**: procedural, object-oriented, functional
-- **Huge ecosystem**: NumPy, Pandas, Matplotlib, PyTorch, ...
-- Probably what your supervisor/collaborators already use
+- **Libraries for research**: NumPy, pandas, Matplotlib, PyTorch
+- Widely used in research groups
 
 ::right::
 
@@ -62,7 +60,7 @@ Readability counts.
 ...
 ```
 
-<span class="font-semibold text-lg text-red-700">Code is read far more often than it is written.</span>
+<span class="font-semibold text-lg text-red-700">Write code that someone else can follow.</span>
 
 </div>
 
@@ -82,14 +80,14 @@ layout: two-cols
 ::left::
 
 - Type `python` (or `python3`) in a terminal
-- You get the **REPL**: Read-Eval-Print-Loop
-  - Reads a command, evaluates it, prints the result, loops
-  - Very quick feedback: great for trying things out
-- `>>>` is the prompt, `...` is a continuation line
-- `quit()` (or Ctrl-D) to leave
+- This opens the **REPL**: read-eval-print loop
+  - Reads your input, evaluates it and displays any result
+  - Useful for trying short pieces of code
+- `>>>` is the prompt; `...` means more input is expected
+- Use `quit()` to leave
 
 <div class="mt-10 border border-stone-500 rounded p-2 text-stone-700">
-Don't worry about the details yet, it will all make sense by the end.
+We'll cover the syntax in this example during the session.
 </div>
 
 ::right::
@@ -125,15 +123,15 @@ layout: two-cols
 
 ::left::
 
-- The REPL forgets everything when you quit
+- Variables from a REPL session are lost when you quit
 - A **script** is a plain text file of Python code, saved as `.py`
-- Write it in an IDE (Integrated Development Environment):
+- Write it in an IDE (integrated development environment):
   - [VS Code](https://code.visualstudio.com/): what we'll use
-  - [PyCharm](https://www.jetbrains.com/pycharm/) (Community Edition is free)
+  - [PyCharm](https://www.jetbrains.com/pycharm/)
   - [Spyder](https://www.spyder-ide.org/): MATLAB-like
-- You get syntax highlighting, autocomplete, a debugger, linting...
+- IDEs help you write, run and debug code
 - Jupyter notebooks are also an option
-  - Great for exploring, harder to reuse
+  - Combine code, results and notes in one document
 
 ::right::
 
@@ -152,7 +150,7 @@ Hello world
 ```
 
 <div class="mt-10 border border-stone-500 rounded p-2 text-stone-700">
-Or press the ▷ button in VS Code, which does the same thing.
+Or use the Run Python File button in VS Code.
 </div>
 
 ---
@@ -164,12 +162,12 @@ layout: two-cols
 ::left::
 
 - `name = value` assigns a value to a variable
-- `print` displays values
+- `print()` displays values
 - Variables must be **created before they are used**
-- Variables only change when you **assign** to them
+- Assignments do not update automatically when other variables change
 - Python is **case-sensitive**: `age` and `Age` are different
 - Use **meaningful names**
-  - `flabadab = 42` works, `age = 42` is better
+  - `age = 42` tells the reader what the value represents
 
 ::right::
 
@@ -189,7 +187,7 @@ Age in three years: 45
 >>> first = 1
 >>> second = 5 * first
 >>> first = 2
->>> print(second)   # still 5!
+>>> print(second)   # still 5
 5
 ```
 
@@ -202,14 +200,14 @@ layout: two-cols
 ::left::
 
 - `int`: whole numbers, e.g. `42`
-- `float`: real numbers, e.g. `3.14`
+- `float`: floating-point numbers, e.g. `3.14`
 - `str`: text, e.g. `"Hello"`
 - `bool`: `True` or `False`
-- `type()` tells you what you've got
+- `type()` tells you the type of a value
 - The type controls which operations make sense
   - `+` adds numbers, but joins strings
 - Convert with `int()`, `float()`, `str()`
-- You can mix `int` and `float` freely
+- Arithmetic with an `int` and a `float` usually gives a `float`
 
 ::right::
 
@@ -248,7 +246,6 @@ layout: two-cols
 - Python counts from **zero**
 - A slice `[start:stop]` gets a substring
   - Includes `start`, but **stops before** `stop`
-  - `stop - start` is the length
 - Negative indices count from the end
 - `len()` gives the length
 
@@ -274,7 +271,7 @@ IndexError: string index out of range
 ```
 
 <div class="mt-6 border border-stone-500 rounded p-2 text-stone-700">
-Zero-indexing trips everyone up at first (especially MATLAB and R users).
+The first character is at index 0; use index -1 for the last character.
 </div>
 
 ---
@@ -287,12 +284,12 @@ layout: two-cols
 
 - A function takes **arguments** and may **return** a value
   - `max(1, 2, 3)`, `round(3.712, 1)`, `len("abc")`
-- Some arguments have **default values**
+- Some parameters have **default values**
 - **Methods** are functions attached to a value
   - `"hello".upper()`
 - `#` starts a comment: ignored by Python, read by humans
 - `help(round)` shows the documentation
-- [docs.python.org](https://docs.python.org/3/) is your friend
+- Find the Python reference at [docs.python.org](https://docs.python.org/3/)
 
 ::right::
 
@@ -303,7 +300,7 @@ layout: two-cols
 '0'
 >>> round(3.712)
 4
->>> round(3.712, 1)   # ndigits defaults to 0
+>>> round(3.712, 1)   # ndigits defaults to None
 3.7
 
 >>> my_string = "Hello world!"
@@ -325,289 +322,7 @@ layout: section
 title: " "
 ---
 
-## Part 2: Libraries and data
-
----
-layout: two-cols
----
-
-# Libraries
-
-::left::
-
-- Most of the power of a language lies in its **libraries**
-- A library (or package) is a collection of **modules**
-- The **standard library** comes with Python: `math`, `glob`, `os`, `csv`...
-- Many more on [PyPI](https://pypi.org/), installed with `pip`
-- Why use them?
-  - Someone has already solved your problem
-  - Usually documented, tested and optimised
-  - **Better than your code** (probably)
-
-::right::
-
-```python
->>> import math
->>> math.pi
-3.141592653589793
->>> math.cos(math.pi)
--1.0
-
->>> from math import cos, pi
->>> cos(pi)
--1.0
-
->>> import math as m
->>> m.cos(m.pi)
--1.0
-
->>> help(math)
-```
-
-<div class="mt-6 border border-stone-500 rounded p-2 text-stone-700">
-<code>numpy as np</code>, <code>pandas as pd</code> and <code>matplotlib.pyplot as plt</code> are conventions everyone uses.
-</div>
-
----
-layout: two-cols
----
-
-# Loading data with NumPy
-
-::left::
-
-- NumPy: **Num**erical **Py**thon
-  - Use it whenever you have lots of numbers, especially arrays
-- The course uses the Carpentries **inflammation** data
-  - 60 patients (rows) × 40 days (columns)
-- `numpy.loadtxt` reads a CSV into an **array**
-- Dot notation: `numpy.loadtxt` is the `loadtxt` that belongs to `numpy`
-- Every element of an array has the **same type**
-
-::right::
-
-```python
->>> import numpy
->>> data = numpy.loadtxt(
-...     fname="inflammation-01.csv",
-...     delimiter=",",
-... )
->>> data
-array([[0., 0., 1., ..., 3., 0., 0.],
-       [0., 1., 2., ..., 1., 0., 1.],
-       ...,
-       [0., 0., 1., ..., 1., 1., 0.]])
-
->>> type(data)
-<class 'numpy.ndarray'>
->>> data.dtype
-dtype('float64')
->>> data.shape
-(60, 40)
-```
-
----
-layout: two-cols
----
-
-# Slicing and analysing arrays
-
-::left::
-
-- Index with `[row, column]`, starting from zero
-- Slice each dimension: `data[0:4, 0:10]`
-- `numpy.mean`, `numpy.max`, `numpy.min`, `numpy.std`...
-- `axis=` picks the direction
-  - `axis=0`: down the rows, giving one value per **day**
-  - `axis=1`: across the columns, giving one value per **patient**
-
-<img src="./imgs/python-operations-across-axes.png" alt="Operations across axis 0 and axis 1 of a 2D array" class="w-2/5 pt-2" />
-
-::right::
-
-```python
->>> data[0, 0]
-0.0
->>> data[30, 20]
-13.0
->>> data[0:4, 0:10]
-array([[0., 0., 1., 3., 1., 2., 4., 7., 8., 3.],
-       [0., 1., 2., 1., 2., 1., 3., 2., 2., 6.],
-       [0., 1., 1., 3., 3., 2., 6., 2., 5., 9.],
-       [0., 0., 2., 0., 4., 2., 2., 1., 6., 7.]])
-
->>> numpy.mean(data)
-6.14875
->>> numpy.max(data, axis=1).shape
-(60,)
->>> numpy.mean(data, axis=0).shape
-(40,)
-```
-
----
-layout: two-cols
----
-
-# Visualising with Matplotlib
-
-::left::
-
-> The purpose of computing is insight, not numbers.
->
-> Richard Hamming
-
-- `matplotlib` is the _de facto_ standard for plotting
-- `imshow` for heatmaps, `plot` for lines
-- Subplots put several plots in one figure
-- Plotting is how you spot that **something is wrong**
-  - The max rises and falls _too_ smoothly, and the min is a step function
-  - Suspicious...
-
-```python
-import matplotlib.pyplot as plt
-plt.imshow(data)
-plt.show()
-```
-
-::right::
-
-<div class="h-full flex flex-col justify-center gap-3">
-<img src="./imgs/inflammation-01-group-plot.png" alt="Average, maximum and minimum inflammation per day" class="w-full" />
-</div>
-
----
-layout: two-cols
----
-
-# Pandas DataFrames
-
-::left::
-
-- Pandas: the library for **tabular** data
-  - Borrows a lot from R's data frames
-- A **DataFrame** is a 2D table with named columns
-  - Columns can have different types
-- `pd.read_csv` loads a CSV
-  - `index_col` uses a column as row labels
-- `.info()`, `.columns`, `.T` and `.describe()` to get a feel for the data
-- The course uses the **Gapminder** GDP data
-
-::right::
-
-```python
->>> import pandas as pd
->>> data = pd.read_csv(
-...     "data/gapminder_gdp_oceania.csv",
-...     index_col="country",
-... )
->>> data.info()
-<class 'pandas.core.frame.DataFrame'>
-Index: 2 entries, Australia to New Zealand
-Data columns (total 12 columns):
- #   Column          Non-Null Count  Dtype
----  ------          --------------  -----
- 0   gdpPercap_1952  2 non-null      float64
- ...
-
->>> data.describe()
-       gdpPercap_1952  gdpPercap_1957  ...
-count        2.000000        2.000000  ...
-mean     10298.085650    11598.522455  ...
-...
-```
-
----
-layout: two-cols
----
-
-# Selecting data
-
-::left::
-
-- `.iloc[row, col]`: select by **position**
-- `.loc[row, col]`: select by **label**
-- `:` on its own means all rows or all columns
-- Slices with `.loc` **include** the end label (unlike everything else!)
-- Comparisons give a **Boolean mask**
-  - Use the mask to select the values you want
-
-::right::
-
-<div class="code-sm">
-
-```python
->>> data = pd.read_csv(
-...     "data/gapminder_gdp_europe.csv",
-...     index_col="country",
-... )
-
->>> data.iloc[0, 0]
-1601.056136
->>> data.loc["Albania", "gdpPercap_1952"]
-1601.056136
-
->>> data.loc["Italy":"Poland", "gdpPercap_1962":"gdpPercap_1972"]
-             gdpPercap_1962  gdpPercap_1967  gdpPercap_1972
-country
-Italy           8243.582340    10022.401310    12269.273780
-Montenegro      4649.593785     5907.850937     7778.414017
-Netherlands    12790.849560    15363.251360    18794.745670
-Norway         13450.401510    16361.876470    18965.055510
-Poland          5338.752143     6557.152776     8006.506993
-
->>> data[data > 10000]   # NaN where False
-```
-
-</div>
-
----
-layout: two-cols
----
-
-# Group by: split-apply-combine
-
-::left::
-
-- A very common analysis pattern:
-  1. **Split** the data into groups
-  2. **Apply** a function to each group
-  3. **Combine** the results
-- Example from the course: a "wealth score"
-  - How often is a country above the European average GDP?
-  - Group countries by score and sum each group
-- Pandas does whole-column operations for you
-  - No loops needed
-
-::right::
-
-```python
->>> mask_higher = data > data.mean()
->>> wealth_score = (
-...     mask_higher.aggregate("sum", axis=1)
-...     / len(data.columns)
-... )
->>> wealth_score
-country
-Albania                   0.000000
-Austria                   1.000000
-...
-United Kingdom            1.000000
-dtype: float64
-
->>> data.groupby(wealth_score).sum()
-          gdpPercap_1952  gdpPercap_1957  ...
-0.000000    36916.854200    46110.918793  ...
-0.333333    16790.046878    20942.456800  ...
-0.500000    11807.544405    14505.000150  ...
-1.000000   104317.277560   127332.008735  ...
-```
-
----
-layout: section
-title: " "
----
-
-## Part 3: Control flow
+## Part 2: Control flow
 
 ---
 layout: two-cols
@@ -619,10 +334,10 @@ layout: two-cols
 
 - A list stores many values in **one** variable
   - `[value1, value2, ...]`
-- Indexing and slicing work just like strings
+- Indexing and slicing work as they do for strings
 - Lists are **mutable**: you can change them in place
   - `append`, `extend`, `del`, `pop`
-- Strings are **immutable**: you can't
+- Strings are **immutable**: you cannot change them in place
 - Lists can hold anything, including other lists
 
 ::right::
@@ -658,13 +373,13 @@ layout: two-cols
 ::left::
 
 - Run the same code **once for each value** in a collection
-- Made up of:
+- A loop has:
   - a **collection**: `[2, 3, 5]`
   - a **loop variable**: `number`
   - a **body**: the indented code
 - The first line **must end with a colon**
 - The body **must be indented**
-  - Indentation _is_ the syntax in Python
+  - Indentation marks which statements belong to the loop
 - `range(n)` gives the numbers `0` to `n - 1`
 
 ::right::
@@ -708,19 +423,19 @@ layout: two-cols
 
 ::left::
 
-- A very common loop: turn many values into **one**
+- Build a result by updating it on each iteration:
   1. Initialise an accumulator **before** the loop
   2. Update it **inside** the loop
   3. Use it **after** the loop
-- Works for sums, counts, building up lists or strings...
+- Use it for sums, counts, lists or strings
 
 <div class="pt-6">
-<span class="font-semibold text-lg text-red-700">You will write this loop thousands of times.</span>
+<span class="font-semibold text-lg text-red-700">Initialise the accumulator before the loop so it is not reset each time.</span>
 </div>
 
 ::right::
 
-Sum the first 10 integers:
+Sum the integers from 1 to 10:
 
 ```python
 total = 0
@@ -757,9 +472,9 @@ layout: two-cols
 ::left::
 
 - `if` runs a block only when a condition is `True`
-- `elif` adds more tests, `else` catches the rest
-- Conditions are tested **once, in order**
-  - The first `True` branch wins, the rest are skipped
+- `elif` adds another condition; `else` handles the remaining cases
+- Conditions are tested **in order**
+  - Run the first matching branch and skip the rest
 - Comparisons: `==`, `!=`, `<`, `<=`, `>`, `>=`
 - Combine with `and`, `or` and `not`
   - Use parentheses when mixing them
@@ -791,50 +506,7 @@ grade = 85
 if grade >= 70:
     print("grade is C")
 elif grade >= 80:
-    print("grade is B")   # never reached!
-```
-
----
-layout: two-cols
----
-
-# Looping over data sets
-
-::left::
-
-- Real analyses rarely use one file
-- `glob.glob` finds files that match a pattern
-  - The same `*` and `?` wildcards as Bash
-- Combine `glob` with a `for` loop to process a batch of files
-- This works best when files are **named consistently**
-- Use `pathlib` for building file paths that work on any OS
-
-::right::
-
-```python
-import glob
-import pandas as pd
-
-print(glob.glob("data/*.csv"))
-```
-
-```text
-['data/gapminder_all.csv', ...]
-```
-
-```python
-for filename in glob.glob("data/gapminder_*.csv"):
-    data = pd.read_csv(filename)
-    print(filename, data["gdpPercap_1952"].min())
-```
-
-```text
-data/gapminder_all.csv 298.8462121
-data/gapminder_gdp_africa.csv 298.8462121
-data/gapminder_gdp_americas.csv 1397.717137
-data/gapminder_gdp_asia.csv 331.0
-data/gapminder_gdp_europe.csv 973.5331948
-data/gapminder_gdp_oceania.csv 10039.59564
+    print("grade is B")   # skipped
 ```
 
 ---
@@ -842,7 +514,7 @@ layout: section
 title: " "
 ---
 
-## Part 4: When things go wrong
+## Part 3: When things go wrong
 
 ---
 layout: two-cols
@@ -852,14 +524,14 @@ layout: two-cols
 
 ::left::
 
-- Errors come with a **traceback**
-- They look scary, but they are trying to help!
+- An unhandled exception prints a **traceback**
+- It shows where the error occurred
 - Read them **from the bottom up**:
   1. The **error type** and message
   2. The line where it happened
   3. The calls that got you there
-- Copy the last line into a search engine (or an LLM)
-  - Someone has had this error before
+- Search for the error type and message if you need help
+  - Check how the explanation applies to your code
 
 ::right::
 
@@ -895,12 +567,12 @@ layout: two-cols
 
 - `SyntaxError`: Python can't parse your code
   - Missing colons, brackets or quotes
-- `IndentationError`: inconsistent indentation
+- `IndentationError`: missing or incorrect indentation
   - Don't mix tabs and spaces
-- `NameError`: a variable that doesn't exist (yet)
+- `NameError`: a name is not defined in the current scope
   - Usually a typo or a missing assignment
-- `IndexError`: off the end of a list
-- `FileNotFoundError`: wrong path or wrong directory
+- `IndexError`: an index is outside the sequence
+- `FileNotFoundError`: a file or directory cannot be found
 - `TypeError`: wrong type for the operation
 
 ::right::
@@ -922,162 +594,39 @@ FileNotFoundError: [Errno 2] No such file or directory:
 ```
 
 <div class="mt-6 border border-stone-500 rounded p-2 text-stone-700">
-Recent Python versions have much friendlier error messages. Another reason not to use Python 2!
+Read the error message and check the indicated line before changing your code.
 </div>
 
 ---
-layout: two-cols
----
 
-# Writing functions
+# Next time
 
-::left::
+Part 2 builds on these topics:
 
-- Break programs down into functions
-  - Easier to understand, test and reuse
-  - Human working memory is small
-- `def name(parameters):` followed by an indented body
-- Defining a function **does not run it**
-- Arguments are matched to parameters by position, or by name
-- `return` sends a result back to the caller
-  - No `return` means it returns `None`
+- **Functions**: writing your own, scope and raising exceptions
+- **More containers**: tuples, dictionaries and copying lists
+- **Libraries and data**: NumPy, Matplotlib and pandas
+  - Get the example data ready: download `uniqplus_python_data.zip` from the course
 
-::right::
-
-```python
-def print_date(year, month, day):
-    joined = f"{year}/{month}/{day}"
-    print(joined)
-
-print_date(1871, 3, 19)
-print_date(month=3, day=19, year=1871)
-```
-
-```text
-1871/3/19
-1871/3/19
-```
-
-```python
-def average(values):
-    if len(values) == 0:
-        return None
-    return sum(values) / len(values)
-
-a = average([1, 3, 4])
-print("average of actual values:", a)
-```
-
-```text
-average of actual values: 2.6666666666666665
-```
-
----
-layout: two-cols
----
-
-# Variable scope
-
-::left::
-
-- **Scope**: the part of a program that can "see" a variable
-- **Global** variables are defined outside any function
-  - Visible everywhere
-- **Local** variables are defined inside a function
-  - Including its parameters
-  - Gone when the function returns
-- You don't need to worry about the names used inside someone else's function
-
-<div class="pt-6">
-<span class="font-semibold text-lg text-red-700">Pass values in as arguments, don't rely on globals.</span>
+<div class="pt-8">
+<span class="font-semibold text-lg text-red-700">Before then: work through the exercises up to "Looping Over Data Sets".</span>
 </div>
-
-::right::
-
-```python
-pressure = 103.9
-
-def adjust(t):
-    temperature = t * 1.43 / pressure
-    return temperature
-
-print("adjusted:", adjust(0.9))
-print("temperature after call:", temperature)
-```
-
-```text
-adjusted: 0.01238691049085659
-Traceback (most recent call last):
-  File "foo.py", line 8, in <module>
-    print("temperature after call:", temperature)
-NameError: name 'temperature' is not defined
-```
-
----
-layout: two-cols
----
-
-# Project: Snake
-
-::left::
-
-- A day-long project to pull it all together
-- Build the game of Snake with `pygame`
-  - **Fun fact:** it was preloaded on Nokia phones in the late 1990s
-- Doubles as an introduction to **object-oriented programming**
-- Five walkthrough vignettes that build up the game step by step
-- Instructions: [OxfordRSE/uniqplus_snake_project](https://github.com/OxfordRSE/uniqplus_snake_project)
-
-::right::
-
-```python
-import pygame
-
-pygame.init()
-screen = pygame.display.set_mode((400, 400))
-
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-    # move the snake, check collisions, draw...
-    pygame.display.flip()
-
-pygame.quit()
-```
-
----
-
-# This is just the beginning!
-
-There is much more to Python:
-
-- Data structures: dictionaries, tuples and sets
-- Comprehensions: `[x**2 for x in range(10)]`
-- Reading and writing files with `open` and `with`
-- Virtual environments and installing packages: `venv`, `pip`, `uv`
-- Other courses in this series:
-  - **Procedural programming**: functions done properly
-  - **Object-oriented** and **functional** programming
-  - **Testing**, and **packaging and dependency management**
-- [docs.python.org/3/tutorial](https://docs.python.org/3/tutorial/)
 
 ---
 layout: center
 ---
 
-# Over to you
+# Exercises on train.rse
 
 <div style="text-align: center; font-size: 1.5em; line-height: 1.6; color: #9ca3af;">
-The only way to learn to program<br />
-is to <span v-mark.underline.orange="1">write programs</span>
+Practise what you've covered<br />
+with the <span v-mark.underline.orange="1">course exercises</span>
 </div>
 
 <br />
 
 <div style="text-align: center;">
-Work through the exercises on train.rse, and break things!
+Try changing the examples and checking what happens.
 </div>
 
 <div style="text-align: right; font-size: 0.85em; color: #6b7280; margin-top: 3em;">
