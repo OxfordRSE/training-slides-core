@@ -37,12 +37,16 @@ layout: two-cols
 
 # Why Python?
 
+<v-clicks>
+
 - **Readable**: the syntax is close to pseudocode
 - **Interpreted**: run code without a separate compilation step
 - **Dynamically typed**: no need to declare types
 - **Multi-paradigm**: procedural, object-oriented, functional
 - **Libraries for research**: NumPy, pandas, Matplotlib, PyTorch
 - Widely used in research groups
+
+</v-clicks>
 
 ::right::
 
@@ -60,7 +64,7 @@ Readability counts.
 ...
 ```
 
-<span class="font-semibold text-lg text-red-700">Write code that someone else can follow.</span>
+<span v-click="7" class="font-semibold text-lg text-red-700">Write code that someone else can follow.</span>
 
 </div>
 
@@ -79,6 +83,8 @@ layout: two-cols
 
 ::left::
 
+<v-clicks>
+
 - Type `python` (or `python3`) in a terminal
 - This opens the **REPL**: read-eval-print loop
   - Reads your input, evaluates it and displays any result
@@ -86,7 +92,9 @@ layout: two-cols
 - `>>>` is the prompt; `...` means more input is expected
 - Use `quit()` to leave
 
-<div class="mt-10 border border-stone-500 rounded p-2 text-stone-700">
+</v-clicks>
+
+<div class="mt-10 border border-stone-500 rounded p-2 text-stone-700" v-click="5">
 We'll cover the syntax in this example during the session.
 </div>
 
@@ -94,7 +102,7 @@ We'll cover the syntax in this example during the session.
 
 <div class="code-sm">
 
-```python
+```python {all|1-2|1-9|10-12|16|all}{at:1}
 >>> 1 + 6
 7
 >>> a = 2
@@ -123,6 +131,8 @@ layout: two-cols
 
 ::left::
 
+<v-clicks>
+
 - Variables from a REPL session are lost when you quit
 - A **script** is a plain text file of Python code, saved as `.py`
 - Write it in an IDE (integrated development environment):
@@ -133,23 +143,25 @@ layout: two-cols
 - Jupyter notebooks are also an option
   - Combine code, results and notes in one document
 
+</v-clicks>
+
 ::right::
 
 Save as `hello.py`:
 
-```python
+```python {all|all|all|all|none|all|all}{at:1}
 name = "world"
 print("Hello", name)
 ```
 
 Run it from the terminal:
 
-```console
+```console {all|none|none|none|all|all|all}{at:1}
 $ python hello.py
 Hello world
 ```
 
-<div class="mt-10 border border-stone-500 rounded p-2 text-stone-700">
+<div class="mt-10 border border-stone-500 rounded p-2 text-stone-700" v-click="6">
 Or use the Run Python File button in VS Code.
 </div>
 
@@ -161,6 +173,8 @@ layout: two-cols
 
 ::left::
 
+<v-clicks>
+
 - `name = value` assigns a value to a variable
 - `print()` displays values
 - Variables must be **created before they are used**
@@ -169,9 +183,11 @@ layout: two-cols
 - Use **meaningful names**
   - `age = 42` tells the reader what the value represents
 
+</v-clicks>
+
 ::right::
 
-```python
+```python {all|1-2|3-4|6-7|9-11,13-17|1-2|1-2|all}{at:1}
 >>> age = 42
 >>> first_name = "Ahmed"
 >>> print(first_name, "is", age, "years old")
@@ -199,6 +215,8 @@ layout: two-cols
 
 ::left::
 
+<v-clicks>
+
 - `int`: whole numbers, e.g. `42`
 - `float`: floating-point numbers, e.g. `3.14`
 - `str`: text, e.g. `"Hello"`
@@ -209,9 +227,11 @@ layout: two-cols
 - Convert with `int()`, `float()`, `str()`
 - Arithmetic with an `int` and a `float` usually gives a `float`
 
+</v-clicks>
+
 ::right::
 
-```python
+```python {all|1-2|19-20|3-4|3-4|1-4|6-9,11-13|14-17|19-20|all}{at:1}
 >>> type(52)
 <class 'int'>
 >>> type("some text")
@@ -242,6 +262,8 @@ layout: two-cols
 
 ::left::
 
+<v-clicks>
+
 - Use an index in `[]` to get a single character
 - Python counts from **zero**
 - A slice `[start:stop]` gets a substring
@@ -249,10 +271,12 @@ layout: two-cols
 - Negative indices count from the end
 - `len()` gives the length
 
+</v-clicks>
+
 
 ::right::
 
-```python
+```python {all|1-5|2-3|8-11|6-7|12-15|all}{at:1}
 >>> atom_name = "sodium"
 >>> atom_name[0]
 's'
@@ -270,7 +294,7 @@ layout: two-cols
 IndexError: string index out of range
 ```
 
-<div class="mt-6 border border-stone-500 rounded p-2 text-stone-700">
+<div class="mt-6 border border-stone-500 rounded p-2 text-stone-700" v-click="6">
 The first character is at index 0; use index -1 for the last character.
 </div>
 
@@ -282,6 +306,8 @@ layout: two-cols
 
 ::left::
 
+<v-clicks>
+
 - A function takes **arguments** and may **return** a value
   - `max(1, 2, 3)`, `round(3.712, 1)`, `len("abc")`
 - Some parameters have **default values**
@@ -291,9 +317,11 @@ layout: two-cols
 - `help(round)` shows the documentation
 - Find the Python reference at [docs.python.org](https://docs.python.org/3/)
 
+</v-clicks>
+
 ::right::
 
-```python
+```python {all|1-4|5-8|10-14|7|16-21|16-21|all}{at:1}
 >>> max(1, 2, 3)
 3
 >>> min("a", "A", "0")
@@ -332,6 +360,8 @@ layout: two-cols
 
 ::left::
 
+<v-clicks>
+
 - A list stores many values in **one** variable
   - `[value1, value2, ...]`
 - Indexing and slicing work as they do for strings
@@ -340,9 +370,11 @@ layout: two-cols
 - Strings are **immutable**: you cannot change them in place
 - Lists can hold anything, including other lists
 
+</v-clicks>
+
 ::right::
 
-```python
+```python {all|1|2-5|7-11|13-15|17-19|all}{at:1}
 >>> pressures = [0.273, 0.275, 0.277, 0.275, 0.276]
 >>> pressures[0]
 0.273
@@ -372,6 +404,8 @@ layout: two-cols
 
 ::left::
 
+<v-clicks>
+
 - Run the same code **once for each value** in a collection
 - A loop has:
   - a **collection**: `[2, 3, 5]`
@@ -382,36 +416,38 @@ layout: two-cols
   - Indentation marks which statements belong to the loop
 - `range(n)` gives the numbers `0` to `n - 1`
 
+</v-clicks>
+
 ::right::
 
-```python
+```python {all|all|all|1|none|none|all}{at:1}
 for number in [2, 3, 5]:
     print(number)
 ```
 
-```text
+```text {all|all|none|none|none|none|all}{at:1}
 2
 3
 5
 ```
 
-```python
+```python {all|none|none|1|none|all|all}{at:1}
 for i in range(3):
     print(i, "squared is", i * i)
 ```
 
-```text
+```text {all|none|none|none|none|all|all}{at:1}
 0 squared is 0
 1 squared is 1
 2 squared is 4
 ```
 
-```python
+```python {all|none|none|none|all|none|all}{at:1}
 for number in [2, 3, 5]:
 print(number)
 ```
 
-```text
+```text {all|none|none|none|all|none|all}{at:1}
 IndentationError: expected an indented block
 ```
 
@@ -423,13 +459,17 @@ layout: two-cols
 
 ::left::
 
+<v-clicks depth="2">
+
 - Build a result by updating it on each iteration:
   1. Initialise an accumulator **before** the loop
   2. Update it **inside** the loop
   3. Use it **after** the loop
 - Use it for sums, counts, lists or strings
 
-<div class="pt-6">
+</v-clicks>
+
+<div class="pt-6" v-click="6">
 <span class="font-semibold text-lg text-red-700">Initialise the accumulator before the loop so it is not reset each time.</span>
 </div>
 
@@ -437,14 +477,14 @@ layout: two-cols
 
 Sum the integers from 1 to 10:
 
-```python
+```python {all|all|1|3|4|all|all}{at:1}
 total = 0
 for number in range(10):
     total = total + (number + 1)
 print(total)
 ```
 
-```text
+```text {all|none|none|none|all|all|all}{at:1}
 55
 ```
 
@@ -452,14 +492,14 @@ print(total)
 
 Build a list of word lengths:
 
-```python
+```python {all|none|1|3|4|all|all}{at:1}
 lengths = []
 for word in ["red", "green", "blue"]:
     lengths.append(len(word))
 print(lengths)
 ```
 
-```text
+```text {all|none|none|none|all|all|all}{at:1}
 [3, 5, 4]
 ```
 
@@ -471,6 +511,8 @@ layout: two-cols
 
 ::left::
 
+<v-clicks>
+
 - `if` runs a block only when a condition is `True`
 - `elif` adds another condition; `else` handles the remaining cases
 - Conditions are tested **in order**
@@ -480,9 +522,11 @@ layout: two-cols
   - Use parentheses when mixing them
 - Same colon and indentation rules as loops
 
+</v-clicks>
+
 ::right::
 
-```python
+```python {all|3-4|5-8|none|3,5|3,5|2-8|all}{at:1}
 masses = [3.54, 2.07, 9.22, 1.86, 1.71]
 for m in masses:
     if m > 9.0:
@@ -493,7 +537,7 @@ for m in masses:
         print(m, "is small")
 ```
 
-```text
+```text {all|none|all|none|none|none|none|all}{at:1}
 3.54 is large
 2.07 is small
 9.22 is HUGE
@@ -501,7 +545,7 @@ for m in masses:
 1.71 is small
 ```
 
-```python
+```python {all|none|none|all|2,4|2,4|2-5|all}{at:1}
 grade = 85
 if grade >= 70:
     print("grade is C")
@@ -524,6 +568,8 @@ layout: two-cols
 
 ::left::
 
+<v-clicks>
+
 - An unhandled exception prints a **traceback**
 - It shows where the error occurred
 - Read them **from the bottom up**:
@@ -533,9 +579,11 @@ layout: two-cols
 - Search for the error type and message if you need help
   - Check how the explanation applies to your code
 
+</v-clicks>
+
 ::right::
 
-```python
+```python {all|9|7|none|none|all}{at:1}
 def favourite_ice_cream():
     ice_creams = [
         "chocolate",
@@ -547,7 +595,7 @@ def favourite_ice_cream():
 favourite_ice_cream()
 ```
 
-```text
+```text {all|1|4-6|7|7|all}{at:1}
 Traceback (most recent call last):
   File "ice_cream.py", line 9, in <module>
     favourite_ice_cream()
@@ -565,6 +613,8 @@ layout: two-cols
 
 ::left::
 
+<v-clicks>
+
 - `SyntaxError`: Python can't parse your code
   - Missing colons, brackets or quotes
 - `IndentationError`: missing or incorrect indentation
@@ -575,9 +625,11 @@ layout: two-cols
 - `FileNotFoundError`: a file or directory cannot be found
 - `TypeError`: wrong type for the operation
 
+</v-clicks>
+
 ::right::
 
-```python
+```python {all|1-2|1-2|4-5|7-9|11-13|11-13|all}{at:1}
 >>> def some_function()
 SyntaxError: expected ':'
 
@@ -593,7 +645,7 @@ FileNotFoundError: [Errno 2] No such file or directory:
 'myfile.txt'
 ```
 
-<div class="mt-6 border border-stone-500 rounded p-2 text-stone-700">
+<div class="mt-6 border border-stone-500 rounded p-2 text-stone-700" v-click="7">
 Read the error message and check the indicated line before changing your code.
 </div>
 

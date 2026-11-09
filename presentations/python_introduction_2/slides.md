@@ -23,13 +23,17 @@ layout: two-cols
 
 ::left::
 
+<v-clicks>
+
 - Run Python in the REPL or as a `.py` script
 - Values have **types**: `int`, `float`, `str`, `bool`
 - Strings and lists are indexed **from zero**
 - Use `for` loops, **accumulators** and `if`/`elif`/`else`
 - Read tracebacks **from the bottom up**
 
-<div class="pt-8">
+</v-clicks>
+
+<div class="pt-8" v-click="6">
 
 Today: **functions**, **containers** and **data**
 
@@ -40,7 +44,7 @@ Today: **functions**, **containers** and **data**
 
 ::right::
 
-```python
+```python {all|all|1|1|3-6|3-6|all}{at:1}
 masses = [3.54, 2.07, 9.22, 1.86, 1.71]
 
 total = 0
@@ -51,7 +55,7 @@ for m in masses:
 print("Mass of the large ones:", total)
 ```
 
-```text
+```text {all|all|none|none|none|none|all}{at:1}
 Mass of the large ones: 12.76
 ```
 
@@ -70,6 +74,8 @@ layout: two-cols
 
 ::left::
 
+<v-clicks>
+
 - Put a task in a function so you can reuse it
   - Smaller sections of code are easier to read and test
 - Use `def name(parameters):` followed by an indented body
@@ -78,9 +84,11 @@ layout: two-cols
 - `return` sends a result back to the caller
   - Reaching the end without `return` gives `None`
 
+</v-clicks>
+
 ::right::
 
-```python
+```python {all|1-3|1-3|5-6|5-6|none|all}{at:1}
 def print_date(year, month, day):
     joined = f"{year}/{month}/{day}"
     print(joined)
@@ -89,12 +97,12 @@ print_date(1871, 3, 19)
 print_date(month=3, day=19, year=1871)
 ```
 
-```text
+```text {all|none|none|all|all|none|all}{at:1}
 1871/3/19
 1871/3/19
 ```
 
-```python
+```python {all|none|1-4|none|none|3-7|all}{at:1}
 def average(values):
     if len(values) == 0:
         return None
@@ -104,7 +112,7 @@ a = average([1, 3, 4])
 print("average of actual values:", a)
 ```
 
-```text
+```text {all|none|none|none|none|all|all}{at:1}
 average of actual values: 2.6666666666666665
 ```
 
@@ -116,6 +124,8 @@ layout: two-cols
 
 ::left::
 
+<v-clicks>
+
 - Parameters can have **default values**
   - Used when the caller omits an argument
 - Put positional arguments **before** keyword arguments
@@ -124,9 +134,11 @@ layout: two-cols
 - Keep shared logic in **one place**
   - Fixes then apply everywhere the function is called
 
+</v-clicks>
+
 ::right::
 
-```python
+```python {all|1,4|5-6|none|none|all}{at:1}
 def say_hello(greeting="Hello", name="World"):
     return greeting + ", " + name + "!"
 
@@ -135,13 +147,13 @@ print(say_hello("Hi"))
 print(say_hello(name="Jack"))
 ```
 
-```text
+```text {all|1|2-3|none|none|all}{at:1}
 Hello, World!
 Hi, World!
 Hello, Jack!
 ```
 
-```python
+```python {all|none|none|4-5,7|1-2,5|all}{at:1}
 def fahr_to_cels(fahr):
     return (fahr - 32) * (5 / 9)
 
@@ -151,7 +163,7 @@ def fahr_to_kelv(fahr):
 print(fahr_to_kelv(212))
 ```
 
-```text
+```text {all|none|none|all|none|all}{at:1}
 373.15
 ```
 
@@ -163,6 +175,8 @@ layout: two-cols
 
 ::left::
 
+<v-clicks>
+
 - **Scope** determines where a name can be used
 - **Global** variables are defined at module level
   - Functions in that module can read them
@@ -171,13 +185,15 @@ layout: two-cols
   - They cannot be accessed directly from outside
 - Different functions can use the same local names
 
-<div class="pt-6">
+</v-clicks>
+
+<div class="pt-6" v-click="5">
 <span class="font-semibold text-lg text-red-700">Prefer arguments to global variables for function inputs.</span>
 </div>
 
 ::right::
 
-```python
+```python {all|3-5|1,4|3-5,8|3-5|all}{at:1}
 pressure = 103.9
 
 def adjust(t):
@@ -188,7 +204,7 @@ print("adjusted:", adjust(0.9))
 print("temperature after call:", temperature)
 ```
 
-```text
+```text {all|none|none|all|none|all}{at:1}
 adjusted: 0.01238691049085659
 Traceback (most recent call last):
   File "foo.py", line 8, in <module>
@@ -204,6 +220,8 @@ layout: two-cols
 
 ::left::
 
+<v-clicks>
+
 - **Exceptions** interrupt the normal flow of a program
 - Use `raise` when a function cannot complete its task
   - Explain the problem in the error message
@@ -211,13 +229,15 @@ layout: two-cols
   - Only catch the errors you expect
   - A bare `except:` can hide unexpected errors
 
-<div class="pt-6">
+</v-clicks>
+
+<div class="pt-6" v-click="4">
 <span class="font-semibold text-lg text-red-700">Catch specific exceptions that your code can handle.</span>
 </div>
 
 ::right::
 
-```python
+```python {all|6|2-3|none|all}{at:1}
 def average(values):
     if len(values) == 0:
         raise ValueError("Can't average an empty list")
@@ -226,18 +246,18 @@ def average(values):
 average([])
 ```
 
-```text
+```text {all|all|all|none|all}{at:1}
 ValueError: Can't average an empty list
 ```
 
-```python
+```python {all|none|none|all|all}{at:1}
 try:
     data = open("results.csv").read()
 except FileNotFoundError:
     print("No results yet, run the analysis first")
 ```
 
-```text
+```text {all|none|none|all|all}{at:1}
 No results yet, run the analysis first
 ```
 
@@ -256,6 +276,8 @@ layout: two-cols
 
 ::left::
 
+<v-clicks>
+
 - A **tuple** is like a list, but **immutable**
   - Round brackets: `("Apple", "Banana")`
   - Useful for related values, such as coordinates
@@ -266,11 +288,13 @@ layout: two-cols
   - A tuple key must contain only hashable values
 - `in` checks whether a key is in the dictionary
 
+</v-clicks>
+
 ::right::
 
 <div class="code-sm">
 
-```python
+```python {all|1-5|7-11|12-17|all}{at:1}
 >>> y = ("Apple", "Banana", "Cherry")
 >>> y[1]
 'Banana'
@@ -300,6 +324,8 @@ layout: two-cols
 
 ::left::
 
+<v-clicks>
+
 - `y = x` does **not** copy a list
   - It's a second name for the **same** list
   - Changes through either name affect the same list
@@ -309,7 +335,9 @@ layout: two-cols
   - The function can change the original list
 - Use `copy.deepcopy(x)` to copy nested lists too
 
-<div class="pt-6">
+</v-clicks>
+
+<div class="pt-6" v-click="5">
 <span class="font-semibold text-lg text-red-700">Assignment gives a list another name; copying creates a new list.</span>
 </div>
 
@@ -317,29 +345,29 @@ layout: two-cols
 
 <div class="code-sm">
 
-```python
+```python {all|all|none|none|none|all}{at:1}
 x = [1, 2, 3]
 y = x
 y[1] = 20
 print(x, y)
 ```
 
-```text
+```text {all|all|none|none|none|all}{at:1}
 [1, 20, 3] [1, 20, 3]
 ```
 
-```python
+```python {all|none|all|none|none|all}{at:1}
 x = [1, 2, 3]
 y = x[:]
 y[1] = 20
 print(x, y)
 ```
 
-```text
+```text {all|none|all|none|none|all}{at:1}
 [1, 2, 3] [1, 20, 3]
 ```
 
-```python
+```python {all|none|none|all|all|all}{at:1}
 def add_sample(samples):
     samples.append("new")
 
@@ -348,7 +376,7 @@ add_sample(my_samples)
 print(my_samples)
 ```
 
-```text
+```text {all|none|none|all|all|all}{at:1}
 ['a', 'b', 'new']
 ```
 
@@ -369,6 +397,8 @@ layout: two-cols
 
 ::left::
 
+<v-clicks>
+
 - **Libraries** provide code you can reuse
 - Import **modules** to use their functions and types
 - The **standard library** comes with Python: `math`, `glob`, `os`, `csv`...
@@ -376,9 +406,11 @@ layout: two-cols
 - Established libraries save you implementing common tasks
   - Check their documentation and examples
 
+</v-clicks>
+
 ::right::
 
-```python
+```python {all|1-5|1,7,11|1-13|1-13|15|all}{at:1}
 >>> import math
 >>> math.pi
 3.141592653589793
@@ -396,7 +428,7 @@ layout: two-cols
 >>> help(math)
 ```
 
-<div class="mt-6 border border-stone-500 rounded p-2 text-stone-700">
+<div class="mt-6 border border-stone-500 rounded p-2 text-stone-700" v-click="6">
 <code>numpy as np</code>, <code>pandas as pd</code> and <code>matplotlib.pyplot as plt</code> are common import aliases.
 </div>
 
@@ -408,6 +440,8 @@ layout: two-cols
 
 ::left::
 
+<v-clicks>
+
 - NumPy: **Num**erical **Py**thon
   - Arrays and operations for numerical data
 - The course uses the Carpentries **inflammation** data
@@ -417,9 +451,11 @@ layout: two-cols
 - Index with `[row, column]`, starting from zero
 - Slice each dimension: `data[0:4, 0:10]`
 
+</v-clicks>
+
 ::right::
 
-```python
+```python {all|1|6-7|2-5,8-9|11-12|13-17|all}{at:1}
 >>> import numpy as np
 >>> data = np.loadtxt(
 ...     fname="inflammation-01.csv",
@@ -447,6 +483,8 @@ layout: two-cols
 
 ::left::
 
+<v-clicks>
+
 - **Vectorised** arithmetic works elementwise
   - No Python loop needed
 - `np.mean`, `np.max`, `np.min`, `np.std`...
@@ -456,11 +494,13 @@ layout: two-cols
 - **Broadcasting** matches shapes from the right
   - Sizes must be equal, or one must be 1
 
+</v-clicks>
+
 <img src="./imgs/python-operations-across-axes.png" alt="Operations across axis 0 and axis 1 of a 2D array" class="w-2/5 pt-2" />
 
 ::right::
 
-```python
+```python {all|1-4|9-10|11-14|5-7,16-18|all}{at:1}
 >>> np.arange(5) + 2
 array([2, 3, 4, 5, 6])
 >>> np.arange(5) * np.arange(5)
@@ -489,12 +529,16 @@ layout: two-cols
 
 ::left::
 
+<v-clicks>
+
 - Matplotlib creates plots from your data
 - `imshow` for heatmaps, `plot` for lines
 - Subplots put several plots in one figure
 - Plots can reveal patterns worth investigating
   - Here, the maximum rises and falls in straight lines
   - The minimum changes in steps
+
+</v-clicks>
 
 ```python
 import matplotlib.pyplot as plt
@@ -516,6 +560,8 @@ layout: two-cols
 
 ::left::
 
+<v-clicks>
+
 - pandas works with **tabular** data
 - A **DataFrame** is a 2D table with named columns
   - Columns can have different types
@@ -525,9 +571,11 @@ layout: two-cols
 - `.T` swaps rows and columns
 - The course uses **Gapminder** GDP per capita data
 
+</v-clicks>
+
 ::right::
 
-```python
+```python {all|1|6-13|2-5|6-19|6-19|3|all}{at:1}
 >>> import pandas as pd
 >>> data = pd.read_csv(
 ...     "data/gapminder_gdp_oceania.csv",
@@ -557,6 +605,8 @@ layout: two-cols
 
 ::left::
 
+<v-clicks>
+
 - `.iloc[row, col]`: select by **position**
 - `.loc[row, col]`: select by **label**
 - `:` on its own means all rows or all columns
@@ -564,11 +614,13 @@ layout: two-cols
 - Comparisons give a **Boolean mask**
   - A DataFrame mask keeps matching values; others become `NaN`
 
+</v-clicks>
+
 ::right::
 
 <div class="code-sm">
 
-```python
+```python {all|6-7|8-9|8-9|11-18|20|all}{at:1}
 >>> data = pd.read_csv(
 ...     "data/gapminder_gdp_europe.csv",
 ...     index_col="country",
@@ -601,6 +653,8 @@ layout: two-cols
 
 ::left::
 
+<v-clicks>
+
 - Grouped analysis has three steps:
   1. **Split** the data into groups
   2. **Apply** a function to each group
@@ -610,9 +664,11 @@ layout: two-cols
   - Group by score, then sum each column within each group
 - pandas applies the operation to each group
 
+</v-clicks>
+
 ::right::
 
-```python
+```python {all|14-19|1-12|14-19|all}{at:1}
 >>> mask_higher = data > data.mean()
 >>> wealth_score = (
 ...     mask_higher.aggregate("sum", axis=1)
@@ -642,6 +698,8 @@ layout: two-cols
 
 ::left::
 
+<v-clicks>
+
 - Apply the same analysis to several files
 - `glob.glob` finds files that match a pattern
   - The same `*` and `?` wildcards as Bash
@@ -649,26 +707,28 @@ layout: two-cols
 - This works best when files are **named consistently**
 - Use `pathlib` to build paths for your operating system
 
+</v-clicks>
+
 ::right::
 
-```python
+```python {all|none|1,4|none|none|none|all}{at:1}
 import glob
 import pandas as pd
 
 print(glob.glob("data/*.csv"))
 ```
 
-```text
+```text {all|none|all|none|none|none|all}{at:1}
 ['data/gapminder_all.csv', ...]
 ```
 
-```python
+```python {all|none|none|all|1|1|all}{at:1}
 for filename in glob.glob("data/gapminder_*.csv"):
     data = pd.read_csv(filename)
     print(filename, data["gdpPercap_1952"].min())
 ```
 
-```text
+```text {all|all|none|all|all|all|all}{at:1}
 data/gapminder_all.csv 298.8462121
 data/gapminder_gdp_africa.csv 298.8462121
 data/gapminder_gdp_americas.csv 1397.717137
