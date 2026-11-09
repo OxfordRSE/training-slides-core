@@ -110,6 +110,7 @@ layout: two-cols
 - **Single source repository**: code and dependencies in a shared repository
 - **Automated builds**: compile, package, and create installers automatically
 - **Self-testing builds**: automated tests run after each build to validate functionality
+- **Fast builds**: quick feedback, or people stop waiting for it
 
 </v-clicks>
 
@@ -132,28 +133,30 @@ layout: two-cols
 
 # Key principles of CI (continued)
 
-
-<div class="h-full flex items-center justify-left">
-  <img
-    src="./img/ci_visibility.png"
-    alt="GitHub pull request showing passing status checks"
-    class="w-4/5"
-  />
-</div>
-
-::right::
+<div class="text-base opacity-70 mb-3">How a team works with it</div>
 
 <v-clicks>
 
 - **Frequent commits**: integrate changes regularly to avoid complex merge conflicts
 - **Use an integration machine**: run builds and tests in a standardised, clean environment
 - **Visibility and transparency**: make build and test results accessible to the whole team
+- **Automated deployment**: releasing is a reproducible step, not a manual chore
 
 </v-clicks>
 
 <style>
-    ul { @apply flex flex-col h-100 justify-evenly text-xl }
+    ul { @apply flex flex-col h-90 justify-evenly text-xl }
 </style>
+
+::right::
+
+<div class="pl-4 flex items-center justify-center h-full">
+  <img
+    src="./img/ci_visibility.png"
+    alt="GitHub pull request showing passing status checks"
+    class="w-full max-h-100 object-contain"
+  />
+</div>
 
 
 ---
@@ -166,9 +169,9 @@ layout: two-cols
 
 <v-clicks>
 
-- **Continuous Delivery**: every change that passes is _prepared_ for release --- a human still decides when
-- **Continuous Deployment**: the approval step goes away, and passing changes go live automatically
-- Delivery and Deployment differ by one thing: **whether a human approves**
+- **Continuous Delivery**: every change that passes is _prepared_ for release, a human still decides when
+- **Continuous Deployment**: no approval step &mdash; passing changes go live automatically
+- The pipeline is identical until the last step: the only difference is **whether a human approves**
 
 </v-clicks>
 
@@ -185,14 +188,12 @@ flowchart TD
   subgraph ci["Continuous Integration"]
     C[Commit] --> B[Build] --> T[Test]
   end
-  subgraph cdel["+ Continuous Delivery"]
+  subgraph cd["Continuous Delivery / Deployment"]
     P[Package] --> R[Release candidate]
   end
-  subgraph cdep["+ Continuous Deployment"]
-    L[Live for users]
-  end
-  T --> P
-  R -.->|human approves| L
+  T --> |CI passes| P
+  R -.->|Delivery: a human approves| L[Live for users]
+  R ==>|Deployment: automatic| L
 ```
 
 </div>
@@ -218,7 +219,7 @@ flowchart TD
   <p class="m-0"><strong>Jenkins</strong>: self-hosted and long-established, common in secure data environments</p>
 </div>
 
-<p class="pt-2 opacity-70">Historical tools: Travis CI and AppVeyor - have largely been displaced</p>
+<p class="pt-2 opacity-70">You will still see <strong>Travis CI</strong> and <strong>AppVeyor</strong> in older projects &mdash; both have largely been displaced</p>
 
 <p class="pt-1">The YAML differs but the principles are the same &mdash; <strong>triggers</strong>, <strong>jobs</strong>, <strong>runners</strong> and <strong>steps</strong> exist in all of them</p>
 
@@ -284,15 +285,15 @@ jobs:
 layout: two-cols
 ---
 
-# Running on more than one thing
+# Matrix builds
 
 <div class="pr-4">
 
 <ul class="space-y-3">
   <li v-click="1">One job, run many times over</li>
   <li v-click="2">Vary the <strong>Python version</strong>, the <strong>operating system</strong>, or both</li>
-  <li v-click="3"><code>fail-fast: false</code> lets the rest finish</li>
-  <li v-click="4">This is how you find out what only breaks <em>somewhere else</em></li>
+  <li v-click="3"><code>fail-fast: false</code> lets <em>all</em> jobs finish, so you see <em>everywhere</em> that it breaks</li>
+  <li v-click="4">This is how you find out what doesn't work <em>on someone else's machine</em></li>
 </ul>
 
 </div>
@@ -300,14 +301,16 @@ layout: two-cols
 ::right::
 <div class="pl-4 pt-6">
 
-```yaml
-python-tests:
+```yaml {all|all|2,5-7|4|all}
+tests:
+  runs-on: ${{ matrix.os }}
   strategy:
     fail-fast: false
     matrix:
+      os: [ubuntu-latest, macos-latest, windows-latest]
       python-version: ["3.12", "3.13", "3.14"]
-  runs-on: ubuntu-latest
   steps:
+    - uses: actions/checkout@v7
     - uses: actions/setup-python@v7
       with:
         python-version: ${{ matrix.python-version }}
@@ -344,8 +347,8 @@ layout: two-cols
 ::right::
 <div class="pl-4 pt-2">
 
-```yaml {1-23|1-23|3-5|7-10|17-23|1-23}
-name: Deploy docs
+```yaml {all|all|3-5|7-10|17-26|all}
+name: Documentation
 
 on:
   push:
@@ -361,13 +364,16 @@ jobs:
     runs-on: ubuntu-latest
     environment: github-pages
     steps:
-      - uses: actions/checkout@v4
-      - run: pip install .[docs]
-      - run: sphinx-build -b html docs _build/html
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
-          path: _build/html
-      - uses: actions/deploy-pages@v4
+          python-version: "3.13"
+      - run: pip install .[docs]
+      - run: sphinx-build -W -b html docs docs/_build/html
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with: { path: docs/_build/html }
+      - uses: actions/deploy-pages@v5
 ```
 
 </div>
@@ -375,53 +381,10 @@ jobs:
 <style>
     .slidev-layout pre.slidev-code,
     .slidev-layout pre.slidev-code code {
-      font-size: 0.68rem !important;
+      font-size: 0.6rem !important;
       line-height: 1.45 !important;
     }
 </style>
-
----
-layout: two-cols
----
-
-# Keeping the loop short
-
-<div class="pr-4">
-
-<ul class="space-y-3">
-  <li v-click="1">A slow pipeline changes what people do</li>
-  <li v-click="2">They batch up changes, so changes get bigger</li>
-  <li v-click="3"><strong>Cache</strong> what you download every time</li>
-  <li v-click="4"><strong>Cancel</strong> runs nobody is waiting for</li>
-</ul>
-
-</div>
-
-::right::
-<div class="pl-4 pt-6">
-
-<div v-click="3">
-
-```yaml
-- uses: actions/setup-python@v7
-  with:
-    cache: pip
-    cache-dependency-path: pyproject.toml
-```
-
-</div>
-
-<div v-click="4" class="pt-2">
-
-```yaml
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-```
-
-</div>
-
-</div>
 
 ---
 layout: two-cols
@@ -432,22 +395,207 @@ layout: two-cols
 <div class="pr-4">
 
 <ul class="space-y-3">
-  <li v-click="1">A red cross changes nothing on its own</li>
-  <li v-click="2"><strong>Before the commit</strong>: pre-commit hooks, fast but optional</li>
-  <li v-click="3"><strong>Before the merge</strong>: required status checks, slow but binding</li>
-  <li v-click="4">Writing the check is the easy part</li>
+  <li v-click="1">A red cross changes nothing on its own &mdash; the merge button still works</li>
+  <li v-click="2"><strong>Before the commit</strong>: pre-commit hooks, instant but optional</li>
+  <li v-click="3"><strong>Before the merge</strong>: required status checks, slower but binding</li>
+  <li v-click="4">Writing the check is the easy part &mdash; a check nobody <em>has</em> to pass will eventually be ignored</li>
 </ul>
 
 </div>
 
 ::right::
-<div class="pl-4 flex items-center justify-center h-full">
-  <img
-    src="./img/ci_visibility.png"
-    alt="GitHub pull request showing status checks"
-    class="w-4/5"
-  />
+<div class="pl-4 pt-6">
+  <p class="mb-3 text-sm font-semibold tracking-wide text-gray-600">
+    Three places, one set of checks
+  </p>
+  <table class="w-full text-sm border-separate border-spacing-1">
+    <thead>
+      <tr class="text-white">
+        <th class="bg-gray-500 p-2 font-semibold text-left">Where</th>
+        <th class="bg-gray-500 p-2 font-semibold text-left">Strength</th>
+        <th class="bg-gray-500 p-2 font-semibold text-left">Weakness</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-click="2">
+        <td class="bg-gray-200 p-2">Pre-commit hook</td>
+        <td class="bg-gray-200 p-2">Immediate feedback</td>
+        <td class="bg-gray-200 p-2">Optional, skippable</td>
+      </tr>
+      <tr v-click="1">
+        <td class="bg-gray-100 p-2">Workflow run</td>
+        <td class="bg-gray-100 p-2">Clean machine, every platform</td>
+        <td class="bg-gray-100 p-2">Only reports</td>
+      </tr>
+      <tr v-click="3">
+        <td class="bg-gray-200 p-2">Required status check</td>
+        <td class="bg-gray-200 p-2">Actually binding</td>
+        <td class="bg-gray-200 p-2">Has to be switched on</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
+
+---
+layout: two-cols
+---
+
+# When it goes red
+
+<div class="pr-4">
+
+<ul class="space-y-3">
+  <li v-click="1">The red step is where the run <strong>stopped</strong>, not always where it went wrong</li>
+  <li v-click="2">Expand the steps that <em>passed</em> too</li>
+  <li v-click="3"><strong>Re-run</strong> for a flaky network or runner &mdash; your own bugs fail the same way twice</li>
+  <li v-click="4">Run the same commands <strong>locally</strong> first: CI is for what your machine <em>can't</em> tell you</li>
+</ul>
+
+</div>
+
+::right::
+<div class="pl-4 pt-6">
+
+<div v-click="1">
+
+```yaml
+- run: pip install .[developer]   # passed
+- run: ruff check .               # failed
+```
+
+```text
+ruff: command not found
+```
+
+</div>
+
+<div v-click="2" class="pt-2">
+
+```text
+WARNING: ci-course 0.1.0 does not provide
+         the extra 'developer'
+```
+
+</div>
+
+</div>
+
+<style>
+    .slidev-layout pre.slidev-code,
+    .slidev-layout pre.slidev-code code {
+      font-size: 0.66rem !important;
+      line-height: 1.45 !important;
+    }
+</style>
+
+---
+layout: two-cols
+---
+
+# Keeping the build fast
+
+<div class="pr-4">
+
+<ul class="space-y-3">
+  <li v-click="1">A slow pipeline changes what people do: they batch up changes, so changes get bigger</li>
+  <li v-click="2"><strong>Cache</strong> what you download every time</li>
+  <li v-click="3"><strong>Cancel</strong> runs nobody is waiting for &mdash; but never a half-finished deployment</li>
+  <li v-click="4"><strong>Skip</strong> irrelevant changes &mdash; but a skipped required check blocks the merge</li>
+</ul>
+
+</div>
+
+::right::
+<div class="pl-4 pt-6">
+
+<div v-click="2">
+
+```yaml
+- uses: actions/setup-python@v7
+  with:
+    cache: pip
+    cache-dependency-path: pyproject.toml
+```
+
+</div>
+
+<div v-click="3" class="pt-2">
+
+```yaml
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+```
+
+</div>
+
+<div v-click="4" class="pt-2">
+
+```yaml
+on:
+  push:
+    paths-ignore: ["**.md"]
+```
+
+</div>
+
+</div>
+
+<style>
+    .slidev-layout pre.slidev-code,
+    .slidev-layout pre.slidev-code code {
+      font-size: 0.66rem !important;
+      line-height: 1.45 !important;
+    }
+</style>
+
+---
+layout: two-cols
+---
+
+# Keeping what a run makes
+
+<div class="pr-4">
+
+<ul class="space-y-3">
+  <li v-click="1">Every runner is destroyed when its job ends</li>
+  <li v-click="2">An <strong>artifact</strong> is a set of files saved out of a run &mdash; not committed, deleted after a while</li>
+  <li v-click="3">Build the docs on every pull request: reviewers see the result, not just a green tick</li>
+</ul>
+
+</div>
+
+::right::
+<div class="pl-4 pt-6">
+
+```yaml {all|all|11-16|1-4}
+name: Documentation preview
+
+on:
+  pull_request:
+
+jobs:
+  docs-preview:
+    runs-on: ubuntu-latest
+    steps:
+      # ...check out, install, sphinx-build...
+      - uses: actions/upload-artifact@v7
+        with:
+          name: documentation-preview
+          path: docs/_build/html
+          if-no-files-found: error
+          retention-days: 7
+```
+
+</div>
+
+<style>
+    .slidev-layout pre.slidev-code,
+    .slidev-layout pre.slidev-code code {
+      font-size: 0.66rem !important;
+      line-height: 1.45 !important;
+    }
+</style>
 
 ---
 layout: two-cols
@@ -458,13 +606,13 @@ layout: two-cols
 <div class="pr-4">
 
 <ul class="space-y-3">
-  <li v-click="1"><code>needs:</code> makes one job wait for another</li>
-  <li v-click="2">Build <strong>once</strong>, publish that same artifact</li>
-  <li v-click="3">An <code>environment</code> can require a person to approve</li>
-  <li v-click="4">That approval is the whole difference between <strong>Delivery</strong> and <strong>Deployment</strong></li>
+  <li v-click="1"><code>needs:</code> makes one job wait for another: tests &rarr; build-docs &rarr; deploy</li>
+  <li v-click="2">Build <strong>once</strong>, deploy the artifact that was built</li>
+  <li v-click="3">An <code>environment:</code> can require a person to approve &mdash; Deployment becomes <strong>Delivery</strong></li>
+  <li v-click="4">The approval lives in repository settings, not in the YAML</li>
 </ul>
 
-<div v-click="3" class="pt-4">
+<div v-click="1" class="pt-4">
 
 ```yaml
 deploy:
@@ -504,8 +652,8 @@ layout: two-cols
 <ul class="space-y-3">
   <li v-click="1">Every <code>uses:</code> runs somebody else's code</li>
   <li v-click="2">A tag is a label, and labels can be moved</li>
-  <li v-click="3">A commit hash cannot</li>
-  <li v-click="4">Give each job only the permissions it needs</li>
+  <li v-click="3">A full commit hash cannot</li>
+  <li v-click="4">Give each job only the permissions it needs, and don't leave credentials lying around</li>
 </ul>
 
 </div>
@@ -522,10 +670,11 @@ layout: two-cols
 
 </div>
 
-<div v-click="3" class="pt-2">
+<div v-click="3" class="pt-2 sha">
 
 ```yaml
-- uses: codecov/codecov-action@303a32d # v7.1.1
+# v7.1.1, by its full 40-character hash
+- uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5
 ```
 
 </div>
@@ -535,11 +684,88 @@ layout: two-cols
 ```yaml
 permissions:
   contents: read
+steps:
+  - uses: actions/checkout@v7
+    with:
+      persist-credentials: false
 ```
 
 </div>
 
 </div>
+
+<style>
+    .slidev-layout pre.slidev-code,
+    .slidev-layout pre.slidev-code code {
+      font-size: 0.6rem !important;
+      line-height: 1.45 !important;
+    }
+    .sha pre.slidev-code,
+    .sha pre.slidev-code code {
+      font-size: 0.5rem !important;
+    }
+</style>
+
+---
+layout: two-cols
+---
+
+# Keeping it honest
+
+<div class="pr-4">
+
+<ul class="space-y-3">
+  <li v-click="1"><strong>zizmor</strong> audits your workflows the way ruff audits your Python</li>
+  <li v-click="2">A policy: GitHub's own actions by tag, everything else by hash</li>
+  <li v-click="3">A pin stops receiving fixes &mdash; <strong>Dependabot</strong> proposes updates as pull requests</li>
+  <li v-click="4">A <code>cooldown</code> lets other people find the bad release first</li>
+  <li v-click="5">Note: self-hosted runners on a public repository run strangers' pull requests on <em>your</em> hardware</li>
+</ul>
+
+</div>
+
+::right::
+<div class="pl-4 pt-6">
+
+<div v-click="2">
+
+```yaml
+# zizmor.yml
+rules:
+  unpinned-uses:
+    config:
+      policies:
+        actions/*: ref-pin
+        "*": hash-pin
+```
+
+</div>
+
+<div v-click="3" class="pt-2">
+
+```yaml
+# .github/dependabot.yml
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule: { interval: weekly }
+    cooldown: { default-days: 14 }
+    groups:
+      actions: { patterns: ["*"] }
+```
+
+</div>
+
+</div>
+
+<style>
+    .slidev-layout pre.slidev-code,
+    .slidev-layout pre.slidev-code code {
+      font-size: 0.62rem !important;
+      line-height: 1.45 !important;
+    }
+</style>
 
 ---
 
@@ -549,15 +775,21 @@ permissions:
 
 <v-clicks>
 
-- **GitHub Actions**, matrices, **coverage** and **docstrings**
-- Building and deploying **documentation** --- your first taste of **CD**
-- Running checks **before you commit** and **before you merge**
-- **Debugging**, **artifacts**, **approvals** and **supply chain**
+1. **GitHub Actions**: matrices, linting, and "works on my machine"
+2. **Code coverage** with pytest and Codecov
+3. **Docstrings**: another kind of coverage
+4. **Documentation** with Sphinx, deployed to GitHub Pages &mdash; your first **CD**
+5. Checks **before you commit** and **before you merge**
+6. **Debugging** failures and keeping the build **fast**
+7. **Artifacts** and **approving** a deployment
+8. **Supply chain**: trusting the code your workflows run
 
 </v-clicks>
 
+<p align="center" v-click class="color:gray; pt-4 opacity-70">Might be more than fits in one session </p>
+
 <style>
-    ul { @apply flex flex-col h-100 justify-evenly text-xl }
+    ol { @apply grid grid-flow-col grid-rows-4 gap-x-10 gap-y-4 pt-4 text-lg }
 </style>
 
 ---
@@ -570,9 +802,9 @@ layout: two-cols
 
 - Visit the [**GitHub Template Repository**](https://github.com/OxfordRSE/ci_course_start)
 - Click **Use this template** and create a new repository
-- Name it anything you like, but make it **public**
+- Name it anything you like, but make it **public** &mdash; free GitHub Pages and Codecov need it
 - Clone it to your local machine
-- Continue to follow the course online for further instructions
+- Follow the course at [**train.rse.ox.ac.uk**](https://train.rse.ox.ac.uk/material/HPCu/software_project_management/continuous_integration)
 
 </v-clicks>
 
