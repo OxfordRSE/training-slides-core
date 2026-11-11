@@ -25,7 +25,7 @@ fonts:
 
 <div class="pt-8">
 
-- Full notes, exercises and solutions are in the **Intro to Python** course on train.rse
+- Full notes, exercises and solutions are in the **Intro to Python** course on [gutenberg](https://train.rse.ox.ac.uk/material/HPCu/introductory_courses/python)
 - These slides summarise the main ideas
 - Part 2 covers functions, containers and data
 
@@ -39,7 +39,7 @@ layout: two-cols
 
 <v-clicks>
 
-- **Readable**: the syntax is close to pseudocode
+- **Readable**: the syntax reads almost like plain English
 - **Interpreted**: run code without a separate compilation step
 - **Dynamically typed**: no need to declare types
 - **Multi-paradigm**: procedural, object-oriented, functional
@@ -90,7 +90,7 @@ layout: two-cols
   - Reads your input, evaluates it and displays any result
   - Useful for trying short pieces of code
 - `>>>` is the prompt; `...` means more input is expected
-- Use `quit()` to leave
+- Use `quit()` or Ctrl-D (Ctrl-Z, Enter on Windows) to leave
 
 </v-clicks>
 
@@ -178,9 +178,10 @@ layout: two-cols
 - `name = value` assigns a value to a variable
 - `print()` displays values
 - Variables must be **created before they are used**
-- Assignments do not update automatically when other variables change
+- Changing one variable doesn't update others calculated from it
 - Python is **case-sensitive**: `age` and `Age` are different
 - Use **meaningful names**
+  - Lowercase with underscores: `first_name`
   - `age = 42` tells the reader what the value represents
 
 </v-clicks>
@@ -412,7 +413,7 @@ layout: two-cols
   - a **loop variable**: `number`
   - a **body**: the indented code
 - The first line **must end with a colon**
-- The body **must be indented**
+- The body **must be indented** (4 spaces by convention)
   - Indentation marks which statements belong to the loop
 - `range(n)` gives the numbers `0` to `n - 1`
 

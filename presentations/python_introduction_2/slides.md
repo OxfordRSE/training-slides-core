@@ -37,7 +37,7 @@ layout: two-cols
 
 Today: **functions**, **containers** and **data**
 
-- Notes and exercises on train.rse: Intro to Python and Procedural Programming (Python)
+- Notes and exercises on [gutenberg](https://train.rse.ox.ac.uk/material/HPCu/introductory_courses/python): Intro to Python and Procedural Programming (Python)
 - Example data: `uniqplus_python_data.zip` from the course
 
 </div>
@@ -78,7 +78,7 @@ layout: two-cols
 
 - Put a task in a function so you can reuse it
   - Smaller sections of code are easier to read and test
-- Use `def name(parameters):` followed by an indented body
+- Use `def name(parameters):` followed by an indented body (4 spaces by convention)
 - Defining a function **does not run it**
 - Match arguments to parameters by position or name
 - `return` sends a result back to the caller
