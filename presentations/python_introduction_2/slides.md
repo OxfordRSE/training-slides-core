@@ -37,7 +37,7 @@ layout: two-cols
 
 Today: **functions**, **containers** and **data**
 
-- Notes and exercises on [gutenberg](https://train.rse.ox.ac.uk/material/HPCu/introductory_courses/python): Intro to Python, episodes 9-–17
+- Notes and exercises on [gutenberg](https://train.rse.ox.ac.uk/material/HPCu/introductory_courses/python): Intro to Python, episodes 9 -– 17
 - Example data: `uniqplus_python_data.zip` from the course
 
 </div>
