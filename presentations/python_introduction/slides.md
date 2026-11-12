@@ -662,7 +662,7 @@ Part 2 builds on these topics:
   - Get the example data ready: download `uniqplus_python_data.zip` from the course
 
 <div class="pt-8">
-<span class="font-semibold text-lg text-red-700">Before then: work through episodes 1–8, up to "Errors and Exceptions".</span>
+<span class="font-semibold text-lg text-red-700">Before then: work through episodes 1–-8, up to "Errors and Exceptions".</span>
 </div>
 
 ---
