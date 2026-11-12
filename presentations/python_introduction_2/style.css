@@ -1,0 +1,2 @@
+/* Show operators like != as typed, not as ligatures */
+code { font-variant-ligatures: none; }
