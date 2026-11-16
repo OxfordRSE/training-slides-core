@@ -461,17 +461,53 @@ SSH to a login node:
 ssh username@hpc.to.connect
 ```
 
+Login nodes are **shared** by everyone on the cluster:
+
+- Every user connects through the same few machines
+- A heavy task there slows things down for everyone else
+- They are for editing files, building code and submitting jobs
+
 Login node etiquette: **no heavy computation**
 
-Load software via the **module** system:
+---
+
+# Load software with modules
+
+Clusters keep many versions of software installed side by side. The **module** system chooses which ones you use.
+
+See what is installed with `module avail`:
 
 ```shell
-module avail            # list available software
+module avail            # list all available software
+module avail Python     # list only the versions of Python
+```
+
+Load what you need:
+
+```shell
 module load Python/3    # load a specific package
+```
+
+Check what you have loaded with `module list`:
+
+```shell
 module list             # show loaded modules
 ```
 
-For software that is not available from the module system, you can set up your own **virtual environment**. Alternatively, you can use **Apptainer**:
+---
+
+# Use your own software
+
+For software that is not in the module system, set up your own Python **virtual environment**:
+
+```shell
+module load Python/3            # start from a module's Python
+python -m venv myenv            # create the environment
+source myenv/bin/activate       # activate it (also in your job scripts)
+pip install numpy               # install what you need
+```
+
+Or run a container with **Apptainer**:
 
 ```shell
 apptainer exec my_container.sif echo "hello"
