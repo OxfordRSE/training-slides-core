@@ -160,6 +160,7 @@ layout: two-cols
 - Examples:
   - ML model training
   - climate simulations
+  - cosmological simulations
   - molecular dynamics
   - parameter sweeps
 
@@ -169,15 +170,66 @@ layout: two-cols
 
 # Components of an HPC system
 
-<v-clicks>
+<div class="relative">
+<div :class="{ invisible: $clicks > 0 }">
 
 - **Login nodes**: access point, file management, job submission
 - **Compute nodes**: where jobs run (CPUs, GPUs, memory)
-- **Network**: high-speed interconnects between nodes file systems
+- **Network**: high-speed interconnects between nodes and file systems
 - **Storage**: shared file systems ($HOME, $DATA)
 - **Scheduler**: allocates resources and manages job queue
 
-</v-clicks>
+</div>
+<div class="absolute inset-0">
+<v-switch at="1">
+<template #1>
+
+**Login nodes**: your way into the cluster
+
+- Where you land when you connect over SSH
+- For editing files, building code and submitting jobs
+- Shared by all users, so no heavy computation
+
+</template>
+<template #2>
+
+**Compute nodes**: where your jobs run
+
+- Many CPU cores and lots of memory per node
+- Some have GPUs or extra-large memory
+- Reached through the scheduler, not directly
+
+</template>
+<template #3>
+
+**Network**: links everything together
+
+- High-speed interconnect (e.g. InfiniBand) between compute nodes
+- Lets a single job span many nodes
+- Also connects every node to the storage
+
+</template>
+<template #4>
+
+**Storage**: shared file systems
+
+- Visible from every node, so all your jobs see the same files
+- Home: small, for code and configuration
+- Data and scratch: large, for project data and job files
+
+</template>
+<template #5>
+
+**Scheduler**: decides what runs where and when
+
+- You request resources: cores, memory and time
+- Jobs wait in a queue until those resources are free
+- Shares the cluster fairly between users
+
+</template>
+</v-switch>
+</div>
+</div>
 
 <v-switch at="1">
 <template #0>
