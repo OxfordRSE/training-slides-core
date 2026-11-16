@@ -494,6 +494,11 @@ Check what you have loaded with `module list`:
 module list             # show loaded modules
 ```
 
+<style>
+/* The theme greys the first paragraph under a title as a subtitle; this one is body text. */
+.slidev-layout h1 + p { opacity: 1; }
+</style>
+
 ---
 
 # Use your own software
@@ -514,9 +519,14 @@ apptainer exec my_container.sif echo "hello"
 apptainer run docker://alpine echo "hello"
 ```
 
+<style>
+/* The theme greys the first paragraph under a title as a subtitle; this one is body text. */
+.slidev-layout h1 + p { opacity: 1; }
+</style>
+
 ---
 
-# Scheduler in HPC
+# The Scheduler
 
 Manages fair access and priority to **shared** compute resources
 
@@ -524,17 +534,110 @@ You request resources -> scheduler queues your job -> runs it when resources are
 
 Slurm: one of the most popular scheduler for HPC system
 
-| Command | Purpose |
-| --- | --- |
-| `sbatch` | Submit a job script |
-| `squeue` | Check job status |
-| `scancel` | Cancel a job |
-| `sacct` | Check job accounting data |
-| `sinfo` | View cluster status |
-| `seff` | Check job efficiency |
+<div class="sched">
+<table>
+  <thead><tr><th>Command</th><th>Purpose</th></tr></thead>
+  <tbody>
+    <tr v-click="1"><td><code>sbatch</code></td><td>Submit a job script</td></tr>
+    <tr v-click="2"><td><code>squeue</code></td><td>Check job status</td></tr>
+    <tr v-click="3"><td><code>scancel</code></td><td>Cancel a job</td></tr>
+    <tr v-click="4"><td><code>sacct</code></td><td>Check job accounting data</td></tr>
+    <tr v-click="5"><td><code>sinfo</code></td><td>View cluster status</td></tr>
+    <tr v-click="6"><td><code>seff</code></td><td>Check job efficiency</td></tr>
+  </tbody>
+</table>
+<div class="sched-out">
+<v-switch at="1">
+<template #1>
+
+```console
+$ sbatch myscript.sh
+Submitted batch job 11018752
+```
+
+</template>
+<template #2>
+
+```console
+$ squeue --me
+   JOBID PARTITION   NAME     USER ST  TIME NODES NODELIST(REASON)
+11018752     short my_job dtce0101  R  0:42     1 arc-c046
+11018753     short my_job dtce0101 PD  0:00     1 (Priority)
+```
+
+</template>
+<template #3>
+
+```console
+$ scancel 11018753
+$ squeue --me
+   JOBID PARTITION   NAME     USER ST  TIME NODES NODELIST(REASON)
+11018752     short my_job dtce0101  R  1:05     1 arc-c046
+```
+
+</template>
+<template #4>
+
+```console
+$ sacct -j 11018752 --format=JobID,JobName,State,Elapsed,MaxRSS
+       JobID    JobName      State    Elapsed     MaxRSS
+------------ ---------- ---------- ---------- ----------
+11018752         my_job  COMPLETED   00:12:31
+11018752.ba+      batch  COMPLETED   00:12:31      9872K
+11018752.ex+     extern  COMPLETED   00:12:31          0
+11018752.0       python  COMPLETED   00:12:24   1523400K
+```
+
+</template>
+<template #5>
+
+```console
+$ sinfo
+PARTITION   AVAIL  TIMELIMIT  NODES  STATE NODELIST
+short          up   12:00:00    103    mix arc-c[046-052,...]
+short          up   12:00:00    162  alloc arc-c[053,058-062,...]
+short          up   12:00:00      1   idle arc-c221
+...
+devel          up      10:00      2   idle arc-c[294-295]
+interactive    up    4:00:00      1    mix arc-c296
+interactive    up    4:00:00      1   idle arc-c297
+```
+
+</template>
+<template #6>
+
+```console
+$ seff 11018752
+Job ID: 11018752
+Cluster: arc
+User/Group: dtce0101/internal
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 4
+CPU Utilized: 00:46:12
+CPU Efficiency: 92.28% of 00:50:04 core-walltime
+Job Wall-clock time: 00:12:31
+Memory Utilized: 1.45 GB
+Memory Efficiency: 36.25% of 4.00 GB
+```
+
+</template>
+</v-switch>
+</div>
+</div>
 
 <style>
-th, td { padding: 0.2em 0.5em; }
+/* The theme greys the first paragraph under a title as a subtitle; this one is body text. */
+.slidev-layout h1 + p { opacity: 1; }
+.sched { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1.25rem; align-items: start; }
+.sched table { width: auto; margin: 0; }
+.sched th, .sched td { padding: 0.25em 0.75em; white-space: nowrap; text-align: left; }
+/* Rows not yet clicked in should leave no trace, borders included. */
+.sched tr.slidev-vclick-hidden { border-color: transparent; }
+/* Tie the row just revealed to the output shown beside it. */
+.sched tr.slidev-vclick-current { background: #e8a83833; }
+.sched-out { --slidev-code-font-size: 12px; --slidev-code-line-height: 1.4; }
+.sched-out pre { margin: 0; }
 </style>
 
 ---
