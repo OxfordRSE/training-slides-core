@@ -196,8 +196,8 @@ layout: two-cols
 **Compute nodes**: where your jobs run
 
 - Many CPU cores and lots of memory per node
-- Some have GPUs or extra-large memory
 - Reached through the scheduler, not directly
+- Homogeneous (identical nodes) or heterogeneous (a mix, e.g. some with GPUs)
 
 </template>
 <template #3>
