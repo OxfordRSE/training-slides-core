@@ -33,11 +33,21 @@ Using many computers together to solve problems too large or slow for a single m
 
 </div>
 
+<div v-click>
+
+**High-Throughput Computing**
+
+Running many independent jobs, such as one analysis over thousands of inputs.
+
+</div>
+
 ::right::
 <div class="h-full w-full flex items-center justify-center pl-4">
   <img src="./img/hpc_system.png" class="object-cover h-9/10 w-9/10" alt="HPC system" />
 </div>
 
+---
+layout: two-cols
 ---
 
 # What is a cluster?
@@ -51,10 +61,72 @@ A collection of computers (nodes) connected by a network, working as one system.
 <v-clicks>
 
 - Each node has its own processors and memory
+- A network connects everything together
 - Nodes share a common storage system
 - A scheduler coordinates which jobs to run and where they run
 
 </v-clicks>
+
+::right::
+<div v-click="1" class="h-full flex items-center justify-center pl-6">
+<div class="cluster" :class="'step-' + $clicks">
+  <div class="flex gap-6">
+    <div class="stack"><div class="box sched">Scheduler</div><div class="wire"></div></div>
+    <div class="stack"><div class="box storage">Shared storage</div><div class="wire"></div></div>
+  </div>
+  <div class="box net w-full">Network</div>
+  <div class="flex gap-3 w-full">
+    <div v-for="n in 3" :key="n" class="stack flex-1">
+      <div class="wire"></div>
+      <div class="node">
+        <div class="node-label">Node {{ n }}</div>
+        <div class="flex gap-1"><div class="box cpu flex-1">CPU</div><div class="box cpu flex-1">CPU</div></div>
+        <div class="box mem">Memory</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<style scoped>
+.cluster {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: max-content;
+  font-size: 0.875rem;
+  line-height: 1.2;
+}
+.cluster .stack { display: flex; flex-direction: column; align-items: center; }
+.cluster .wire { width: 2px; height: 1rem; background: #666; }
+.cluster .box {
+  padding: 0.45rem 0.55rem;
+  border: 1px solid #b87a1a;
+  border-radius: 4px;
+  background: #e8a838;
+  color: #fff;
+  text-align: center;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.cluster .node {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+  padding: 0.4rem;
+  border: 1px solid #999;
+  border-radius: 4px;
+  background: #f5f5f5;
+}
+.cluster .node-label { color: #333; text-align: center; font-size: 0.85em; }
+/* Clicks 2-5 dim everything, then highlight what the current bullet names. */
+.cluster:is(.step-2, .step-3, .step-4, .step-5) .box { background: #ddd; border-color: #aaa; color: #666; }
+.cluster.step-2 :is(.cpu, .mem),
+.cluster.step-3 .net,
+.cluster.step-4 .storage,
+.cluster.step-5 .sched { background: #d55e00; border-color: #a34700; color: #fff; }
+.cluster.step-3 .wire { background: #d55e00; }
+</style>
 
 ---
 layout: two-cols
