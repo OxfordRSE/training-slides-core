@@ -639,6 +639,7 @@ The workflow:
 1. Write a job script (bash + `#SBATCH` directives)
 2. Submit with `sbatch myscript.sh`
 3. Monitor with `squeue --me` (shortcut of `squeue -u $USER`)
+   - or keep it refreshing with `watch -d "squeue --me"` (`-d` highlights what changed)
 4. Check log/output files
 5. Check efficiency with `seff <JOBID>`, especially for the first few runs.
 
@@ -674,6 +675,8 @@ srun python my_job.py
 </v-clicks>
 
 ---
+layout: two-cols
+---
 
 # How much resources should I request?
 
@@ -687,22 +690,27 @@ Three key resources: **CPUs**, **memory**, **walltime**
 - Observe the scaling of resource usage with your dataset size/number of iterations etc.
 - Use `seff` to refine
 
-  ```shell
-  $ seff 11018740
-  Job ID: 11018740
-  Cluster: arc
-  User/Group: dtce0101/internal
-  State: TIMEOUT (exit code 0)
-  Nodes: 4
-  Cores per node: 45
-  CPU Utilized: 355-13:57:16
-  CPU Efficiency: 98.76% of 360-01:00:00 core-walltime
-  Job Wall-clock time: 2-00:00:20
-  Memory Utilized: 166.98 GB (estimated maximum)
-  Memory Efficiency: 52.18% of 320.00 GB (80.00 GB/node)
-  ```
-
 </v-clicks>
+
+::right::
+<div v-click="5" class="h-full flex items-center pl-4" style="--slidev-code-font-size: 11.5px">
+
+```console
+$ seff 11018740
+Job ID: 11018740
+Cluster: arc
+User/Group: dtce0101/internal
+State: TIMEOUT (exit code 0)
+Nodes: 4
+Cores per node: 45
+CPU Utilized: 355-13:57:16
+CPU Efficiency: 98.76% of 360-01:00:00 core-walltime
+Job Wall-clock time: 2-00:00:20
+Memory Utilized: 166.98 GB (estimated maximum)
+Memory Efficiency: 52.18% of 320.00 GB (80.00 GB/node)
+```
+
+</div>
 
 ---
 
