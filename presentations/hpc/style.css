@@ -1,0 +1,3 @@
+/* The theme fades the first paragraph under a slide title as a subtitle.
+   This deck opens slides with body text there, so show it at full strength. */
+.slidev-layout h1 + p { opacity: 1; }

@@ -494,11 +494,6 @@ Check what you have loaded with `module list`:
 module list             # show loaded modules
 ```
 
-<style>
-/* The theme greys the first paragraph under a title as a subtitle; this one is body text. */
-.slidev-layout h1 + p { opacity: 1; }
-</style>
-
 ---
 
 # Use your own software
@@ -518,11 +513,6 @@ Or run a container with **Apptainer**:
 apptainer exec my_container.sif echo "hello"
 apptainer run docker://alpine echo "hello"
 ```
-
-<style>
-/* The theme greys the first paragraph under a title as a subtitle; this one is body text. */
-.slidev-layout h1 + p { opacity: 1; }
-</style>
 
 ---
 
@@ -627,8 +617,6 @@ Memory Efficiency: 36.25% of 4.00 GB
 </div>
 
 <style>
-/* The theme greys the first paragraph under a title as a subtitle; this one is body text. */
-.slidev-layout h1 + p { opacity: 1; }
 .sched { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1.25rem; align-items: start; }
 .sched table { width: auto; margin: 0; }
 .sched th, .sched td { padding: 0.25em 0.75em; white-space: nowrap; text-align: left; }
