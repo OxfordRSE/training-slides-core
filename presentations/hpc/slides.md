@@ -771,10 +771,73 @@ layout: two-cols
 ---
 
 # Fun Fact
+
+The **Cray-1** (1976) weighed about 5 tonnes and cost around $8 million.
+
+The bench around its base hides the power supplies and cooling, making it the world's most expensive seat.
+
+It was among the fastest computers of its day. Your phone is now far faster.
+
+::right::
+<div class="h-full w-full flex items-center justify-center pl-4">
+  <img src="./img/cray-1.jpg" class="object-contain h-full w-full" alt="Photo of a Cray-1 supercomputer, a ring of tall black cabinets with a padded bench around its base"/>
+</div>
+
+---
+layout: two-cols
+---
+
+# Fun Fact
 The MareNostrum supercomputer in Barcelona is housed in a neo-Gothic chapel.
 It was featured in Dan Brown's _Origin_ (2017).
 
 ::right::
 <div class="h-full w-full flex items-center justify-center">
   <img src="./img/marenostrum.jpg" class="object-cover h-full w-full"  alt="Photo of MareNostrum supercomputer in the neo-gothic chapel Torre Girona"/>
+</div>
+
+---
+
+# Fun Fact
+
+In March 2020, **Folding@home** became the first computing system to pass one exaFLOP: a billion billion calculations per second.
+
+It was not a supercomputer. It was volunteers' home computers, working together on COVID-19 research.
+
+The first exascale supercomputer, Frontier, did not arrive until 2022.
+
+---
+
+# Fun Example
+
+A dam break.
+
+<div class="flex justify-center">
+<SlidevVideo autoplay autoreset="slide" controls loop muted class="h-90 rounded">
+  <source src="./img/dam_break.mp4" type="video/mp4" />
+</SlidevVideo>
+</div>
+
+---
+
+# Fun Example
+
+Gas collapsing into the cosmic web over the age of the Universe, in a cosmological simulation.
+
+<div class="flex justify-center">
+<SlidevVideo autoplay autoreset="slide" controls loop muted class="h-90 rounded">
+  <source src="./img/cosmic_web.mp4" type="video/mp4" />
+</SlidevVideo>
+</div>
+
+---
+
+# Fun Example
+
+A catastrophic impact between two young planets.
+
+<div class="flex justify-center">
+<SlidevVideo autoplay autoreset="slide" controls loop muted class="h-90 rounded">
+  <source src="./img/giant_impact.mp4" type="video/mp4" />
+</SlidevVideo>
 </div>
