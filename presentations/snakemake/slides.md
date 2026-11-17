@@ -601,7 +601,7 @@ Disjoint paths in DAG can be executed in parallel:
 - Build DAG tree (`snakemake --d3dag`)
 - Visualise DAG (Dot from graphviz: `snakemake --dag targets | dot -Tpng > dag.png`)
 - Support for temporary and protected files
-- Tracking of tool versions and code changes
+- Tracking of software environment and code changes
 - A Python API for embedding Snakemake in other tools
 
 ---
