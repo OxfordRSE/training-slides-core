@@ -491,7 +491,7 @@ rule visualise:
         "overlay_on_map.sh {input.forecast} {input.map} --output {output}"
 ```
 
-By default, Snakemake will attempt to satisfy the first rule in a Snakefile which, by convention, we name 'all' since it collects the build targets.
+By default, Snakemake will attempt to satisfy the first rule in a Snakefile which, by convention, we name `all` since its inputs list the targets we want built.
 
 ---
 
