@@ -517,7 +517,7 @@ rule visualise:
         "overlay_on_map.sh {input.forecast} {input.map} --output {output}"
 ```
 
-We can simplify this slightly by making use of Python and helper functions, such as `expand()` (note that the curly braces in `expand()` are unrelated arguments to the function, not wildcards).
+We can simplify this slightly using a Python list and Snakemake's `expand()` helper (note that `{county}` inside `expand()` is filled from the `county=` argument, not a wildcard).
 
 ---
 
