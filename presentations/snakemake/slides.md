@@ -29,7 +29,7 @@ Moving from applications to pipelines
 
 - A series of data processing steps
 - Each step may require different tools
-- How do we manage these steps and their dependencies in a reproducible, scalable  and efficient way?
+- How do we manage these steps and their dependencies in a reproducible, scalable and efficient way?
 
 <div style="height: 20px;"></div>
 
@@ -517,7 +517,7 @@ rule visualise:
         "overlay_on_map.sh {input.forecast} {input.map} --output {output}"
 ```
 
-We can simplify this slightly by making using of Python and helper functions, such as `expand()` (note that the curly braces in `expand()` are unrelated arguments to the function, not wildcards).
+We can simplify this slightly by making use of Python and helper functions, such as `expand()` (note that the curly braces in `expand()` are unrelated arguments to the function, not wildcards).
 
 ---
 
@@ -556,7 +556,7 @@ Snakemake infers dependencies and execution order of rules
 
 Execution:
 
-- `shell` directive allow you to execute scripts from any language, e.g. python, R, julia, rust, ...
+- `shell` directive allows you to execute scripts from any language, e.g. python, R, julia, rust, ...
 - `run` directive allows you to execute python code natively
 
 ---
@@ -578,7 +578,7 @@ layout: two-cols-header
 
 Scheduling heuristic is applied to
 
-- Maximise parallelization
+- Maximise parallelisation
 - Prefer high priority jobs
 - Subject to resource constraints
 
