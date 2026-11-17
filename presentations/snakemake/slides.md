@@ -273,7 +273,7 @@ transition: none
         <span style="font-weight: bold; color: #d93f0b;">"results/UK.png"</span>
     shell:
         """
-        overlay_on_map.sh <span style="font-weight: bold; color: #0e8a16;">{input.forecast}</span> <span style="font-weight: bold; color: #1d76db;">{input.map}</span> -output <span style="font-weight: bold; color: #d93f0b;">{output}</span>
+        overlay_on_map.sh <span style="font-weight: bold; color: #0e8a16;">{input.forecast}</span> <span style="font-weight: bold; color: #1d76db;">{input.map}</span> --output <span style="font-weight: bold; color: #d93f0b;">{output}</span>
         """
 </code></pre>
 </v-click>
@@ -433,7 +433,7 @@ Counties (48): Beds, Berks, Bucks, Cambs, Ches, Corn, Cumb, ...
     output:
         "results/<span style="font-weight: bold; color: #d93f0b;">UK</span>.png"
     shell:
-        "overlay_on_map.sh {input.forecast} {input.map} -output {output}"
+        "overlay_on_map.sh {input.forecast} {input.map} --output {output}"
 </code></pre>
 
 ---
@@ -452,7 +452,7 @@ Counties (48): Beds, Berks, Bucks, Cambs, Ches, Corn, Cumb, ...
     output:
         "results/<span style="font-weight: bold; color: #d93f0b;">{county}</span>.png"
     shell:
-        "overlay_on_map.sh {input.forecast} {input.map} -output {output}"
+        "overlay_on_map.sh {input.forecast} {input.map} --output {output}"
 </code></pre>
 
 <div style="height: 20px;"></div>
@@ -488,7 +488,7 @@ rule visualise:
     output:
         "results/{county}.png"
     shell:
-        "overlay_on_map.sh {input.forecast} {input.map} -output {output}"
+        "overlay_on_map.sh {input.forecast} {input.map} --output {output}"
 ```
 
 By default, Snakemake will attempt to satisfy the first rule in a Snakefile which, by convention, we name 'all' since it collects the build targets.
@@ -514,7 +514,7 @@ rule visualise:
     output:
         "results/{county}.png"
     shell:
-        "overlay_on_map.sh {input.forecast} {input.map} -output {output}"
+        "overlay_on_map.sh {input.forecast} {input.map} --output {output}"
 ```
 
 We can simplify this slightly by making using of Python and helper functions, such as `expand()` (note that the curly braces in `expand()` are unrelated arguments to the function, not wildcards).
@@ -537,7 +537,7 @@ rule visualise:
     output:
         "results/{county}.png"
     shell:
-        "overlay_on_map.sh {input.forecast} {input.map} -output {output}"
+        "overlay_on_map.sh {input.forecast} {input.map} --output {output}"
 ```
 
 ---
