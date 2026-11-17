@@ -250,7 +250,7 @@ transition: none
 
 ```bash
 overlay_on_map.sh \
-    model/forecast_model.dat maps/uk.map \
+    model/forecast_model.dat maps/UK.map \
     --output results/UK.png
 ```
 
@@ -259,7 +259,7 @@ transition: none
 ---
 
 <pre class="slidev-code shiki"><code>overlay_on_map.sh \
-    <span style="font-weight: bold; color: #0e8a16;">model/forecast_model.dat</span> <span style="font-weight: bold; color: #1d76db;">maps/uk.map</span> \
+    <span style="font-weight: bold; color: #0e8a16;">model/forecast_model.dat</span> <span style="font-weight: bold; color: #1d76db;">maps/UK.map</span> \
     --output <span style="font-weight: bold; color: #d93f0b;">results/UK.png</span></code></pre>
 
 <div style="height: 4px;"></div>
