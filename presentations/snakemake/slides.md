@@ -557,8 +557,9 @@ Snakemake infers dependencies and execution order of rules
 
 Execution:
 
-- `shell` directive allows you to execute scripts from any language, e.g. python, R, julia, rust, ...
-- `run` directive allows you to execute python code natively
+- The `shell` directive allows you to run any command-line program or script
+- The `run` directive allows you to execute python code natively
+- The `script` directive allows you to run a script file (e.g. Python, R, Julia), with access to the rule's `input`, `output` and `params`
 
 ---
 layout: two-cols-header
