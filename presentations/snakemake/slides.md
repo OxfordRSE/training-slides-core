@@ -600,7 +600,7 @@ Disjoint paths in DAG can be executed in parallel:
 - Run each rule in its own virtual environment (e.g. `conda` directive)
 - Lint workflow (`snakemake --lint`)
 - Modularise workflow (and reuse) (`module` directive)
-- Build DAG tree (`snakemake --d3dag`)
+- Export DAG as JSON for D3.js (`snakemake --d3dag`)
 - Visualise DAG (Dot from graphviz: `snakemake --dag targets | dot -Tpng > dag.png`)
 - Temporary outputs (deleted once no longer needed) and protected outputs (made read-only)
 - Tracking of software environment and code changes
