@@ -601,7 +601,7 @@ Disjoint paths in DAG can be executed in parallel:
 - Modularise workflow (and reuse) (`module` directive)
 - Build DAG tree (`snakemake --d3dag`)
 - Visualise DAG (Dot from graphviz: `snakemake --dag targets | dot -Tpng > dag.png`)
-- Support for temporary and protected files
+- Temporary outputs (deleted once no longer needed) and protected outputs (made read-only)
 - Tracking of software environment and code changes
 - A Python API for embedding Snakemake in other tools
 
