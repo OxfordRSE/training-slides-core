@@ -576,13 +576,16 @@ layout: two-cols-header
 
 <div style="height: 40px;"></div>
 
-Scheduling heuristic is applied to
+The DAG is built from the rules and the requested targets, before any job runs.
+Each node is a job: a rule with wildcards gives one job per value.
+
+Scheduling heuristic is applied to:
 
 - Maximise parallelisation
 - Prefer high priority jobs
 - Subject to resource constraints
 
-Disjoint paths in DAG can be executed in parallel
+Disjoint paths in DAG can be executed in parallel:
 
 `snakemake --cores 8`
 
