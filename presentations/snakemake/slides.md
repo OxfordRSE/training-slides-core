@@ -504,7 +504,7 @@ Counties (48): Beds, Berks, Bucks, Cambs, Ches, Corn, Cumb, ...
 ```python {1-5}
 counties = ['Beds', 'Berks', 'Bucks', 'Cambs', 'Ches']
 
-rule uk_map:
+rule all:
     input:
         expand("results/{county}.png", county=counties)
 
@@ -527,7 +527,7 @@ We can simplify this slightly using a Python list and Snakemake's `expand()` hel
 ```python
 counties = ['Beds', 'Berks', 'Bucks', 'Cambs', 'Ches']
 
-rule uk_map:
+rule all:
     input:
         expand("results/{county}.png", county=counties)
 
