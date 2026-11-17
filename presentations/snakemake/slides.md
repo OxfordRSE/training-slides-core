@@ -578,7 +578,7 @@ layout: two-cols-header
 <div style="height: 40px;"></div>
 
 The DAG is built from the rules and the requested targets, before any job runs.
-Each node is a job: a rule with wildcards gives one job per value.
+Each node is a job. A rule with wildcards gives one job per value.
 
 Scheduling heuristic is applied to:
 
