@@ -29,7 +29,7 @@ Moving from applications to pipelines
 
 - A series of data processing steps
 - Each step may require different tools
-- How do we manage these steps and their dependencies in a reproducible, scalable  and efficient way?
+- How do we manage these steps and their dependencies in a reproducible, scalable and efficient way?
 
 <div style="height: 20px;"></div>
 
@@ -70,6 +70,7 @@ Moving from applications to pipelines
 - Complex workflows (manage hundreds of steps, dependencies)
 - Cheap parallelisation (on local machine, that can be easily extended to clusters/cloud)
 - Selective rebuilds (only re-run what is necessary, can be sensitive to _data_ changes and _code_ changes)
+- Failure recovery (a restart skips steps that already completed)
 
 ---
 
@@ -250,7 +251,7 @@ transition: none
 
 ```bash
 overlay_on_map.sh \
-    model/forecast_model.dat maps/uk.map \
+    model/forecast_model.dat maps/UK.map \
     --output results/UK.png
 ```
 
@@ -259,7 +260,7 @@ transition: none
 ---
 
 <pre class="slidev-code shiki"><code>overlay_on_map.sh \
-    <span style="font-weight: bold; color: #0e8a16;">model/forecast_model.dat</span> <span style="font-weight: bold; color: #1d76db;">maps/uk.map</span> \
+    <span style="font-weight: bold; color: #0e8a16;">model/forecast_model.dat</span> <span style="font-weight: bold; color: #1d76db;">maps/UK.map</span> \
     --output <span style="font-weight: bold; color: #d93f0b;">results/UK.png</span></code></pre>
 
 <div style="height: 4px;"></div>
@@ -273,7 +274,7 @@ transition: none
         <span style="font-weight: bold; color: #d93f0b;">"results/UK.png"</span>
     shell:
         """
-        overlay_on_map.sh <span style="font-weight: bold; color: #0e8a16;">{input.forecast}</span> <span style="font-weight: bold; color: #1d76db;">{input.map}</span> -output <span style="font-weight: bold; color: #d93f0b;">{output}</span>
+        overlay_on_map.sh <span style="font-weight: bold; color: #0e8a16;">{input.forecast}</span> <span style="font-weight: bold; color: #1d76db;">{input.map}</span> --output <span style="font-weight: bold; color: #d93f0b;">{output}</span>
         """
 </code></pre>
 </v-click>
@@ -433,7 +434,7 @@ Counties (48): Beds, Berks, Bucks, Cambs, Ches, Corn, Cumb, ...
     output:
         "results/<span style="font-weight: bold; color: #d93f0b;">UK</span>.png"
     shell:
-        "overlay_on_map.sh {input.forecast} {input.map} -output {output}"
+        "overlay_on_map.sh {input.forecast} {input.map} --output {output}"
 </code></pre>
 
 ---
@@ -452,7 +453,7 @@ Counties (48): Beds, Berks, Bucks, Cambs, Ches, Corn, Cumb, ...
     output:
         "results/<span style="font-weight: bold; color: #d93f0b;">{county}</span>.png"
     shell:
-        "overlay_on_map.sh {input.forecast} {input.map} -output {output}"
+        "overlay_on_map.sh {input.forecast} {input.map} --output {output}"
 </code></pre>
 
 <div style="height: 20px;"></div>
@@ -488,10 +489,10 @@ rule visualise:
     output:
         "results/{county}.png"
     shell:
-        "overlay_on_map.sh {input.forecast} {input.map} -output {output}"
+        "overlay_on_map.sh {input.forecast} {input.map} --output {output}"
 ```
 
-By default, Snakemake will attempt to satisfy the first rule in a Snakefile which, by convention, we name 'all' since it collects the build targets.
+By default, Snakemake will attempt to satisfy the first rule in a Snakefile which, by convention, we name `all` since its inputs list the targets we want built.
 
 ---
 
@@ -503,7 +504,7 @@ Counties (48): Beds, Berks, Bucks, Cambs, Ches, Corn, Cumb, ...
 ```python {1-5}
 counties = ['Beds', 'Berks', 'Bucks', 'Cambs', 'Ches']
 
-rule uk_map:
+rule all:
     input:
         expand("results/{county}.png", county=counties)
 
@@ -514,10 +515,10 @@ rule visualise:
     output:
         "results/{county}.png"
     shell:
-        "overlay_on_map.sh {input.forecast} {input.map} -output {output}"
+        "overlay_on_map.sh {input.forecast} {input.map} --output {output}"
 ```
 
-We can simplify this slightly by making using of Python and helper functions, such as `expand()` (note that the curly braces in `expand()` are unrelated arguments to the function, not wildcards).
+We can simplify this slightly using a Python list and Snakemake's `expand()` helper (note that `{county}` inside `expand()` is filled from the `county=` argument, not a wildcard).
 
 ---
 
@@ -526,7 +527,7 @@ We can simplify this slightly by making using of Python and helper functions, su
 ```python
 counties = ['Beds', 'Berks', 'Bucks', 'Cambs', 'Ches']
 
-rule uk_map:
+rule all:
     input:
         expand("results/{county}.png", county=counties)
 
@@ -537,7 +538,7 @@ rule visualise:
     output:
         "results/{county}.png"
     shell:
-        "overlay_on_map.sh {input.forecast} {input.map} -output {output}"
+        "overlay_on_map.sh {input.forecast} {input.map} --output {output}"
 ```
 
 ---
@@ -556,8 +557,9 @@ Snakemake infers dependencies and execution order of rules
 
 Execution:
 
-- `shell` directive allow you to execute scripts from any language, e.g. python, R, julia, rust, ...
-- `run` directive allows you to execute python code natively
+- The `shell` directive allows you to run any command-line program or script
+- The `run` directive allows you to execute python code natively
+- The `script` directive allows you to run a script file (e.g. Python, R, Julia), with access to the rule's `input`, `output` and `params`
 
 ---
 layout: two-cols-header
@@ -576,13 +578,16 @@ layout: two-cols-header
 
 <div style="height: 40px;"></div>
 
-Scheduling heuristic is applied to
+The DAG is built from the rules and the requested targets, before any job runs.
+Each node is a job. A rule with wildcards gives one job per value.
 
-- Maximise parallelization
+Scheduling heuristic is applied to:
+
+- Maximise parallelisation
 - Prefer high priority jobs
 - Subject to resource constraints
 
-Disjoint paths in DAG can be executed in parallel
+Disjoint paths in DAG can be executed in parallel:
 
 `snakemake --cores 8`
 
@@ -595,10 +600,10 @@ Disjoint paths in DAG can be executed in parallel
 - Run each rule in its own virtual environment (e.g. `conda` directive)
 - Lint workflow (`snakemake --lint`)
 - Modularise workflow (and reuse) (`module` directive)
-- Build DAG tree (`snakemake --d3dag`)
+- Export DAG as JSON for D3.js (`snakemake --d3dag`)
 - Visualise DAG (Dot from graphviz: `snakemake --dag targets | dot -Tpng > dag.png`)
-- Support for temporary and protected files
-- Tracking of tool versions and code changes
+- Temporary outputs (deleted once no longer needed) and protected outputs (made read-only)
+- Tracking of software environment and code changes
 - A Python API for embedding Snakemake in other tools
 
 ---
